@@ -235,7 +235,18 @@ class TransformByGlyphMap(AnimationGroup):
                 lag_ratio=0.5
                 )
 
+class Ex47(Slide):
+    def construct(self):
 
+        ex_title = Tex(r"Example 36 :", r" An electric dipole is placed at an angle $60^\circ$ with an electric field of strength $4\times 10^5$ N/C. It experiences a torque equal to $8\sqrt{3}$ Nm. Calculate the charge on the dipole, if dipole is of length 4 cm.",tex_environment="{minipage} {13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) $10^{-1}$ C',font_size=35),Tex(r'(b) $10^{-2}$ C',font_size=35),Tex(r'(c) $10^{-3}$ C',font_size=35),Tex(r'(d) $10^{-4}$ C',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution :',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op)) 
 
 class Flux(ThreeDScene,Slide):
     def construct(self):
