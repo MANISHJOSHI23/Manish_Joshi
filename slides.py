@@ -310,5 +310,40 @@ class Flux(ThreeDScene,Slide):
         self.play(Write(steps1[3][2]))
         self.next_slide()
         self.play(Write(steps1[4]),FadeIn(img))
+        self.next_slide()
+        self.play(FadeOut(steps1, img, fig1,fig2))
 
+        steps2 = ItemList(Item(r"The concept of \textbf{flux} describes how much of something goes through a given area.",pw="9 cm"),
+                          Item(r"You may conceptualize the Electric Flux ($\Delta \phi$) as a measure of the number of electric field lines passing through an area ",pw="9 cm"),
+                          Item(r"The larger the area ($\Delta S$), the more field lines go through it and, hence, the greater the flux (i.e., $\Delta \phi\propto \Delta S$)",pw="9 cm"),
+                          Item(r"Similarly, the stronger the electric field is (represented by a greater density of lines), the greater the flux. (i.e., $\Delta \phi\propto E$)",pw="9 cm"),
+                          Item(r"Similarly, Larger the value of $\cos\theta$ (i.e., at $\theta = 0^\circ$), the more field lines go through it, hence, the greater the flux (i.e., $\Delta \phi\propto \cos\theta$)",pw="9 cm"),
+                          Item(r"Electric Flux:", r" \quad $\Delta\phi = E \Delta S \cos\theta$",r"$=\vec{E}\cdot \Delta\vec{S}$",pw="9 cm"),
+                        buff=MED_SMALL_BUFF).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
+        
+        steps3 = ItemList(Item(r"Here, $\theta$ is the angle between $\vec{E}$ and Area vector $\Delta \vec{S}$",pw="9 cm"),
+                          Item(r"If $\vec{E}$ is not uniform or if $S$ is a curved surface, we divide $S$ into many small elemetns $\Delta S$, as the elements become smaller, they can be approximated by flat surfaces.",pw="9 cm"),
+                          Item(r"Then electric flux through the area element $\Delta S$ is \\  $\Delta \phi = \vec{E}\cdot \Delta\vec{S}$",pw="9 cm"),
+                          Item(r"Then the totla flux through entire surface $S$ is \\   $\phi \approx \sum_{i=1}^{n}\vec{E}\cdot \Delta\vec{S}$ ",pw="9 cm"),
+                          Item(r"This estimate of the total flux gets better as we decrease the size of the area elements i.e., $(\Delta S \rightarrow 0=dS)$. and the limit of the sum becomes a surface integral.",pw="9 cm"),
+                          Item(r"$ \phi = \int_{S} \vec{E}\cdot d\vec{S}$ (For Open surface)", r"\qquad $ \phi = \oint_{S} \vec{E}\cdot d\vec{S}$ (For Closed surface)",pw="13 cm"),
+                        buff=MED_SMALL_BUFF).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
+        
+        self.set_camera_orientation(phi=0 * DEGREES)
+        sr = SurroundingRectangle(steps2[-1][1:3].set_color(RED))
+
+        for item in steps2:
+            for subitem in item:
+                self.play(Write(subitem))
+                self.next_slide()
+        
+        self.play(Write(sr))
+        self.next_slide()
+        self.remove(steps2,sr)
+        for item in steps3:
+            for subitem in item:
+                self.play(Write(subitem))
+                self.next_slide()
+
+        self.wait(2)
         
