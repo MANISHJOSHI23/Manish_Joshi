@@ -339,7 +339,7 @@ class Flux(ThreeDScene,Slide):
         
         self.play(Write(sr))
         self.next_slide()
-        self.remove(steps2,sr)
+        self.play(FadeOut(steps2,sr))
         for item in steps3:
             for subitem in item:
                 self.play(Write(subitem))
