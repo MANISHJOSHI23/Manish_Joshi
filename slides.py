@@ -235,19 +235,6 @@ class TransformByGlyphMap(AnimationGroup):
                 lag_ratio=0.5
                 )
 
-class Ex47(Slide):
-    def construct(self):
-
-        ex_title = Tex(r"Example 36 :", r" An electric dipole is placed at an angle $60^\circ$ with an electric field of strength $4\times 10^5$ N/C. It experiences a torque equal to $8\sqrt{3}$ Nm. Calculate the charge on the dipole, if dipole is of length 4 cm.",tex_environment="{minipage} {13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
-        ex_title[0].set_color(GREEN)
-        self.play(Write(ex_title))
-        self.next_slide()
-
-        op = VGroup(Tex(r'(a) $10^{-1}$ C',font_size=35),Tex(r'(b) $10^{-2}$ C',font_size=35),Tex(r'(c) $10^{-3}$ C',font_size=35),Tex(r'(d) $10^{-4}$ C',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
-
-        sol_label =Tex('Solution :',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
-        self.play(Write(op)) 
-
 class Flux(ThreeDScene,Slide):
     def construct(self):
         title = Title('CHAPTER 1 : ELECTRIC CHARGES AND FILEDS',color=GREEN,match_underline_width_to_text=True )
@@ -331,14 +318,50 @@ class Flux(ThreeDScene,Slide):
         
         self.set_camera_orientation(phi=0 * DEGREES)
         sr = SurroundingRectangle(steps2[-1][1:3].set_color(RED))
+        self.play(Write(sr))
+        self.next_slide()
+        self.play(FadeOut(steps1, img, fig1,fig2))
+        m = ValueTracker(0.5)
 
+        def plane_func(u, v):
+            return np.array([- m.get_value(),u, v])
+        
+        axes = ThreeDAxes(x_range=(-5, 5, 1),
+                          y_range=(-5, 5, 1),
+                          z_range=(-5, 5, 1),
+                          x_length=10,
+                          y_length=10,
+                          z_length=10,
+                          ).scale(0.5)
+        ag =VGroup()
+        for i in range(3):
+            for j in range(3):
+                ag.add(Arrow3D(start=1.5*LEFT+(j-1)*1.1*UP+(i-1)*1.1*OUT,end=1.5*RIGHT+(j-1)*1.1*UP+(i-1)*1.1*OUT,color=BLUE))
+
+        surf = Surface(lambda u, v: axes.c2p(*plane_func(u, v)), 
+                       u_range=[-3.1, 3.1],
+                       v_range=[-3.1, 3.1],
+                       fill_opacity=0.99,resolution=10,
+                       checkerboard_colors = [RED, RED_E],)
+        
+        normal = Arrow3D(start=surf.get_center()+0.5*OUT+0.5*UP,end=surf.get_center()+2*RIGHT+0.5*OUT+0.5*UP,color=PINK)
+        norlbl = Tex(r"$\Delta \vec{S}$",font_size=35,color=PINK).next_to(normal,RIGHT,buff=0.1)
+        Elbl = Tex(r"$\vec{E}$",font_size=35,color=BLUE).next_to(ag[1],RIGHT)
+        ag.add(normal,norlbl,Elbl,surf)
+
+        self.add_fixed_orientation_mobjects(norlbl,Elbl,steps2,steps3)
+        self.remove(steps2,steps3,norlbl,Elbl)
+        
+        VGroup(ag,axes).move_to(2*RIGHT+3*UP-1*IN)
+
+        self.set_camera_orientation(phi=60*DEGREES,theta=-50*DEGREES)
+        self.add(ag)
+        self.wait(2)
         for item in steps2:
             for subitem in item:
                 self.play(Write(subitem))
                 self.next_slide()
         
-        self.play(Write(sr))
-        self.next_slide()
         self.play(FadeOut(steps2,sr))
         for item in steps3:
             for subitem in item:
@@ -346,4 +369,39 @@ class Flux(ThreeDScene,Slide):
                 self.next_slide()
 
         self.wait(2)
-        
+
+class Ex48(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 37 :", r" A rectangular surface of sides 10 cm and 15 cm is placed inside a uniform electric field of 25 N/C, such that the surface makes an angle of $30^\circ$ with the direction of electric field. Find the flux of the electric field through the rectangular surface.",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) $0.1675\ Nm^2C^{-1}$ ',font_size=35),Tex(r'(b) $0.1875 \ Nm^2C^{-1}$ ',font_size=35),Tex(r'(c) Zero ',font_size=35),Tex(r'(d) $0.1075\ Nm^2C^{-1}$ ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op))
+        self.next_slide()
+        self.play(Write(sol_label)) 
+        self.next_slide(loop=True)
+        self.play(Circumscribe(op[1]))
+
+class Ex49(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 38 :", r" If an electric field is given by $10\hat{i}+3\hat{j}+4\hat{k}$, calculate the electric flux through a surface area of 10 units lying in yz plane",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) 100  units ',font_size=35),Tex(r'(b) 10  units  ',font_size=35),Tex(r'(c) 30  units  ',font_size=35),Tex(r'(d) 40  units  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op))
+        self.next_slide()
+        self.play(Write(sol_label)) 
+        self.next_slide(loop=True)
+        self.play(Circumscribe(op[0]))
+
+
