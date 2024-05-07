@@ -311,7 +311,7 @@ class Flux(ThreeDScene,Slide):
         steps3 = ItemList(Item(r"Here, $\theta$ is the angle between $\vec{E}$ and Area vector $\Delta \vec{S}$",pw="9 cm"),
                           Item(r"If $\vec{E}$ is not uniform or if $S$ is a curved surface, we divide $S$ into many small elemetns $\Delta S$, as the elements become smaller, they can be approximated by flat surfaces.",pw="9 cm"),
                           Item(r"Then electric flux through the area element $\Delta S$ is \\  $\Delta \phi = \vec{E}\cdot \Delta\vec{S}$",pw="9 cm"),
-                          Item(r"Then the totla flux through entire surface $S$ is \\   $\phi \approx \sum_{i=1}^{n}\vec{E}\cdot \Delta\vec{S}$ ",pw="9 cm"),
+                          Item(r"Then the total flux through entire surface $S$ is \\   $\phi \approx \sum_{i=1}^{n}\vec{E}\cdot \Delta\vec{S}$ ",pw="9 cm"),
                           Item(r"This estimate of the total flux gets better as we decrease the size of the area elements i.e., $(\Delta S \rightarrow 0=dS)$. and the limit of the sum becomes a surface integral.",pw="9 cm"),
                           Item(r"$ \phi = \int_{S} \vec{E}\cdot d\vec{S}$ (For Open surface)", r"\qquad $ \phi = \oint_{S} \vec{E}\cdot d\vec{S}$ (For Closed surface)",pw="13 cm"),
                         buff=MED_SMALL_BUFF).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
@@ -510,7 +510,7 @@ class Gauss(Slide):
         
         imppt3 = ItemList(Item(r"Gauss's law is true for  any closed surface, no matter what its shape or size be.",pw="6 cm"),
                           Item(r"If $q_{enc}$ is positive, the net flux is outward. ",r"If $q_{enc}$ is negative, net flux is inward.",pw="6 cm"),
-                          Item(r"If $q_{enc}$ is Zero, then $\Phi = \oint_s \vec{E}\cdot d\vec{S}=0$,",r"But, $E$ may or may not be Zero.",pw="6 cm"),
+                          Item(r"If $q_{enc}=0$, then $\Phi = \oint_s \vec{E}\cdot d\vec{S}=0$,",r"But, $E$ may or may not be Zero.",pw="6 cm"),
                           Item(r"Gauss's law is commonly used for calculating elctric field for symmetric charge configuration.",pw="6 cm"),
                           Item(r"Gauss's law and Coulomb's law are equivalent.",pw="13 cm"),
                         buff=MED_SMALL_BUFF).next_to(imp,DOWN,buff=0.4).to_corner(LEFT)
