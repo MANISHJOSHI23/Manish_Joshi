@@ -315,177 +315,6 @@ class Flux(ThreeDScene,Slide):
                           Item(r"This estimate of the total flux gets better as we decrease the size of the area elements i.e., $(\Delta S \rightarrow 0=dS)$. and the limit of the sum becomes a surface integral.",pw="9 cm"),
                           Item(r"$ \phi = \int_{S} \vec{E}\cdot d\vec{S}$ (For Open surface)", r"\qquad $ \phi = \oint_{S} \vec{E}\cdot d\vec{S}$ (For Closed surface)",pw="13 cm"),
                         buff=MED_SMALL_BUFF).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
-        
-        self.set_camera_orientation(phi=0 * DEGREES)
-        sr = SurroundingRectangle(steps2[-1][1:3].set_color(RED))
-        self.play(Write(sr))
-        self.next_slide()
-        self.play(FadeOut(steps1, img, fig1,fig2))
-        m = ValueTracker(0.5)
-
-        def plane_func(u, v):
-            return np.array([- m.get_value(),u, v])
-        
-        axes = ThreeDAxes(x_range=(-5, 5, 1),
-                          y_range=(-5, 5, 1),
-                          z_range=(-5, 5, 1),
-                          x_length=10,
-                          y_length=10,
-                          z_length=10,
-                          ).scale(0.5)
-        ag =VGroup()
-        for i in range(3):
-            for j in range(3):
-                ag.add(Arrow3D(start=1.5*LEFT+(j-1)*1.1*UP+(i-1)*1.1*OUT,end=1.5*RIGHT+(j-1)*1.1*UP+(i-1)*1.1*OUT,color=BLUE))
-
-        surf = Surface(lambda u, v: axes.c2p(*plane_func(u, v)), 
-                       u_range=[-3.1, 3.1],
-                       v_range=[-3.1, 3.1],
-                       fill_opacity=0.99,resolution=10,
-                       checkerboard_colors = [RED, RED_E],)
-        
-        normal = Arrow3D(start=surf.get_center()+0.5*OUT+0.5*UP,end=surf.get_center()+2*RIGHT+0.5*OUT+0.5*UP,color=PINK)
-        norlbl = Tex(r"$\Delta \vec{S}$",font_size=35,color=PINK).next_to(normal,RIGHT,buff=0.1)
-        Elbl = Tex(r"$\vec{E}$",font_size=35,color=BLUE).next_to(ag[1],RIGHT)
-        ag.add(normal,norlbl,Elbl,surf)
-
-        self.add_fixed_orientation_mobjects(norlbl,Elbl,steps2,steps3)
-        self.remove(steps2,steps3,norlbl,Elbl)
-        
-        VGroup(ag,axes).move_to(2*RIGHT+3*UP-1*IN)
-
-        self.set_camera_orientation(phi=60*DEGREES,theta=-50*DEGREES)
-        self.add(ag)
-        self.wait(2)
-        for item in steps2:
-            for subitem in item:
-                self.play(Write(subitem))
-                self.next_slide()
-        
-        self.play(FadeOut(steps2,sr))
-        for item in steps3:
-            for subitem in item:
-                self.play(Write(subitem))
-                self.next_slide()
-
-        self.wait(2)
-
-class Ex48(Slide):
-    def construct(self):
-
-        ex_title = Tex(r"Example 37 :", r" A rectangular surface of sides 10 cm and 15 cm is placed inside a uniform electric field of 25 N/C, such that the surface makes an angle of $30^\circ$ with the direction of electric field. Find the flux of the electric field through the rectangular surface.",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
-        ex_title[0].set_color(GREEN)
-        self.play(Write(ex_title))
-        self.next_slide()
-
-        op = VGroup(Tex(r'(a) $0.1675\ Nm^2C^{-1}$ ',font_size=35),Tex(r'(b) $0.1875 \ Nm^2C^{-1}$ ',font_size=35),Tex(r'(c) Zero ',font_size=35),Tex(r'(d) $0.1075\ Nm^2C^{-1}$ ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
-
-        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
-        self.play(Write(op))
-        self.next_slide()
-        self.play(Write(sol_label)) 
-        self.next_slide(loop=True)
-        self.play(Circumscribe(op[1]))
-
-class Ex49(Slide):
-    def construct(self):
-
-        ex_title = Tex(r"Example 38 :", r" If an electric field is given by $10\hat{i}+3\hat{j}+4\hat{k}$, calculate the electric flux through a surface area of 10 units lying in yz plane",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
-        ex_title[0].set_color(GREEN)
-        self.play(Write(ex_title))
-        self.next_slide()
-
-        op = VGroup(Tex(r'(a) 100  units ',font_size=35),Tex(r'(b) 10  units  ',font_size=35),Tex(r'(c) 30  units  ',font_size=35),Tex(r'(d) 40  units  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
-
-        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
-        self.play(Write(op))
-        self.next_slide()
-        self.play(Write(sol_label)) 
-        self.next_slide(loop=True)
-        self.play(Circumscribe(op[0]))
-
-
-
-class Flux(ThreeDScene,Slide):
-    def construct(self):
-        title = Title('CHAPTER 1 : ELECTRIC CHARGES AND FILEDS',color=GREEN,match_underline_width_to_text=True )
-        self.add(title)
-        Outline = Tex('Learning Objectives :',color=BLUE).next_to(title,DOWN,buff=0.5).to_corner(LEFT).scale(0.8)
-        self.add(Outline)
-        list = BulletedList('Introduction','Electric Charge','Basic properties of electric charges','Conductors and Insulators','Charging by induction','Coulombs Law',
-                            'Forces between multiple charges','Superposition Principle').scale(0.7).next_to(Outline,DOWN).to_corner(LEFT).shift(0.5*RIGHT)
-        list2 = BulletedList('Electric filed','Electric Field Lines','Electric Dipole and Dipole moment','Electric Field due to an electric dipole',
-                             'Dipole in a Uniform External Field','Electric Flux',"Gauss's Law","Applications of Gauss's Law").scale(0.7).next_to(Outline,DOWN).to_corner(RIGHT)
-        self.play(FadeIn(title, Outline,list,list2))
-        self.next_slide(loop=True)
-        self.play(FocusOn(list2[5]))
-        self.play(Circumscribe(list2[5]))
-        self.next_slide()
-        self.play(RemoveTextLetterByLetter(list2))
-        self.play(RemoveTextLetterByLetter(list))
-        self.play(RemoveTextLetterByLetter(Outline))
-        cur_title = Title(" Electric Flux ",match_underline_width_to_text=True, color=GREEN)
-        self.play(ReplacementTransform(title,cur_title))
-        self.next_slide()
-        steps1 = ItemList(Item(r"Sometimes it is useful to treat  \textbf{area} as a vector. It has magnitude and direction.",pw="7 cm"),
-                          Item(r"Magnitude is equal to area $ds$",pw="7 cm"),
-                          Item(r"Direction is along the normal to the surface $(\hat{n})$; that is, perpendicular to the surface.",pw="7 cm"),
-                          Item(r"Since $\hat{n}$ is a unit normal to a surface, ", r"it has two possible directions at every point on that surface. ", r" For an open surface, we can use either direction, as long as we are consistent over the entire surface.",pw="7 cm"),
-                          Item(r"On a closed surface, $\hat{n}$ is chosen to be the outward normal at every point",pw="7 cm"),
-                        buff=MED_SMALL_BUFF).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
-        
-        
-        plane = Rectangle(height=2,width=2,color=GREEN,fill_opacity=0.4)
-        nv = Arrow3D(start=plane.get_center(),end = plane.get_center()+OUT)
-        nvlbl = Tex(r"$\hat{n}$",font_size=35).next_to(nv,RIGHT)
-        albl  = Tex(r"$ds$",font_size=35).move_to(plane.get_center()+0.5*LEFT+0.1*IN)
-        avlbl  = Tex(r"$d\vec{s}=ds\ \hat{n}$",font_size=35,color=PINK).next_to(plane,DOWN).shift(0.3*IN)
-        plane2 = plane.copy()
-        nv2 = Arrow3D(start=plane2.get_center(),end = plane2.get_center()+IN)
-        albl2  = Tex(r"$ds$",font_size=35).move_to(plane2.get_center()+0.5*LEFT+0.1*IN)
-        nvlbl2 = Tex(r"$\hat{n}$",font_size=35).next_to(nv2,RIGHT+2*DOWN)
-        g1 = VGroup(steps1)
-        fig1 = VGroup(plane,nv,nvlbl,albl,avlbl).next_to(steps1,RIGHT).align_to(steps1,UP).shift(2*OUT)
-        fig2 = VGroup(plane2,nv2,albl2,nvlbl2).next_to(plane,RIGHT,buff=0.4)
-        img = ImageMobject("csurf.png").to_corner(DR).scale(0.9)
-        self.add_fixed_in_frame_mobjects(g1,cur_title,img)
-        self.add_fixed_orientation_mobjects(nvlbl,albl,avlbl,nvlbl2,albl2)
-        self.play(FadeOut(g1,img,nvlbl,albl,avlbl,nvlbl2,albl2),run_time=0)
-        self.set_camera_orientation(phi=70 * DEGREES)
-
-
-        
-        self.play(Write(steps1[0]),Create(plane))
-        self.next_slide()
-        self.play(Write(steps1[1]),Write(albl))
-        self.next_slide()
-        self.play(Write(steps1[2]),Create(nv),Write(nvlbl),Write(avlbl))
-        self.next_slide()
-        self.play(Write(steps1[3][0]))
-        self.next_slide()
-        self.play(Write(steps1[3][1]),Create(plane2),Create(nv2),Write(albl2),Write(nvlbl2))
-        self.next_slide()
-        self.play(Write(steps1[3][2]))
-        self.next_slide()
-        self.play(Write(steps1[4]),FadeIn(img))
-        self.next_slide()
-        self.play(FadeOut(steps1, img, fig1,fig2))
-
-        steps2 = ItemList(Item(r"The concept of \textbf{flux} describes how much of something goes through a given area.",pw="9 cm"),
-                          Item(r"You may conceptualize the Electric Flux ($\Delta \phi$) as a measure of the number of electric field lines passing through an area ",pw="9 cm"),
-                          Item(r"The larger the area ($\Delta S$), the more field lines go through it and, hence, the greater the flux (i.e., $\Delta \phi\propto \Delta S$)",pw="9 cm"),
-                          Item(r"Similarly, the stronger the electric field is (represented by a greater density of lines), the greater the flux. (i.e., $\Delta \phi\propto E$)",pw="9 cm"),
-                          Item(r"Similarly, Larger the value of $\cos\theta$ (i.e., at $\theta = 0^\circ$), the more field lines go through it, hence, the greater the flux (i.e., $\Delta \phi\propto \cos\theta$)",pw="9 cm"),
-                          Item(r"Electric Flux:", r" \quad $\Delta\phi = E \Delta S \cos\theta$",r"$=\vec{E}\cdot \Delta\vec{S}$",pw="9 cm"),
-                        buff=MED_SMALL_BUFF).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
-        
-        steps3 = ItemList(Item(r"Here, $\theta$ is the angle between $\vec{E}$ and Area vector $\Delta \vec{S}$",pw="9 cm"),
-                          Item(r"If $\vec{E}$ is not uniform or if $S$ is a curved surface, we divide $S$ into many small elemetns $\Delta S$, as the elements become smaller, they can be approximated by flat surfaces.",pw="9 cm"),
-                          Item(r"Then electric flux through the area element $\Delta S$ is \\  $\Delta \phi = \vec{E}\cdot \Delta\vec{S}$",pw="9 cm"),
-                          Item(r"Then the totla flux through entire surface $S$ is \\   $\phi \approx \sum_{i=1}^{n}\vec{E}\cdot \Delta\vec{S}$ ",pw="9 cm"),
-                          Item(r"This estimate of the total flux gets better as we decrease the size of the area elements i.e., $(\Delta S \rightarrow 0=dS)$. and the limit of the sum becomes a surface integral.",pw="9 cm"),
-                          Item(r"$ \phi = \int_{S} \vec{E}\cdot d\vec{S}$ (For Open surface)", r"\qquad $ \phi = \oint_{S} \vec{E}\cdot d\vec{S}$ (For Closed surface)",pw="13 cm"),
-                        buff=MED_SMALL_BUFF).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
         sr = SurroundingRectangle(steps2[-1][1:3].set_color(RED))
         sr2 = SurroundingRectangle(steps3[-1][0].set_color(RED))
         sr3 = SurroundingRectangle(steps3[-1][1].set_color(RED))
@@ -568,7 +397,7 @@ class Flux(ThreeDScene,Slide):
             for subitem in item:
                 self.play(Write(subitem))
                 self.next_slide()
-        self.play(Write(sr2,sr3))
+        self.play(Write(VGroup(sr2,sr3)))
 
         self.wait(2)
 
@@ -632,3 +461,114 @@ class Ex51(Slide):
         self.play(Write(sol_label)) 
         self.next_slide(loop=True)
         self.play(Circumscribe(op[2]))
+
+class Gauss(Slide):
+    def construct(self):
+        title = Title('CHAPTER 1 : ELECTRIC CHARGES AND FILEDS',color=GREEN,match_underline_width_to_text=True )
+        self.add(title)
+        Outline = Tex('Learning Objectives :',color=BLUE).next_to(title,DOWN,buff=0.5).to_corner(LEFT).scale(0.8)
+        self.add(Outline)
+        list = BulletedList('Introduction','Electric Charge','Basic properties of electric charges','Conductors and Insulators','Charging by induction','Coulombs Law',
+                            'Forces between multiple charges','Superposition Principle').scale(0.7).next_to(Outline,DOWN).to_corner(LEFT).shift(0.5*RIGHT)
+        list2 = BulletedList('Electric filed','Electric Field Lines','Electric Dipole and Dipole moment','Electric Field due to an electric dipole',
+                             'Dipole in a Uniform External Field','Electric Flux',"Gauss's Law","Applications of Gauss's Law").scale(0.7).next_to(Outline,DOWN).to_corner(RIGHT)
+        self.play(FadeIn(title, Outline,list,list2))
+        self.next_slide(loop=True)
+        self.play(FocusOn(list2[6]))
+        self.play(Circumscribe(list2[6]))
+        self.next_slide()
+        self.play(RemoveTextLetterByLetter(list2))
+        self.play(RemoveTextLetterByLetter(list))
+        self.play(RemoveTextLetterByLetter(Outline))
+        cur_title = Title(" Gauss's Law ",match_underline_width_to_text=True, color=GREEN)
+        self.play(ReplacementTransform(title,cur_title))
+        self.next_slide()
+        img1 = ImageMobject("flux_intro.png").scale(0.9).next_to(cur_title,DOWN)
+        img2 = ImageMobject("flux_intro1.png").scale(0.9).next_to(cur_title,DOWN)
+        img2lbl = Tex("(a) The electric flux through a closed surface due to a charge outside that surface is zero.",font_size=35).next_to(img2,DOWN)
+        img3 = ImageMobject("flux_intro2.png").scale(1).next_to(cur_title,DOWN)
+        img3lbl = Tex("(b) Charges are enclosed, but because the net charge included is zero, the net flux through the closed surface is also zero.",font_size=35).next_to(img3,DOWN)
+        img4 = ImageMobject("flux_intro3.png").scale(1).next_to(cur_title,DOWN)
+        img4lbl = Tex("(c) The shape and size of the surfaces that enclose a charge does not matter because all surfacesenclosing the same charge have the same flux.",font_size=35).next_to(img4,DOWN)
+        statement_lbl =Tex("Statement of Gauss's Law : ",font_size=40, color=ORANGE).next_to(cur_title,DOWN).to_corner(LEFT)
+        imp =Tex("Important Points Regarding Gauss's Law : ",font_size=40, color=ORANGE).next_to(cur_title,DOWN).to_corner(LEFT)
+        statement =Item(r"According to Gauss's law, the flux $(\Phi)$ of the electric field (E) through any closed surface(S), also called a Gaussian surface, is equal to $\dfrac{1}{\epsilon_0}$ times the net charge enclosed $(q_{enc})$ by the surface.",pw="12 cm", color=BLUE,dot=False).next_to(statement_lbl,DOWN).to_corner(LEFT,buff=0.2)
+        formula =Item(r" $\Phi_{\text{Closed surface}}=\oint_{s} \vec{E}\cdot d\vec{S}=\dfrac{q_{enc}}{\epsilon_0}$",pw="12 cm", color=PINK,dot=False).next_to(statement,DOWN).to_corner(LEFT,buff=2)
+        sr = SurroundingRectangle(statement)
+        img5 = ImageMobject("gausslaw.png").scale(0.7).next_to(sr,DOWN).to_edge(RIGHT)
+
+        
+
+        imppt = ItemList(Item(r"The term $q_{enc}$ in Gauss's law is just the net charge enclosed (or inside) (i.e. $q_1,\ q_2$ and $q_5$) the Gaussian surface(S)",pw="6 cm"),
+                          Item(r"Charges Outside the surface (i.e., $q_3,\ q_4,\ q_6,\ ..., \ q_n $), no matter how large or how nearby it may be, is not included in the term $q_{enc}$ in Gauss law.",pw="6 cm"),
+                          Item(r"The electric field $\vec{E}$ used in the Gauss's law is the total electric field at every point on the Gaussian surface, due to \textbf{all charges inside or outside} the Gaussian surface.",pw="6 cm"),
+                        buff=MED_SMALL_BUFF).next_to(imp,DOWN,buff=0.4).to_corner(LEFT)
+        
+        imppt2 = ItemList(Item(r"Gaussian surface is any closed surface in space. ", r" That surface can coincide with the actual surface of a conductor, or it can be an imaginary geometric surface. ", r"The only requirement imposed on a Gaussian surface is that it be closed.",pw="6 cm"),
+                          Item(r"The Gaussian surface should not pass through any discrete charge because the electric field due to a discrete charge at its location is not defined. ",r"However it can pass through a continuous charge distribution.",pw="6 cm"),
+                        buff=MED_SMALL_BUFF).next_to(imp,DOWN,buff=0.4).to_corner(LEFT)
+        
+        imppt3 = ItemList(Item(r"Gauss's law is true for  any closed surface, no matter what its shape or size be.",pw="6 cm"),
+                          Item(r"If $q_{enc}$ is positive, the net flux is outward. ",r"If $q_{enc}$ is negative, net flux is inward.",pw="6 cm"),
+                          Item(r"If $q_{enc}$ is Zero, then $\Phi = \oint_s \vec{E}\cdot d\vec{S}=0$,",r"But, $E$ may or may not be Zero.",pw="6 cm"),
+                          Item(r"Gauss's law is commonly used for calculating elctric field for symmetric charge configuration.",pw="6 cm"),
+                          Item(r"Gauss's law and Coulomb's law are equivalent.",pw="13 cm"),
+                        buff=MED_SMALL_BUFF).next_to(imp,DOWN,buff=0.4).to_corner(LEFT)
+        self.play(FadeIn(img1))
+        self.next_slide()
+        self.play(FadeOut(img1))
+        self.play(FadeIn(img2),Write(img2lbl))
+        self.next_slide()
+        self.play(FadeOut(img2,img2lbl))
+        self.play(FadeIn(img3),Write(img3lbl))
+        self.next_slide()
+        self.play(FadeOut(img3,img3lbl))
+        self.play(FadeIn(img4),Write(img4lbl))
+        self.next_slide()
+        self.play(FadeOut(img4,img4lbl))
+        self.wait(1)
+        self.play(Write(statement_lbl))
+        self.next_slide()
+        self.play(Write(statement[0]),Write(sr),FadeIn(img5))
+        self.next_slide()
+        sr2=SurroundingRectangle(formula,color=RED)
+        self.play(Write(formula),Write(sr2))
+        self.next_slide()
+        self.play(FadeOut(statement,sr),VGroup(sr2,formula).animate.next_to(cur_title,DOWN).to_corner(RIGHT),img5.animate.scale(1.3).to_corner(DR),ReplacementTransform(statement_lbl,imp))
+        self.next_slide()  
+        for item in imppt:
+            self.play(Write(item))
+            self.next_slide()
+        self.play(FadeOut(imppt))
+        self.wait(1)
+
+        for item in imppt2:
+            for subitem in item:
+                self.play(Write(subitem))
+                self.next_slide()
+        
+        img7 =  ImageMobject("nflux.png").scale(0.6).next_to(sr2,DOWN).to_edge(RIGHT)
+        img6 =  ImageMobject("pflux.png").scale(0.6).next_to(img7,LEFT)
+        self.play(FadeOut(img5,imppt2),FadeIn(img4.next_to(sr2,DOWN).to_edge(RIGHT)),Write(imppt3[0]))
+        self.next_slide()
+        self.play(FadeOut(img4),Write(imppt3[1][0]),FadeIn(img6))
+        self.next_slide()
+        self.play(Write(imppt3[1][1]),FadeIn(img7))
+        self.next_slide()
+        self.play(Write(imppt3[2][0]))
+        self.next_slide()
+        self.play(Write(imppt3[2][1]))
+        self.next_slide()
+        self.play(Write(imppt3[3]))
+        self.next_slide()
+        self.play(Write(imppt3[4]))
+
+class Ex52(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 39 :", r" Calculate the electric flux through each Gaussian surface shown in Figure",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+        img = ImageMobject("ex52.png").next_to(ex_title,DOWN)
+        self.play(FadeIn(img))
