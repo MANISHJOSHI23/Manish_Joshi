@@ -486,16 +486,21 @@ class Flux(ThreeDScene,Slide):
                           Item(r"This estimate of the total flux gets better as we decrease the size of the area elements i.e., $(\Delta S \rightarrow 0=dS)$. and the limit of the sum becomes a surface integral.",pw="9 cm"),
                           Item(r"$ \phi = \int_{S} \vec{E}\cdot d\vec{S}$ (For Open surface)", r"\qquad $ \phi = \oint_{S} \vec{E}\cdot d\vec{S}$ (For Closed surface)",pw="13 cm"),
                         buff=MED_SMALL_BUFF).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
+        sr = SurroundingRectangle(steps2[-1][1:3].set_color(RED))
+        sr2 = SurroundingRectangle(steps3[-1][0].set_color(RED))
+        sr3 = SurroundingRectangle(steps3[-1][1].set_color(RED))
+        
+        
         
         self.set_camera_orientation(phi=0 * DEGREES)
-        sr = SurroundingRectangle(steps2[-1][1:3].set_color(RED))
-        self.play(Write(sr))
-        self.next_slide()
-        self.play(FadeOut(steps1, img, fig1,fig2,sr))
+        self.play(FadeOut(steps1, img, fig1,fig2))
         m = ValueTracker(0.5)
 
         def plane_func(u, v):
             return np.array([- m.get_value(),u, v])
+        
+        def plane_func_t(u, v):
+            return np.array([-0.5*u**2,u, v])
         
         axes = ThreeDAxes(x_range=(-5, 5, 1),
                           y_range=(-5, 5, 1),
@@ -519,13 +524,29 @@ class Flux(ThreeDScene,Slide):
         norlbl = Tex(r"$\Delta \vec{S}$",font_size=35,color=PINK).next_to(normal,RIGHT,buff=0.1)
         Elbl = Tex(r"$\vec{E}$",font_size=35,color=BLUE).next_to(ag[1],RIGHT)
         ag.add(normal,norlbl,Elbl,surf)
-        img3 = ImageMobject("sflux2.png").to_corner(DR)
-        img4 = ImageMobject("tflux.png").scale(0.6).to_edge(RIGHT)
+        csg =VGroup()
+        for i in range(3):
+            for j in range(3):
+                csg.add(Arrow3D(start=1.5*LEFT+(j-1)*1.1*UP+(i-1)*1.1*OUT,end=1.5*RIGHT+(j-1)*1.1*UP+(i-1)*1.1*OUT,color=BLUE))
 
-        self.add_fixed_orientation_mobjects(norlbl,Elbl,steps2,steps3,img3,img4,sr)
-        self.remove(steps2,steps3,norlbl,Elbl,img3,img4,sr)
+        surf2 = Surface(lambda u, v: axes.c2p(*plane_func_t(u, v)), 
+                       u_range=[-3, 3],
+                       v_range=[-3, 3],
+                       fill_opacity=0.99,resolution=10,
+                       checkerboard_colors = [PINK, LIGHT_PINK],)
         
-        VGroup(ag,axes).move_to(2.5*RIGHT+3*UP-1.2*IN)
+        
+        
+        
+        Elbl2 = Tex(r"$\vec{E}$",font_size=35,color=BLUE).next_to(csg[1],RIGHT)
+        csg.add(Elbl2,surf2)
+        img3 = ImageMobject("sflux2.png").to_corner(DR)
+
+        self.add_fixed_orientation_mobjects(norlbl,Elbl,Elbl2)
+        self.add_fixed_in_frame_mobjects(steps2,steps3,img3,sr,sr2,sr3)
+        self.remove(steps2,steps3,norlbl,Elbl,img3,sr,sr2,sr3,Elbl2)
+        
+        VGroup(ag,axes).move_to(3*RIGHT+3*UP-1.2*IN)
 
         self.set_camera_orientation(phi=60*DEGREES,theta=-50*DEGREES)
         self.add(ag)
@@ -534,17 +555,20 @@ class Flux(ThreeDScene,Slide):
             for subitem in item:
                 self.play(Write(subitem))
                 self.next_slide()
-        
+        self.play(Write(sr))
         self.play(FadeIn(img3))
         self.next_slide()
         
-        self.play(FadeOut(steps2,sr,img3,ag))
-        self.play(FadeIn(img4))
+        self.play(FadeOut(steps2,sr,ag,img3))
+        self.set_camera_orientation(phi=60*DEGREES,theta=-5*DEGREES)
+        self.add(csg.move_to(2*RIGHT+3.5*UP-1.2*IN))
+        self.wait(2)
         self.next_slide()
         for item in steps3:
             for subitem in item:
                 self.play(Write(subitem))
                 self.next_slide()
+        self.play(Write(sr2,sr3))
 
         self.wait(2)
 
@@ -582,3 +606,29 @@ class Ex49(Slide):
         self.next_slide(loop=True)
         self.play(Circumscribe(op[0]))
 
+class Ex50(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 39 :", r" If an electric field in a region is given by $a\hat{i}+b\hat{j}$, where $a$ and $b$ are constants. Find the net flux through a square area of side $l$ parallel to y-z plane.",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(ex_title,DOWN).align_to(ex_title,LEFT)
+        self.next_slide()
+        self.play(Write(sol_label)) 
+
+class Ex51(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 38 :", r" There is a uniform electric field of $8\times 10^3\ \hat{i}$ N/C. What is the net flux (in S.I. Units) of the uniform electric field throught a cube of side 0.3 m oriented so that its faces are parallel to the coordinate plane?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) $16\times 10^3$ ',font_size=35),Tex(r'(b) $2.4\times 10^3$  ',font_size=35),Tex(r'(c) Zero  ',font_size=35),Tex(r'(d) $48\times 10^3$  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op))
+        self.next_slide()
+        self.play(Write(sol_label)) 
+        self.next_slide(loop=True)
+        self.play(Circumscribe(op[2]))
