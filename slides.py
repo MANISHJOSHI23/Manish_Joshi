@@ -511,7 +511,7 @@ class Gauss(Slide):
         imppt3 = ItemList(Item(r"Gauss's law is true for  any closed surface, no matter what its shape or size be.",pw="6 cm"),
                           Item(r"If $q_{enc}$ is positive, the net flux is outward. ",r"If $q_{enc}$ is negative, net flux is inward.",pw="6 cm"),
                           Item(r"If $q_{enc}=0$, then $\Phi = \oint_s \vec{E}\cdot d\vec{S}=0$,",r"But, $E$ may or may not be Zero.",pw="6 cm"),
-                          Item(r"Gauss's law is commonly used for calculating elctric field for symmetric charge configuration.",pw="6 cm"),
+                          Item(r"Gauss's law is commonly used for calculating electric field for symmetric charge configuration.",pw="6 cm"),
                           Item(r"Gauss's law and Coulomb's law are equivalent.",pw="13 cm"),
                         buff=MED_SMALL_BUFF).next_to(imp,DOWN,buff=0.4).to_corner(LEFT)
         self.play(FadeIn(img1))
@@ -562,6 +562,28 @@ class Gauss(Slide):
         self.play(Write(imppt3[3]))
         self.next_slide()
         self.play(Write(imppt3[4]))
+        self.next_slide()
+        self.play(FadeOut(imppt3,img6, img7, sr2,formula,cur_title))
+        proof_lbl =Tex("Proof of Gauss's Law  for Shperically Symmetric Surface : ",font_size=40, color=ORANGE).to_corner(UL)
+        self.play(ReplacementTransform(imp,proof_lbl))
+        self.next_slide()
+        proof = ItemList(Item(r" Let's calculate the electric flux through a spherical surface around a positive point charge $q$",pw="13 cm"),
+                          Item(r"The electric field at a point P on the surface at distance $R$ from the charge at the origin is given by:\quad",r" $\vec{E}=\dfrac{1}{4\pi\epsilon_0}\dfrac{q}{R^2}\hat{r}$",pw="13 cm",dot=False),
+                          Item(r"The total flux $(\Phi)$ passing through the spherical surface $S$ is: ",pw="6 cm"),
+                          Item(r"\Phi &= \oint_{S} \vec{E}\cdot dA\ \hat{n}",r"=\oint_{S}\dfrac{1}{4\pi\epsilon_0}\dfrac{q}{R^2}\hat{r}\cdot  \hat{n} dA\\",r"&=\dfrac{1}{4\pi\epsilon_0}\dfrac{q}{R^2}\oint_{S} dA",r"=\dfrac{1}{4\pi\epsilon_0}\dfrac{q}{R^2}\times 4\pi R^2\\",r"\Phi&=\dfrac{q}{\epsilon_0}",math=True,dot=False,pw="13 cm"),
+                          buff=0.4).next_to(imp,DOWN,buff=0.4).to_corner(LEFT)
+        sr3=SurroundingRectangle(proof[-1][-1])
+        
+        img8 = ImageMobject("gaussproof.png").scale(0.6).next_to(proof_lbl,DOWN).to_corner(DR)
+        
+        self.play(FadeIn(img8))
+        self.next_slide()
+        for item in proof:
+            for subitem in item:
+                self.play(Write(subitem))
+                self.next_slide()
+        
+        self.play(Write(sr3))
 
 class Ex52(Slide):
     def construct(self):
