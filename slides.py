@@ -594,3 +594,143 @@ class Ex52(Slide):
         self.next_slide()
         img = ImageMobject("ex52.png").next_to(ex_title,DOWN)
         self.play(FadeIn(img))
+
+class Ex53(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 40 :", r" A charge $q$ is situated at the centre of a cube. Electric flux through one of the faces of the cube is",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) $\dfrac{q}{\epsilon_0}$ ',font_size=35),Tex(r'(b) $\dfrac{q}{3\epsilon_0}$  ',font_size=35),Tex(r'(c) $\dfrac{q}{6\epsilon_0}$  ',font_size=35),Tex(r'(d) Zero  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op))
+        self.next_slide()
+        self.play(Write(sol_label)) 
+        self.next_slide(loop=True)
+        self.play(Circumscribe(op[2]))
+
+class Ex54(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 41 :", r" A chagre $q$ is placed at the centre of the open end of cylindrical vessel. Electric flux through the surface of the vessel is ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) $\dfrac{q}{2\epsilon_0}$ ',font_size=35),Tex(r'(b) $\dfrac{q}{\epsilon_0}$  ',font_size=35),Tex(r'(c) $\dfrac{2q}{\epsilon_0}$  ',font_size=35),Tex(r'(d) Zero  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op))
+        self.next_slide()
+        self.play(Write(sol_label)) 
+        self.next_slide(loop=True)
+        self.play(Circumscribe(op[0]))
+
+class Ex55(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 42 :", r" A hemispherical surface of radius $R$ is kept in a uniform electric field $E$ as shown in the figure. The flux through the curved surface is ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) $E\times 2\pi R^2$ ',font_size=35),Tex(r'(b) $E\times \pi R^2$ ',font_size=35),Tex(r'(c) $E\times 4\pi R^2$  ',font_size=35),Tex(r'(d) Zero  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op))
+        self.next_slide()
+        self.play(Write(sol_label)) 
+        self.next_slide(loop=True)
+        self.play(Circumscribe(op[1]))
+
+class Ex56(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 43 :", r" A charge of 1 C is located at the centre of a sphere of radius 10 cm and a cube of side 20 cm. The ratio of outgoing flux from the sphre and cube will be ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) More than one ',font_size=35),Tex(r'(b) Less than one ',font_size=35),Tex(r'(c) one  ',font_size=35),Tex(r'(d) Nothing can be said  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op))
+        self.next_slide()
+        self.play(Write(sol_label)) 
+        self.next_slide(loop=True)
+        self.play(Circumscribe(op[2]))
+
+class Ex57(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 44 :", r" If the nuber of electric lines of force emerging out of  a closed surface is 1000, then the charge enclosed by the surface is ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) $8.854\times 10^{-9}$ C ',font_size=35),Tex(r'(b) $8.854\times 10^{-4}$ C ',font_size=35),Tex(r'(c) $8.854\times 10^{-1}$ C  ',font_size=35),Tex(r'(d) $8.854$ C  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op))
+        self.next_slide()
+        self.play(Write(sol_label)) 
+        self.next_slide(loop=True)
+        self.play(Circumscribe(op[0]))
+
+class Ex58(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 45 :", r" The electric field components in Fig. 1.27 are $E_x = \alpha x^{1/2}, E_y = E_z = 0,$ in which $\alpha = 800 NC^{-1} m^{-1/2}$. Calculate (a) the flux through the cube, and (b) the charge within the cube. Assume that $a = 0.1$ m",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+        img = ImageMobject("Ex58.png").scale(0.7).next_to(ex_title,DOWN).to_edge(RIGHT)
+        self.play(FadeIn(img))
+
+class Ex59(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 46 :", r" An electric field is uniform, and in the positive $x$ direction for positive x, and uniform with the same magnitude but in the negative $x$ direction for negative $x$. It is given that $E = 200 \ \hat{i}$ N/C for $x > 0$ and $E = -200\ \hat{i}$ N/C for $x < 0$. A right circular cylinder of length 20 cm and radius 5 cm has its centre at the origin and its axis along the x-axis so that one face is at $x = +10$ cm and the other is at $x = 10$ cm (Fig.). ", r"(a) What is the net outward flux through each flat face? ", r"(b) What is the flux through the side of the cylinder? ", r"(c) What is the net outward flux through the cylinder? ", r"(d) What is the net charge inside the cylinder?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        img = ImageMobject("Ex59.png").scale(0.6).next_to(ex_title,DOWN).to_edge(RIGHT)
+        for item in ex_title:
+            self.play(Write(item))
+            self.next_slide()
+        
+        self.play(FadeIn(img))
+
+class Ex60(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 47 :", r" Careful measurement of the electric field at the surface of a black box indicates that the net outward flux through the surface of the box is $8.0 \times 10^3\ Nm^2/C$. (a) What is the net charge inside the box? b) If the net outward flux through the surface of the box were zero, could you conclude that there were no charges inside the box? Why or Why not?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+
+
+class Ex61(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 48 :", r" A point charge $+10\ \mu$C is a distance 5 cm directly above the centre of a square of side 10 cm, as shown in Fig. 1.34. What is the magnitude of the electric flux through the square? (Hint: Think of the square as one face of a cube with edge 10 cm.)",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        img = ImageMobject("Ex61.png").scale(0.6).next_to(ex_title,DOWN).to_edge(RIGHT)
+        
+        self.play(FadeIn(img))
+
+class Ex62(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 49 :", r" A point charge of $2.0\ \mu$C is at the centre of a cubic Gaussian surface 9.0 cm on edge. What is the net electric flux through the surface?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+
+class Ex63(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 50 :", r" A point charge causes an electric flux of $-1.0 \times 10^3\ Nm^2/C$ to pass through a spherical Gaussian surface of 10.0 cm radius centred on the charge. (a) If the radius of the Gaussian surface were doubled, how much flux would pass through the surface? (b) What is the value of the point charge?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+
