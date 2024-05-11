@@ -237,7 +237,7 @@ class TransformByGlyphMap(AnimationGroup):
 
 class Flux(ThreeDScene,Slide):
     def construct(self):
-        title = Title('CHAPTER 1 : ELECTRIC CHARGES AND FILEDS',color=GREEN,match_underline_width_to_text=True )
+        title = Title('CHAPTER 1 : ELECTRIC CHARGES AND FIELDS',color=GREEN,match_underline_width_to_text=True )
         self.add(title)
         Outline = Tex('Learning Objectives :',color=BLUE).next_to(title,DOWN,buff=0.5).to_corner(LEFT).scale(0.8)
         self.add(Outline)
@@ -309,7 +309,7 @@ class Flux(ThreeDScene,Slide):
                         buff=MED_SMALL_BUFF).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
         
         steps3 = ItemList(Item(r"Here, $\theta$ is the angle between $\vec{E}$ and Area vector $\Delta \vec{S}$",pw="9 cm"),
-                          Item(r"If $\vec{E}$ is not uniform or if $S$ is a curved surface, we divide $S$ into many small elemetns $\Delta S$, as the elements become smaller, they can be approximated by flat surfaces.",pw="9 cm"),
+                          Item(r"If $\vec{E}$ is not uniform or if $S$ is a curved surface, we divide $S$ into many small elements $\Delta S$, as the elements become smaller, they can be approximated by flat surfaces.",pw="9 cm"),
                           Item(r"Then electric flux through the area element $\Delta S$ is \\  $\Delta \phi = \vec{E}\cdot \Delta\vec{S}$",pw="9 cm"),
                           Item(r"Then the total flux through entire surface $S$ is \\   $\phi \approx \sum_{i=1}^{n}\vec{E}\cdot \Delta\vec{S}$ ",pw="9 cm"),
                           Item(r"This estimate of the total flux gets better as we decrease the size of the area elements i.e., $(\Delta S \rightarrow 0=dS)$. and the limit of the sum becomes a surface integral.",pw="9 cm"),
@@ -448,7 +448,7 @@ class Ex50(Slide):
 class Ex51(Slide):
     def construct(self):
 
-        ex_title = Tex(r"Example 38 :", r" There is a uniform electric field of $8\times 10^3\ \hat{i}$ N/C. What is the net flux (in S.I. Units) of the uniform electric field throught a cube of side 0.3 m oriented so that its faces are parallel to the coordinate plane?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title = Tex(r"Example 38 :", r" There is a uniform electric field of $8\times 10^3\ \hat{i}$ N/C. What is the net flux (in S.I. Units) of the uniform electric field throughout a cube of side 0.3 m oriented so that its faces are parallel to the coordinate plane?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
         ex_title[0].set_color(GREEN)
         self.play(Write(ex_title))
         self.next_slide()
@@ -464,7 +464,7 @@ class Ex51(Slide):
 
 class Gauss(Slide):
     def construct(self):
-        title = Title('CHAPTER 1 : ELECTRIC CHARGES AND FILEDS',color=GREEN,match_underline_width_to_text=True )
+        title = Title('CHAPTER 1 : ELECTRIC CHARGES AND FIELDS',color=GREEN,match_underline_width_to_text=True )
         self.add(title)
         Outline = Tex('Learning Objectives :',color=BLUE).next_to(title,DOWN,buff=0.5).to_corner(LEFT).scale(0.8)
         self.add(Outline)
@@ -489,7 +489,7 @@ class Gauss(Slide):
         img3 = ImageMobject("flux_intro2.png").scale(1).next_to(cur_title,DOWN)
         img3lbl = Tex("(b) Charges are enclosed, but because the net charge included is zero, the net flux through the closed surface is also zero.",font_size=35).next_to(img3,DOWN)
         img4 = ImageMobject("flux_intro3.png").scale(1).next_to(cur_title,DOWN)
-        img4lbl = Tex("(c) The shape and size of the surfaces that enclose a charge does not matter because all surfacesenclosing the same charge have the same flux.",font_size=35).next_to(img4,DOWN)
+        img4lbl = Tex("(c) The shape and size of the surfaces that enclose a charge does not matter because all surfaces enclosing the same charge have the same flux.",font_size=35).next_to(img4,DOWN)
         statement_lbl =Tex("Statement of Gauss's Law : ",font_size=40, color=ORANGE).next_to(cur_title,DOWN).to_corner(LEFT)
         imp =Tex("Important Points Regarding Gauss's Law : ",font_size=40, color=ORANGE).next_to(cur_title,DOWN).to_corner(LEFT)
         statement =Item(r"According to Gauss's law, the flux $(\Phi)$ of the electric field (E) through any closed surface(S), also called a Gaussian surface, is equal to $\dfrac{1}{\epsilon_0}$ times the net charge enclosed $(q_{enc})$ by the surface.",pw="12 cm", color=BLUE,dot=False).next_to(statement_lbl,DOWN).to_corner(LEFT,buff=0.2)
@@ -564,7 +564,7 @@ class Gauss(Slide):
         self.play(Write(imppt3[4]))
         self.next_slide()
         self.play(FadeOut(imppt3,img6, img7, sr2,formula,cur_title))
-        proof_lbl =Tex("Proof of Gauss's Law  for Shperically Symmetric Surface : ",font_size=40, color=ORANGE).to_corner(UL)
+        proof_lbl =Tex("Proof of Gauss's Law  for Spherically Symmetric Surface : ",font_size=40, color=ORANGE).to_corner(UL)
         self.play(ReplacementTransform(imp,proof_lbl))
         self.next_slide()
         proof = ItemList(Item(r" Let's calculate the electric flux through a spherical surface around a positive point charge $q$",pw="13 cm"),
@@ -584,6 +584,7 @@ class Gauss(Slide):
                 self.next_slide()
         
         self.play(Write(sr3))
+
 
 class Ex52(Slide):
     def construct(self):
@@ -615,7 +616,7 @@ class Ex53(Slide):
 class Ex54(Slide):
     def construct(self):
 
-        ex_title = Tex(r"Example 41 :", r" A chagre $q$ is placed at the centre of the open end of cylindrical vessel. Electric flux through the surface of the vessel is ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title = Tex(r"Example 41 :", r" A charge $q$ is placed at the centre of the open end of cylindrical vessel. Electric flux through the surface of the vessel is ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
         ex_title[0].set_color(GREEN)
         self.play(Write(ex_title))
         self.next_slide()
@@ -632,12 +633,13 @@ class Ex54(Slide):
 class Ex55(Slide):
     def construct(self):
 
-        ex_title = Tex(r"Example 42 :", r" A hemispherical surface of radius $R$ is kept in a uniform electric field $E$ as shown in the figure. The flux through the curved surface is ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title = Tex(r"Example 42 :", r" A hemispherical surface of radius $R$ is kept in a uniform electric field $E$ as shown in the figure. The flux through the curved surface is ",tex_environment="{minipage}{8 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        img = ImageMobject("Ex55.png").scale(0.8).next_to(ex_title,RIGHT).align_to(ex_title,UP)
         ex_title[0].set_color(GREEN)
-        self.play(Write(ex_title))
+        self.play(Write(ex_title),FadeIn(img))
         self.next_slide()
 
-        op = VGroup(Tex(r'(a) $E\times 2\pi R^2$ ',font_size=35),Tex(r'(b) $E\times \pi R^2$ ',font_size=35),Tex(r'(c) $E\times 4\pi R^2$  ',font_size=35),Tex(r'(d) Zero  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+        op = VGroup(Tex(r'(a) $E\times 2\pi R^2$ ',font_size=35),Tex(r'(b) $E\times \pi R^2$ ',font_size=35),Tex(r'(c) $E\times 4\pi R^2$  ',font_size=35),Tex(r'(d) Zero  ',font_size=35) ).arrange_in_grid(2,2,buff=(2,0.3),col_alignments='ll').next_to(ex_title,DOWN)
 
         sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
         self.play(Write(op))
@@ -649,7 +651,7 @@ class Ex55(Slide):
 class Ex56(Slide):
     def construct(self):
 
-        ex_title = Tex(r"Example 43 :", r" A charge of 1 C is located at the centre of a sphere of radius 10 cm and a cube of side 20 cm. The ratio of outgoing flux from the sphre and cube will be ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title = Tex(r"Example 43 :", r" A charge of 1 C is located at the centre of a sphere of radius 10 cm and a cube of side 20 cm. The ratio of outgoing flux from the sphere and cube will be ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
         ex_title[0].set_color(GREEN)
         self.play(Write(ex_title))
         self.next_slide()
@@ -666,7 +668,7 @@ class Ex56(Slide):
 class Ex57(Slide):
     def construct(self):
 
-        ex_title = Tex(r"Example 44 :", r" If the nuber of electric lines of force emerging out of  a closed surface is 1000, then the charge enclosed by the surface is ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title = Tex(r"Example 44 :", r" If the number of electric lines of force emerging out of  a closed surface is 1000, then the charge enclosed by the surface is ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
         ex_title[0].set_color(GREEN)
         self.play(Write(ex_title))
         self.next_slide()
@@ -734,3 +736,32 @@ class Ex63(Slide):
         ex_title[0].set_color(GREEN)
         self.play(Write(ex_title))
 
+class Continuous(Slide,ThreeDScene):
+    def construct(self):
+        cur_title = Title(" CONTINUOUS CHARGE DISTRIBUTION ",match_underline_width_to_text=True, color=GREEN,underline_buff=SMALL_BUFF)
+        self.play(Write(cur_title))
+        self.next_slide() 
+        def plane_func(u, v):
+            r=4
+            return np.array([r*np.cos(u)*np.cos(v),r*np.cos(u)*np.sin(v), r*np.sin(u)])
+        
+        axes = ThreeDAxes(x_range=(-5, 5, 1),
+                          y_range=(-5, 5, 1),
+                          z_range=(-5, 5, 1),
+                          x_length=10,
+                          y_length=10,
+                          z_length=10,
+                          ).scale(0.5)
+        ag =VGroup()
+        q1 = MyLabeledDot(label_in=Tex(r"$\mathbf{+}$",font_size=35,color=BLUE),label_out= Tex("$+q$",font_size=35),color=DARK_BROWN)
+        self.set_camera_orientation(phi=60*DEGREES,theta=-50*DEGREES)
+        self.add_fixed_in_frame_mobjects(cur_title,q1)
+
+        surf = Surface(lambda u, v: axes.c2p(*plane_func(u, v)), 
+                       u_range=[-3.1, 3.1],
+                       v_range=[-3.1, 3.1],
+                       fill_opacity=0.6,resolution=[20,20],
+                       checkerboard_colors = [RED, RED_E],)
+        sphere = Sphere(ORIGIN,radius=2,resolution=150,checkerboard_colors = [RED],fill_opacity=0.5).set_stroke(RED,opacity=0.5,width=0)
+        self.add(q1,sphere)
+        self.wait(2)
