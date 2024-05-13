@@ -736,32 +736,32 @@ class Ex63(Slide):
         ex_title[0].set_color(GREEN)
         self.play(Write(ex_title))
 
-class Continuous(Slide,ThreeDScene):
+class Continuous(Slide):
     def construct(self):
         cur_title = Title(" CONTINUOUS CHARGE DISTRIBUTION ",match_underline_width_to_text=True, color=GREEN,underline_buff=SMALL_BUFF)
         self.play(Write(cur_title))
         self.next_slide() 
-        def plane_func(u, v):
-            r=4
-            return np.array([r*np.cos(u)*np.cos(v),r*np.cos(u)*np.sin(v), r*np.sin(u)])
+        content = ItemList(Item(r" The charge distributions we have seen so far have been discrete: made up of individual point particles $(q_1\ q_2,\ q_3, ....\ q_n)$",pw="13 cm"),
+                          Item(r"If the region in which charges are closely spaced is said to have continuous distribution of charge. ",pw="13 cm"),
+                          Item(r"For continuous distribution of charges, it is impractical to specify the charge distribution in terms of the locations of the microscopic charged constituents(electrons or protons).",pw="13 cm"),
+                          Item(r"For continuous charge distribution, we can generalize the definition of the electric field. We simply divide the charge into infinitesimal pieces and treat each piece as a point charge.",
+                          pw="13 cm"),
+                          Item(r"Our first step is to define a charge density for a charge distribution along a line, across a surface, or within a volume",pw="13 cm"),
+                          buff=0.4).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
+        linear_title = Tex(r"Linear/Line Charge distribution",tex_environment="{minipage}{13 cm}",font_size=40, color=BLUE_C).next_to(cur_title,DOWN).to_edge(LEFT)
+        linear = ItemList(Item(r" Let charge $Q$ is uniformly distributed along a line of length $L$, with \textbf{linear charge density (charge per unit length)} $\lambda$ ",pw="6 cm"),
+                          Item(r"$\lambda= \dfrac{Q}{L}$\qquad ","S.I unit : C/m",pw="6 cm"),
+                          Item(r"The charge $dQ$ on a small element $dl$ of the wire will be",pw="13 cm"),
+                          Item(r"$dQ= \lambda\times dl$\qquad",r"(We can consider this element as a point charge.)",pw="13 cm"),
+                          buff=0.4).next_to(linear_title,DOWN,buff=0.4).to_corner(LEFT)
         
-        axes = ThreeDAxes(x_range=(-5, 5, 1),
-                          y_range=(-5, 5, 1),
-                          z_range=(-5, 5, 1),
-                          x_length=10,
-                          y_length=10,
-                          z_length=10,
-                          ).scale(0.5)
-        ag =VGroup()
-        q1 = MyLabeledDot(label_in=Tex(r"$\mathbf{+}$",font_size=35,color=BLUE),label_out= Tex("$+q$",font_size=35),color=DARK_BROWN)
-        self.set_camera_orientation(phi=60*DEGREES,theta=-50*DEGREES)
-        self.add_fixed_in_frame_mobjects(cur_title,q1)
+        img1 = ImageMobject("linear.png").scale(0.75).next_to(linear[0],RIGHT)
+        for item in content:
+            self.play(Write(item))
+            self.next_slide()
 
-        surf = Surface(lambda u, v: axes.c2p(*plane_func(u, v)), 
-                       u_range=[-3.1, 3.1],
-                       v_range=[-3.1, 3.1],
-                       fill_opacity=0.6,resolution=[20,20],
-                       checkerboard_colors = [RED, RED_E],)
-        sphere = Sphere(ORIGIN,radius=2,resolution=150,checkerboard_colors = [RED],fill_opacity=0.5).set_stroke(RED,opacity=0.5,width=0)
-        self.add(q1,sphere)
-        self.wait(2)
+        self.play(FadeOut(content),Write(linear_title),FadeIn(img1))
+        for item in linear:
+            for subitem in item:
+                self.play(Write(subitem))
+                self.next_slide()
