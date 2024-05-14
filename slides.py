@@ -749,19 +749,50 @@ class Continuous(Slide):
                           Item(r"Our first step is to define a charge density for a charge distribution along a line, across a surface, or within a volume",pw="13 cm"),
                           buff=0.4).next_to(cur_title,DOWN,buff=0.4).to_corner(LEFT)
         linear_title = Tex(r"Linear/Line Charge distribution",tex_environment="{minipage}{13 cm}",font_size=40, color=BLUE_C).next_to(cur_title,DOWN).to_edge(LEFT)
+        surface_title = Tex(r"Surface Charge distribution",tex_environment="{minipage}{13 cm}",font_size=40, color=BLUE_C).next_to(cur_title,DOWN).to_edge(LEFT)
+        volume_title = Tex(r"Volume Charge distribution",tex_environment="{minipage}{13 cm}",font_size=40, color=BLUE_C).next_to(cur_title,DOWN).to_edge(LEFT)
         linear = ItemList(Item(r" Let charge $Q$ is uniformly distributed along a line of length $L$, with \textbf{linear charge density (charge per unit length)} $\lambda$ ",pw="6 cm"),
                           Item(r"$\lambda= \dfrac{Q}{L}$\qquad ","S.I unit : C/m",pw="6 cm"),
                           Item(r"The charge $dQ$ on a small element $dl$ of the wire will be",pw="13 cm"),
                           Item(r"$dQ= \lambda\times dl$\qquad",r"(We can consider this element as a point charge.)",pw="13 cm"),
+                          Item(r"Electric field due to small element at any point is\quad ",r"$dE=\dfrac{1}{4\pi\epsilon_0}\dfrac{dq}{r^2}$",r"$=\dfrac{1}{4\pi\epsilon_0}\dfrac{\lambda dl}{r^2}$",pw="13 cm"),
+                          buff=0.4).next_to(linear_title,DOWN,buff=0.4).to_corner(LEFT)
+                        
+        surface = ItemList(Item(r" Let charge $Q$ is uniformly distributed uniformly on a surface $A$, with \textbf{surface charge density (charge per unit area)} $\sigma$ ",pw="6 cm"),
+                          Item(r"$\sigma= \dfrac{Q}{A}$\qquad ","S.I unit : C/m$^2$",pw="6 cm"),
+                          Item(r"The charge $dQ$ on a small area element $dA$  will be",pw="6 cm"),
+                          Item(r"$dQ= \sigma\times dA$\qquad",r"(We can consider this element as a point charge.)",pw="10 cm"),
+                          Item(r"Electric field due to small element at any point is\quad ",r"$dE=\dfrac{1}{4\pi\epsilon_0}\dfrac{dq}{r^2}$",r"$=\dfrac{1}{4\pi\epsilon_0}\dfrac{\sigma dA}{r^2}$",pw="13 cm"),
+                          buff=0.4).next_to(linear_title,DOWN,buff=0.4).to_corner(LEFT)
+        
+        volume = ItemList(Item(r" If some charge $Q$ is uniformly distributed uniformly om a volume $V$, with \textbf{volume charge density (charge per unit volume)} $\rho$ ",pw="6 cm"),
+                          Item(r"$\rho= \dfrac{Q}{V}$\qquad ","S.I unit : C/m$^3$",pw="6 cm"),
+                          Item(r"The charge $dQ$ on a small volume element $dV$  will be",pw="13 cm"),
+                          Item(r"$dQ= \sigma\times dV$\qquad",r"(We can consider this element as a point charge.)",pw="13 cm"),
+                          Item(r"Electric field due to small element at any point is\quad ",r"$dE=\dfrac{1}{4\pi\epsilon_0}\dfrac{dq}{r^2}$",r"$=\dfrac{1}{4\pi\epsilon_0}\dfrac{\rho dV}{r^2}$",pw="13 cm"),
                           buff=0.4).next_to(linear_title,DOWN,buff=0.4).to_corner(LEFT)
         
         img1 = ImageMobject("linear.png").scale(0.75).next_to(linear[0],RIGHT)
+        img2 = ImageMobject("surface.png").scale(0.75).next_to(surface[0],RIGHT).align_to(surface_title,UP)
+        img3 = ImageMobject("volume.png").scale(0.75).next_to(volume[0],RIGHT)
         for item in content:
             self.play(Write(item))
             self.next_slide()
 
         self.play(FadeOut(content),Write(linear_title),FadeIn(img1))
         for item in linear:
+            for subitem in item:
+                self.play(Write(subitem))
+                self.next_slide()
+
+        self.play(FadeOut(linear,linear_title,img1),Write(surface_title),FadeIn(img2))
+        for item in surface:
+            for subitem in item:
+                self.play(Write(subitem))
+                self.next_slide()
+
+        self.play(FadeOut(surface,img2,surface_title),Write(volume_title),FadeIn(img3))
+        for item in volume:
             for subitem in item:
                 self.play(Write(subitem))
                 self.next_slide()
