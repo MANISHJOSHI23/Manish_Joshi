@@ -796,3 +796,60 @@ class Continuous(Slide):
             for subitem in item:
                 self.play(Write(subitem))
                 self.next_slide()
+
+
+class LineCharge(ThreeDScene,Slide):
+    def construct(self):
+        title = Title('CHAPTER 1 : ELECTRIC CHARGES AND FIELDS',color=GREEN,match_underline_width_to_text=True )
+        self.add(title)
+        Outline = Tex('Learning Objectives :',color=BLUE).next_to(title,DOWN,buff=0.5).to_corner(LEFT).scale(0.8)
+        self.add(Outline)
+        list = BulletedList('Introduction','Electric Charge','Basic properties of electric charges','Conductors and Insulators','Charging by induction','Coulombs Law',
+                            'Forces between multiple charges','Superposition Principle').scale(0.7).next_to(Outline,DOWN).to_corner(LEFT).shift(0.5*RIGHT)
+        list2 = BulletedList('Electric filed','Electric Field Lines','Electric Dipole and Dipole moment','Electric Field due to an electric dipole',
+                             'Dipole in a Uniform External Field','Electric Flux',"Gauss's Law","Applications of Gauss's Law").scale(0.7).next_to(Outline,DOWN).to_corner(RIGHT)
+        self.play(FadeIn(title, Outline,list,list2))
+        self.next_slide(loop=True)
+        self.play(FocusOn(list2[7]))
+        self.play(Circumscribe(list2[7]))
+        self.next_slide()
+        self.play(RemoveTextLetterByLetter(list2))
+        self.play(RemoveTextLetterByLetter(list))
+        self.play(RemoveTextLetterByLetter(Outline))
+        cur_title = Title(" Applications of Gauss's Law ",match_underline_width_to_text=True, color=GREEN,underline_buff=SMALL_BUFF)
+        self.play(ReplacementTransform(title,cur_title))
+        line_title = Tex("(1) Electric Filed Due to Infinite Long Uniformly Charged Straight Wire:",font_size=35,color=GOLD).next_to(cur_title,DOWN).to_edge(LEFT)
+        self.add_fixed_in_frame_mobjects(line_title,cur_title)
+        self.play(FadeOut(line_title),run_time=0)
+        self.next_slide()
+        self.play(Write(line_title))
+        self.next_slide()
+        line = Cylinder(0.05,5,Y_AXIS,fill_opacity=1,checkerboard_colors = [GREEN, GREEN]).set_stroke(GREEN,opacity=1,width=0)
+        density = Tex("$\lambda$",font_size=30).next_to(line,LEFT,buff=0.1)
+        dot = MyLabeledDot(label_out=Tex("P",font_size=25),pos=RIGHT,point=1.5*RIGHT)
+        gsurf = Cylinder(1.5,2.5,Y_AXIS,fill_opacity=0.8,resolution=100,
+                       checkerboard_colors = [PINK, PINK]).set_stroke(PINK,opacity=0.4,width=0)
+        r = MyLabeledLine(label=Tex("r",font_size=30),start=line.get_center(),end=1.5*RIGHT,pos=0.2*DOWN,color=GRAY)
+        l = MyDoubLabArrow(label=Tex("l",font_size=30),start=gsurf.get_top(),end=gsurf.get_bottom(),tip_length=0.1,rot=False,color=GOLD,opacity=1).next_to(gsurf,LEFT)
+        pg = VGroup()
+        for i in range(0,25):
+            pg.add(Tex("$+$",font_size=20,color=BLACK).move_to(line.get_top()+i*0.2*DOWN))
+
+        #self.add_fixed_orientation_mobjects()
+        img = VGroup(line,density,dot,gsurf,r,l,pg).to_corner(UR).shift(1.5*DOWN)
+        self.set_camera_orientation(phi=-20*DEGREES)
+        self.add(line,density,r,l,dot,gsurf,pg)
+
+        line_charge = ItemList(Item(r"Consider an infinite long straight wire of length $l$, with uniform charge density $\lambda$",pw="8 cm"),
+                          Item(r"We have to find electric field $(E)$ at point P using Gauss's Law.",pw="8 cm"),
+                          Item(r"From symmetry, the electric field is radial everywhere and its magnitude only depends on the radial distance $r$",pw="8 cm"),
+                          Item(r"From Gauss's Law, Total electric flux through the cylindrical Gaussian surface is: )",pw="8 cm"),
+                          Item(r"$\Phi=\oint \vec{E}\cdot d\vec{S}=\dfrac{q_{enc}}{\epsilon_0}$",pw="13 cm"),
+                          buff=0.4).next_to(line_title,DOWN).to_corner(LEFT)
+        self.add_fixed_in_frame_mobjects(line_charge)
+        self.play(FadeOut(line_charge),run_time=0)
+        anm = [Write(VGroup(line_charge[0],line,pg,density)),Write(VGroup(line_charge[1],dot,r)),Write(VGroup(line_charge[2],gsurf,l)),Write(line_charge[3]),FadeOut(line_charge)]
+        for item in anm:
+            self.play(item)
+            self.next_slide()
+        self.wait(2)
