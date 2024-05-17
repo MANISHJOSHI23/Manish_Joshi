@@ -829,8 +829,8 @@ class LineCharge(ThreeDScene,Slide):
         dot = MyLabeledDot(label_out=Tex("P",font_size=25),pos=RIGHT,point=1.5*RIGHT)
         gsurf = Cylinder(1.5,2.5,Y_AXIS,fill_opacity=0.4,resolution=100,
                        checkerboard_colors = [PINK, PINK]).set_stroke(PINK,opacity=0.4,width=0)
-        r = MyLabeledLine(label=Tex("r",font_size=35),start=line.get_center(),end=1.5*RIGHT,pos=0.2*DOWN,color=GRAY)
-        l = MyDoubLabArrow(label=Tex("l",font_size=35),start=gsurf.get_top(),end=gsurf.get_bottom(),tip_length=0.1,rot=False,color=GOLD,opacity=1).next_to(gsurf,LEFT)
+        r = MyLabeledLine(label=Tex("$r$",font_size=35),start=line.get_center(),end=1.5*RIGHT,pos=0.2*DOWN,color=GRAY)
+        l = MyDoubLabArrow(label=Tex("$l$",font_size=35),start=gsurf.get_top(),end=gsurf.get_bottom(),tip_length=0.1,rot=False,color=GOLD,opacity=1).next_to(gsurf,LEFT)
         
         
         axes = ThreeDAxes(x_range=(-5, 5, 1),
@@ -900,12 +900,11 @@ class LineCharge(ThreeDScene,Slide):
                           Item(r"$\Phi=\oint \vec{E}\cdot d\vec{S}=\dfrac{q_{enc}}{\epsilon_0}$",pw="13 cm"),
                           buff=0.4).next_to(line_title,DOWN).to_corner(LEFT)
         
-        line_charge2 = ItemList(Item(r"\oint \vec{E}\cdot d\vec{S}",r" =\int_{S_1}\vec{E}\cdot d\vec{S}", r"+\int_{S_2}\vec{E}\cdot d\vec{S}", r"+\int_{S_3}\vec{E}\cdot d\vec{S}", r"=\dfrac{q_{enc}}{\epsilon_0}\\",r"  \int_{S_1} E ds\cos(90^\circ)+\int_{S_2} E ds\cos(90^\circ)+\int_{S_3} E ds\cos(0^\circ)=\dfrac{q_{enc}}{\epsilon_0}\\ ",r"  0+0+E \int_{S_3} ds =\dfrac{q_{enc}}{\epsilon_0}\\",r" E\times 2\pi r l =\dfrac{\lambda l}{\epsilon_0}\ (\because q_end = \lambda l )\\",r" E  = \dfrac{1}{2\pi\epsilon_0}\dfrac{\lambda}{r}",pw="13 cm",math=True,dot=False),
+        line_charge2 = ItemList(Item(r"&\oint \vec{E}\cdot d\vec{S}",r" =\int_{S_1}\vec{E}\cdot d\vec{S}", r"+\int_{S_2}\vec{E}\cdot d\vec{S}", r"+\int_{S_3}\vec{E}\cdot d\vec{S}", r"=\dfrac{q_{enc}}{\epsilon_0}\\",r" & \int_{S_1} E ds\cos(90^\circ)+\int_{S_2} E ds\cos(90^\circ)+\int_{S_3} E ds\cos(0^\circ)=\dfrac{q_{enc}}{\epsilon_0}\\ ",r"&  0+0+E \int_{S_3} ds =\dfrac{q_{enc}}{\epsilon_0}\\",r"& E\times 2\pi r l =\dfrac{\lambda l}{\epsilon_0}\ (\because q_{enc} = \lambda l )\\",r" & E  = \dfrac{1}{2\pi\epsilon_0}\dfrac{\lambda}{r}",math=True,dot=False),
                                 Item(r" If charge is $+$Ve ",r"$\implies $ Direction : radially outwards"),
                                 Item(r" If charge is $-$Ve ",r"$\implies $ Direction : radially inwards"),buff=0.4).next_to(line_title,DOWN).to_corner(LEFT)
-        sr=SurroundingRectangle(line_charge2[0][-1])
-        self.add_fixed_in_frame_mobjects(line_charge,line_charge2,sr)
-        self.play(FadeOut(line_charge,line_charge2,sr),run_time=0.01)
+        self.add_fixed_in_frame_mobjects(line_charge,line_charge2)
+        self.play(FadeOut(line_charge,line_charge2),run_time=0)
 
         self.play(Write(line_charge[0]),Create(line),Write(pg),Write(density))
         self.next_slide()
@@ -925,11 +924,35 @@ class LineCharge(ThreeDScene,Slide):
         self.next_slide()
         self.play(FadeIn(VGroup(e1,e2,e1_lbl,e2_lbl)))
         self.next_slide()
-        self.play(FadeOut(line_charge))
+        self.play(FadeOut(line_charge,cur_title),line_title.animate.to_edge(UL,buff=0.2))
+        line_charge2.next_to(line_title,DOWN).to_corner(LEFT)
         self.next_slide()
+        sr=SurroundingRectangle(line_charge2[0][-1])
         for item in line_charge2:
             for subitem in item:
                 self.play(Write(subitem))
                 self.next_slide()
 
-        self.play(Write(sr))
+        self.add_fixed_in_frame_mobjects(sr)
+        self.wait(2)
+        self.next_slide()
+        self.play(FadeOut(line_charge2,sr))
+        self.play(Write(line_charge2[0][-1]),line_charge2[0][-1].animate.next_to(gsurf,UL))
+
+        axes_2 = (Axes(
+        x_range=[0, 8, 1],
+        x_length=9,
+        y_range=[0, 40, 5],
+        y_length=6,
+        x_axis_config={"include_numbers": True}
+      ).to_edge(LEFT).set_color(GREY))
+        axes_labels = axes_2.get_axis_labels(x_label="r", y_label="E")
+
+        func = axes_2.plot(lambda x: 4.5/x, x_range=[0.1, 8], color=BLUE)
+        self.add_fixed_in_frame_mobjects(axes_2,axes_labels,func)
+        self.play(FadeOut(axes_2,axes_labels,func),run_time=0)
+
+        self.play(Create(axes_2),Create(axes_labels))
+        self.next_slide()
+        self.play(Create(func))
+
