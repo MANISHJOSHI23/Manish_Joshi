@@ -825,31 +825,111 @@ class LineCharge(ThreeDScene,Slide):
         self.play(Write(line_title))
         self.next_slide()
         line = Cylinder(0.05,5,Y_AXIS,fill_opacity=1,checkerboard_colors = [GREEN, GREEN]).set_stroke(GREEN,opacity=1,width=0)
-        density = Tex("$\lambda$",font_size=30).next_to(line,LEFT,buff=0.1)
+        density = Tex("$\lambda$",font_size=35).next_to(line,LEFT,buff=0.1)
         dot = MyLabeledDot(label_out=Tex("P",font_size=25),pos=RIGHT,point=1.5*RIGHT)
-        gsurf = Cylinder(1.5,2.5,Y_AXIS,fill_opacity=0.8,resolution=100,
+        gsurf = Cylinder(1.5,2.5,Y_AXIS,fill_opacity=0.4,resolution=100,
                        checkerboard_colors = [PINK, PINK]).set_stroke(PINK,opacity=0.4,width=0)
-        r = MyLabeledLine(label=Tex("r",font_size=30),start=line.get_center(),end=1.5*RIGHT,pos=0.2*DOWN,color=GRAY)
-        l = MyDoubLabArrow(label=Tex("l",font_size=30),start=gsurf.get_top(),end=gsurf.get_bottom(),tip_length=0.1,rot=False,color=GOLD,opacity=1).next_to(gsurf,LEFT)
+        r = MyLabeledLine(label=Tex("r",font_size=35),start=line.get_center(),end=1.5*RIGHT,pos=0.2*DOWN,color=GRAY)
+        l = MyDoubLabArrow(label=Tex("l",font_size=35),start=gsurf.get_top(),end=gsurf.get_bottom(),tip_length=0.1,rot=False,color=GOLD,opacity=1).next_to(gsurf,LEFT)
+        
+        
+        axes = ThreeDAxes(x_range=(-5, 5, 1),
+                          y_range=(-5, 5, 1),
+                          z_range=(-5, 5, 1),
+                          x_length=10,
+                          y_length=10,
+                          z_length=10,
+                          ).scale(0.5)
+        
+        def plane_func(u, v):
+            return np.array([u,2.5, v])
+
+        surf = Surface(lambda u, v: axes.c2p(*plane_func(u, v)), 
+                       u_range=[0.5, 1.3],
+                       v_range=[0.5, 1.3],
+                       fill_opacity=0.99,resolution=1,
+                       checkerboard_colors = [RED, RED_E],)
+        
+        s1 = Arrow3D(surf.get_center(),surf.get_center()+UP,color=BLUE)
+        e1 = Arrow3D(surf.get_center(),surf.get_center()+RIGHT,color=RED)
+        s1_lbl = Tex(r"$\hat{n}$",font_size=35,color=BLUE).next_to(s1,UP,buff=0.1)
+        e1_lbl = Tex(r"$\vec{E}$",font_size=35,color=RED).move_to(e1.get_end()).next_to(e1,RIGHT,buff=0)
+        ds1 = Tex(r"$S_1$",font_size=35,color=YELLOW).move_to(gsurf.get_center()+gsurf.get_top()+0.8*LEFT)
+        ds2 = Tex(r"$S_2$",font_size=35,color=YELLOW).move_to(gsurf.get_center()+gsurf.get_bottom()+0.8*LEFT)
+        ds3 = Tex(r"$S_3$",font_size=35,color=YELLOW).move_to(gsurf.get_center()+0.8*LEFT)
+        
+        def plane_func2(u, v):
+            return np.array([u,-2.5, v])
+
+        surf2 = Surface(lambda u, v: axes.c2p(*plane_func2(u, v)), 
+                       u_range=[0.5, 1.3],
+                       v_range=[0.5, 1.3],
+                       fill_opacity=0.99,resolution=1,
+                       checkerboard_colors = [GOLD],)
+        
+        s2 = Arrow3D(surf2.get_center(),surf2.get_center()+DOWN,color=BLUE)
+        e2 = Arrow3D(surf2.get_center(),surf2.get_center()+RIGHT,color=RED)
+        s2_lbl = Tex(r"$\hat{n}$",font_size=35,color=BLUE).next_to(s2,DOWN,buff=0.1)
+        e2_lbl = Tex(r"$\vec{E}$",font_size=35,color=RED).next_to(e2,RIGHT,buff=0.1)
+        
+        def plane_func3(u, v):
+            return np.array([1.5,u,v])
+
+        surf3 = Surface(lambda u, v: axes.c2p(*plane_func3(u, v)), 
+                       u_range=[0.7, 1.5],
+                       v_range=[0.7, 1.5],
+                       fill_opacity=0.99,resolution=1,
+                       checkerboard_colors = [RED, RED_E],).move_to(1.5*RIGHT+0.5*UP)
+        
+        s3 = Arrow3D(surf3.get_center()+0.1*UP,surf3.get_center()+0.1*UP+RIGHT,color=BLUE)
+        e3 = Arrow3D(surf3.get_center()+0.1*DOWN,surf3.get_center()+0.1*DOWN+RIGHT,color=RED)
+        s3_lbl = Tex(r"$\hat{n}$",font_size=35,color=BLUE).next_to(s3,UR,buff=0)
+        e3_lbl = Tex(r"$\vec{E}$",font_size=35,color=RED).next_to(e3,DR,buff=0)
         pg = VGroup()
         for i in range(0,25):
             pg.add(Tex("$+$",font_size=20,color=BLACK).move_to(line.get_top()+i*0.2*DOWN))
 
         #self.add_fixed_orientation_mobjects()
-        img = VGroup(line,density,dot,gsurf,r,l,pg).to_corner(UR).shift(1.5*DOWN)
+        img = VGroup(line,density,dot,gsurf,r,l,pg,surf,surf2,surf3,s1,s2,s3,e1,e2,e3,s1_lbl,s2_lbl,s3_lbl,e1_lbl,e2_lbl,e3_lbl,ds1,ds2,ds3).to_corner(UR).shift(1.5*DOWN)
         self.set_camera_orientation(phi=-20*DEGREES)
-        self.add(line,density,r,l,dot,gsurf,pg)
 
-        line_charge = ItemList(Item(r"Consider an infinite long straight wire of length $l$, with uniform charge density $\lambda$",pw="8 cm"),
+        line_charge = ItemList(Item(r"Consider an infinite long straight wire, with uniform charge density $\lambda$",pw="8 cm"),
                           Item(r"We have to find electric field $(E)$ at point P using Gauss's Law.",pw="8 cm"),
                           Item(r"From symmetry, the electric field is radial everywhere and its magnitude only depends on the radial distance $r$",pw="8 cm"),
-                          Item(r"From Gauss's Law, Total electric flux through the cylindrical Gaussian surface is: )",pw="8 cm"),
+                          Item(r"From Gauss's Law, Total electric flux through the cylindrical Gaussian surface is: ",pw="8 cm"),
                           Item(r"$\Phi=\oint \vec{E}\cdot d\vec{S}=\dfrac{q_{enc}}{\epsilon_0}$",pw="13 cm"),
                           buff=0.4).next_to(line_title,DOWN).to_corner(LEFT)
-        self.add_fixed_in_frame_mobjects(line_charge)
-        self.play(FadeOut(line_charge),run_time=0)
-        anm = [Write(VGroup(line_charge[0],line,pg,density)),Write(VGroup(line_charge[1],dot,r)),Write(VGroup(line_charge[2],gsurf,l)),Write(line_charge[3]),FadeOut(line_charge)]
-        for item in anm:
-            self.play(item)
-            self.next_slide()
+        
+        line_charge2 = ItemList(Item(r"\oint \vec{E}\cdot d\vec{S}",r" =\int_{S_1}\vec{E}\cdot d\vec{S}", r"+\int_{S_2}\vec{E}\cdot d\vec{S}", r"+\int_{S_3}\vec{E}\cdot d\vec{S}", r"=\dfrac{q_{enc}}{\epsilon_0}\\",r"  \int_{S_1} E ds\cos(90^\circ)+\int_{S_2} E ds\cos(90^\circ)+\int_{S_3} E ds\cos(0^\circ)=\dfrac{q_{enc}}{\epsilon_0}\\ ",r"  0+0+E \int_{S_3} ds =\dfrac{q_{enc}}{\epsilon_0}\\",r" E\times 2\pi r l =\dfrac{\lambda l}{\epsilon_0}\ (\because q_end = \lambda l )\\",r" E  = \dfrac{1}{2\pi\epsilon_0}\dfrac{\lambda}{r}",pw="13 cm",math=True,dot=False),
+                                Item(r" If charge is $+$Ve ",r"$\implies $ Direction : radially outwards"),
+                                Item(r" If charge is $-$Ve ",r"$\implies $ Direction : radially inwards"),buff=0.4).next_to(line_title,DOWN).to_corner(LEFT)
+        sr=SurroundingRectangle(line_charge2[0][-1])
+        self.add_fixed_in_frame_mobjects(line_charge,line_charge2,sr)
+        self.play(FadeOut(line_charge,line_charge2,sr),run_time=0.01)
+
+        self.play(Write(line_charge[0]),Create(line),Write(pg),Write(density))
+        self.next_slide()
+        self.play(Write(line_charge[1]),FadeIn(dot),FadeIn(r))
+        self.next_slide()
+        self.play(Write(line_charge[2]),FadeIn(e3,e3_lbl))
+        self.next_slide()
+        self.play(Write(line_charge[3]))
+        self.add(gsurf,l)
         self.wait(2)
+        self.next_slide()
+        self.play(Write(line_charge[4]))
+        self.next_slide()
+        self.play(Write(VGroup(ds1,ds2,ds3)))
+        self.next_slide()
+        self.play(FadeIn(VGroup(surf,surf2,surf3,s1,s2,s3,s1_lbl,s2_lbl,s3_lbl)))
+        self.next_slide()
+        self.play(FadeIn(VGroup(e1,e2,e1_lbl,e2_lbl)))
+        self.next_slide()
+        self.play(FadeOut(line_charge))
+        self.next_slide()
+        for item in line_charge2:
+            for subitem in item:
+                self.play(Write(subitem))
+                self.next_slide()
+
+        self.play(Write(sr))
