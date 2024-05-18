@@ -937,22 +937,21 @@ class LineCharge(ThreeDScene,Slide):
         self.wait(2)
         self.next_slide()
         self.play(FadeOut(line_charge2,sr))
-        self.play(Write(line_charge2[0][-1]),line_charge2[0][-1].animate.next_to(gsurf,UL))
 
         axes_2 = (Axes(
-        x_range=[0, 8, 1],
-        x_length=9,
-        y_range=[0, 40, 5],
-        y_length=6,
+        x_range=[0, 5, 0.5],
+        y_range=[0, 50, 5],
+        y_length=5,
+        x_length=6,
         x_axis_config={"include_numbers": True}
       ).to_edge(LEFT).set_color(GREY))
         axes_labels = axes_2.get_axis_labels(x_label="r", y_label="E")
 
-        func = axes_2.plot(lambda x: 4.5/x, x_range=[0.1, 8], color=BLUE)
+        func = axes_2.plot(lambda x: 4.5/x, x_range=[0.1, 4.5], color=BLUE)
+        self.play(Write(line_charge2[0][-1]),line_charge2[0][-1].animate.move_to(axes_2.get_center()))
         self.add_fixed_in_frame_mobjects(axes_2,axes_labels,func)
         self.play(FadeOut(axes_2,axes_labels,func),run_time=0)
 
         self.play(Create(axes_2),Create(axes_labels))
         self.next_slide()
         self.play(Create(func))
-
