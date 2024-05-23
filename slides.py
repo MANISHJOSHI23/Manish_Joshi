@@ -955,3 +955,241 @@ class LineCharge(ThreeDScene,Slide):
         self.play(Create(axes_2),Create(axes_labels))
         self.next_slide()
         self.play(Create(func))
+
+class PlaneSheet(ThreeDScene,Slide):
+    def construct(self):
+        plane_title = Tex("(2) Electric Filed Due to Uniformly Charged Infinite Plane Sheet:",font_size=35,color=GOLD).to_corner(UL)
+        self.play(Write(plane_title))
+        self.next_slide()
+        axes = ThreeDAxes(x_range=(-5, 5, 1),
+                          y_range=(-5, 5, 1),
+                          z_range=(-5, 5, 1),
+                          x_length=10,
+                          y_length=10,
+                          z_length=10,
+                          ).scale(0.5)
+        def plane_func(u, v):
+            return np.array([0,u, v])
+
+        plane = Surface(lambda u, v: axes.c2p(*plane_func(u, v)), 
+                       u_range=[-3, 3],
+                       v_range=[-3, 3],
+                       fill_opacity=0.6,resolution=100,
+                       checkerboard_colors = [GREEN, GREEN],).set_stroke(GREEN,opacity=0.6,width=2)
+        density = Tex("$\sigma$",font_size=35).move_to(plane.get_center()+1.4*OUT)
+        pc = VGroup()
+        for i in range(-4,4):
+            for j in range(-4,5):
+                pc.add(Tex("$+$",font_size=35,color=BLACK).move_to(i*0.33*UP+j*0.33*IN).rotate(PI/2,UP))
+        dot = Dot(point=2*RIGHT,radius=0.05)
+        dot_lbl = Tex("P",font_size=25).next_to(dot,RIGHT,buff=0.1)
+        gsurf = Cylinder(1,4,X_AXIS,fill_opacity=0.6,resolution=100,
+                       checkerboard_colors = [PINK, PINK]).set_stroke(PINK,opacity=0.7,width=0)
+        l = Line(start=plane.get_center(),end=2*RIGHT,color=GOLD)
+        l_lbl=Tex("$r$",font_size=35).next_to(l,0.15*DOWN)
+        def plane_func1(u, v):
+            return np.array([-4,u, v])
+
+        surf1 = Surface(lambda u, v: axes.c2p(*plane_func1(u, v)), 
+                       u_range=[0.5, 1.3],
+                       v_range=[0.5, 1.3],
+                       fill_opacity=0.99,resolution=1,
+                       checkerboard_colors = [GOLD],)
+        
+        def plane_func2(u, v):
+            return np.array([4,u, v])
+
+        surf2 = Surface(lambda u, v: axes.c2p(*plane_func2(u, v)), 
+                       u_range=[0.5, 1.3],
+                       v_range=[0.5, 1.3],
+                       fill_opacity=0.99,resolution=1,
+                       checkerboard_colors = [GOLD],)
+        
+        def plane_func2(u, v):
+            return np.array([u, v,2])
+
+        surf3 = Surface(lambda u, v: axes.c2p(*plane_func2(u, v)), 
+                       u_range=[-2, -1.2],
+                       v_range=[-0.4, 0.4],
+                       fill_opacity=0.99,resolution=1,
+                       checkerboard_colors = [GOLD],)
+        
+
+        s1 = Arrow3D(surf1.get_center()+0.1*IN,surf1.get_center()+0.1*IN+0.7*LEFT,color=BLUE)
+        e1 = Arrow3D(surf1.get_center()+0.1*OUT,surf1.get_center()+0.1*OUT+LEFT,color=RED)
+        s1_lbl = Tex(r"$\hat{n}$",font_size=35,color=BLUE).next_to(s1,LEFT,buff=0.1)
+        e1_lbl = Tex(r"$\vec{E}$",font_size=35,color=RED).next_to(e1,LEFT,buff=0.1)
+        
+        s2 = Arrow3D(surf2.get_center()+0.1*IN,surf2.get_center()+0.1*IN+0.7*RIGHT,color=BLUE)
+        e2 = Arrow3D(surf2.get_center()+0.1*OUT,surf2.get_center()+0.1*OUT+RIGHT,color=RED)
+        s2_lbl = Tex(r"$\hat{n}$",font_size=35,color=BLUE).next_to(s2,RIGHT,buff=0.1)
+        e2_lbl = Tex(r"$\vec{E}$",font_size=35,color=RED).next_to(e2,RIGHT,buff=0.1)
+
+        s3 = Arrow3D(surf3.get_center(),surf3.get_center()+0.7*OUT,color=BLUE)
+        e3 = Arrow3D(surf3.get_center(),surf3.get_center()+LEFT,color=RED)
+        s3_lbl = Tex(r"$\hat{n}$",font_size=35,color=BLUE).next_to(s3,OUT,buff=0.1)
+        e3_lbl = Tex(r"$\vec{E}$",font_size=35,color=GREEN).next_to(e3,LEFT,buff=0.1)
+
+        ds1 = Tex(r"$S_1$",font_size=35,color=YELLOW).next_to(s1,IN)
+        ds2 = Tex(r"$S_2$",font_size=35,color=YELLOW).next_to(s2,1.5*IN+0.2*LEFT,buff=0)
+        ds3 = Tex(r"$S_3$",font_size=35,color=YELLOW).next_to(s3,IN)
+
+        ca = CurvedArrow(gsurf.get_right()+0.8*IN,gsurf.get_right()+1.5*IN+0.5*RIGHT)
+        A_lbl = Tex(r"Area $(A)$",font_size=35,color=YELLOW).move_to(ca.get_tip())
+        
+        img = VGroup(plane, density, dot,gsurf,l,pc,surf1,e1,s1,s1_lbl,e1_lbl,surf2,s2,e2,s2_lbl,e2_lbl,surf3,s3,e3,s3_lbl,e3_lbl,ds1,ds2,ds3,dot_lbl,l_lbl,ca,A_lbl)
+        self.set_camera_orientation(phi=80*DEGREES,theta=-70*DEGREES,frame_center=[-2.5,1.5,-1])
+        self.add_fixed_in_frame_mobjects(plane_title)
+        self.add_fixed_orientation_mobjects(s1_lbl,s2_lbl,e1_lbl,e2_lbl,s3_lbl,e3_lbl,ds1,ds2,ds3,density,dot_lbl,l_lbl,dot,A_lbl)
+        self.add(img)
+        self.wait(2)
+
+
+class Ex63(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 51 :", r" An early model for an atom considered it to have a positively charged point nucleus of charge Ze, surrounded by a uniform density of negative charge up to a radius $R$. The atom as a whole is neutral. For this model, what is the electric field at a distance $r$ from the nucleus?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+
+        out_0_img = ImageMobject("out0.png").next_to(ex_title,DOWN,buff=0).to_corner(RIGHT,buff=0.1).shift(0.4*UP)
+        out_1_img = ImageMobject("out1.png").next_to(ex_title,DOWN,buff=0).to_corner(RIGHT,buff=0.1).shift(0.4*UP)
+        out_2_img = ImageMobject("out2.png").next_to(ex_title,DOWN,buff=0).to_corner(RIGHT,buff=0.1).shift(0.4*UP)
+        in_0_img = ImageMobject("ins0.png").next_to(ex_title,DOWN).to_corner(RIGHT)
+        in_1_img = ImageMobject("ins1.png").next_to(ex_title,DOWN).to_corner(RIGHT)
+        in_2_img = ImageMobject("ins2.png").next_to(ex_title,DOWN).to_corner(RIGHT)
+        self.play(Write(ex_title))
+        self.next_slide()
+        self.play(FadeIn(out_0_img))
+        self.next_slide()
+
+        sol_label =Tex('Solution :',font_size=35, color=ORANGE).next_to(ex_title,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(sol_label)) 
+
+        sol_1 = ItemList(Item(r"(1) ",r" Filed Outside the Atom $(r>R)$",pw="6.5 cm"),
+                         Item(r"Using Gauss's Law : $\oint_{S} \vec{E}\cdot d\vec{S}=\dfrac{q_{enc}}{\epsilon_0}$" ,pw="6.5 cm"),
+                         Item(r"$E\oint_S ds = \dfrac{+Ze-Ze}{\epsilon_0}$",pw="6.5 cm",dot=False),
+                         Item(r"$E \times 4\pi r^2 = \dfrac{0}{\epsilon_0}$",pw="6.5 cm",dot=False),
+                         Item(r"$E_{out} = 0$",pw="6.5 cm",dot=False),
+                         buff=MED_SMALL_BUFF).next_to(sol_label,DOWN,buff=0.3).to_corner(LEFT,buff=0.1)
+        
+        sol_2 = ItemList(Item(r"(2) ",r" Filed Inside the Atom $(r<R)$",pw="6.5 cm"),
+                         Item(r"Using Gauss's Law : $\oint_{S} \vec{E}\cdot d\vec{S}=\dfrac{q_{enc}}{\epsilon_0}$" ,pw="6.5 cm"),
+                         Item(r"$E\oint_S ds = \dfrac{+Ze+q_{-enc}}{\epsilon_0}$",pw="6.5 cm",dot=False),
+                         Item(r"$E \times 4\pi r^2 = \dfrac{+Ze+q_{-enc}}{\epsilon_0}$",pw="6.5 cm",dot=False),
+                         Item(r"$q_{-enc}=\rho\times $ Volume enclosed",pw="6.5 cm",dot=False),
+                         Item(r"$q_{-enc}=\dfrac{-Ze}{\dfrac{4}{3}\pi R^3}\times \dfrac{4}{3}\pi r^3  $",pw="6.5 cm",dot=False),
+                         buff=MED_SMALL_BUFF).next_to(sol_label,DOWN,buff=0.1).to_corner(LEFT,buff=0.1)
+        line = Line([0,sol_label.get_y(UP),0],[0,config.bottom[1],0],color=RED).next_to(sol_1,0.5*RIGHT).align_to(sol_1,UP)
+
+        sol_3 = ItemList(Item(r"$q_{-enc}=-Ze \dfrac{r^3}{R^3}  $",pw="6.5 cm",dot=False),
+                         Item(r"$E \times 4\pi r^2 = \dfrac{+Ze+-Ze \dfrac{r^3}{R^3}}{\epsilon_0}$",pw="6.5 cm",dot=False),
+                         Item(r"$E = \dfrac{Ze \left[1-\dfrac{r^3}{R^3}\right]}{4\pi \epsilon_0\times r^2}$",pw="6.5 cm",dot=False),
+                         Item(r"$E =\dfrac{Ze}{4\pi\epsilon_0}\times  \left[\dfrac{1}{ r^2}-\dfrac{r}{R^3}\right]$",pw="6.5 cm",dot=False),
+                         buff=MED_SMALL_BUFF).next_to(line,RIGHT).align_to(sol_2,UP)
+        
+        
+        
+        
+        self.next_slide()
+        sr = SurroundingRectangle(sol_1[4])
+        sr2 = SurroundingRectangle(sol_3[-1])
+        anm = [Write(sol_1[0]),FadeIn(out_1_img),Write(sol_1[1]),FadeIn(out_2_img),Write(sol_1[2]),Write(sol_1[3]),Write(VGroup(sol_1[4],sr))]
+        anm2 = [Write(sol_2[0]),FadeIn(in_1_img),Write(sol_2[1]),FadeIn(in_2_img),Write(sol_2[2]),Write(sol_2[3]),Write(sol_2[4]),Write(VGroup(sol_2[5]))]
+
+        for item in anm:
+            self.play(item)
+            self.next_slide()
+
+        self.play(FadeOut(out_0_img,out_1_img,out_2_img,sol_1,sr),run_time=0)
+        self.play(FadeIn(in_0_img))
+
+        for item in anm2:
+            self.play(item)
+            self.next_slide()
+
+        self.play(FadeOut(in_0_img,in_1_img,in_2_img),run_time=0)
+        self.play(Write(line))
+        for item in sol_3:
+            self.play(Write(item))
+            self.next_slide()
+        
+        self.play(Write(sr2))
+        self.wait(2)
+
+class Ex64(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 52 :", r" A conducting sphere of radius 10 cm has an unknown charge. If the electric field 20 cm from the centre of the sphere is $1.5 \times 10^3$ N/C and points radially inward, what is the net charge on the sphere?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        sol_label =Tex('Solution :',font_size=35, color=ORANGE).next_to(ex_title,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(sol_label)) 
+
+class Ex65(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 53 :", r"A uniformly charged conducting sphere of 2.4 m diameter has a surface charge density of 80.0 $\mu C m^{-2}$. (a) Find the charge on the sphere. (b) What is the total electric flux leaving the surface of the sphere?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        sol_label =Tex('Solution :',font_size=35, color=ORANGE).next_to(ex_title,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(sol_label)) 
+
+class Ex66(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 54 :", r"An infinite line charge produces a field of $9 \times 10^4$ N/C at a distance of 2 cm. Calculate the linear charge density.",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        sol_label =Tex('Solution :',font_size=35, color=ORANGE).next_to(ex_title,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(sol_label)) 
+
+class Ex67(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 55 :", r"Two large, thin metal plates are parallel and close to each other. On their inner faces, the plates have surface charge densities of opposite signs and of magnitude $17.0 \times 10^{-22}\ C/m^22$. What is $E$: (a) in the outer region of the first plate, (b) in the outer region of the second plate, and (c) between the plates?",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        sol_label =Tex('Solution :',font_size=35, color=ORANGE).next_to(ex_title,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(sol_label)) 
+
+class Ex68(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 56 :", r" An electron is rotating around an infinite positive linear charge in a circle of radius 0.1 m, if the linear charge density is $1\ \mu$C/m, then the velocity of electron in m/s will be ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) $0.562\times 10^{7}$ ',font_size=35),Tex(r'(b) $5.62\times 10^{7}$  ',font_size=35),Tex(r'(c) $562\times 10^{7}$ C  ',font_size=35),Tex(r'(d) $0.0562\times 10^7$  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op))
+        self.next_slide()
+        self.play(Write(sol_label)) 
+        self.next_slide(loop=True)
+        self.play(Circumscribe(op[1]))
+
+class Ex69(Slide):
+    def construct(self):
+
+        ex_title = Tex(r"Example 57 :", r" Two isolate metallic spheres of radii 2 cm and 4 cm are given equal charge, then the ratio of charge density on the surface of the spheres will be ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
+        ex_title[0].set_color(GREEN)
+        self.play(Write(ex_title))
+        self.next_slide()
+
+        op = VGroup(Tex(r'(a) $4:1$ ',font_size=35),Tex(r'(b) $1:2$   ',font_size=35),Tex(r'(c) $1:4$ C  ',font_size=35),Tex(r'(d) $8:1$  ',font_size=35) ).arrange_in_grid(2,2,buff=(4,0.3),col_alignments='ll').next_to(ex_title,DOWN)
+
+        sol_label =Tex('Solution: ',font_size=35, color=ORANGE).next_to(op,DOWN).align_to(ex_title,LEFT)
+        self.play(Write(op))
+        self.next_slide()
+        self.play(Write(sol_label)) 
+        self.next_slide(loop=True)
+        self.play(Circumscribe(op[0]))
