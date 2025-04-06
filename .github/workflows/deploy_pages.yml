@@ -91,7 +91,7 @@ jobs:
 
     - name: Build HTML
       run: |
-        ${{ env.MANIM }} ${{ env.FILE }} ${{ env.SCENES }}
+        ${{ env.MANIM }} --disable_caching ${{ env.FILE }} ${{ env.SCENES }}
         manim-slides convert --use-template='newrevealjs.html' -ctitle='Electric Charges and Fields Part 3 PPT - Manish Joshi' -ccontrols=true -coffline=true -cprogress=true ${{ env.SCENES }} _site/index.html
 
     - name: Push to gh-pages branch
