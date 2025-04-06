@@ -771,7 +771,7 @@ class Continuous(Slide):
                           Item(r"$dQ= \sigma\times dV$\qquad",r"(We can consider this element as a point charge.)",pw="13 cm"),
                           Item(r"Electric field due to small element at any point is\quad ",r"$dE=\dfrac{1}{4\pi\epsilon_0}\dfrac{dq}{r^2}$",r"$=\dfrac{1}{4\pi\epsilon_0}\dfrac{\rho dV}{r^2}$",pw="13 cm"),
                           buff=0.4).next_to(linear_title,DOWN,buff=0.4).to_corner(LEFT)
-        
+    
         img1 = ImageMobject("linear.png").scale(0.75).next_to(linear[0],RIGHT)
         img2 = ImageMobject("surface.png").scale(0.75).next_to(surface[0],RIGHT).align_to(surface_title,UP)
         img3 = ImageMobject("volume.png").scale(0.75).next_to(volume[0],RIGHT)
@@ -956,63 +956,80 @@ class LineCharge(ThreeDScene,Slide):
         self.next_slide()
         self.play(Create(func))
 
+
 class PlaneSheet(ThreeDScene,Slide):
     def construct(self):
         plane_title = Tex("(2) Electric Filed Due to Uniformly Charged Infinite Plane Sheet:",font_size=35,color=GOLD).to_corner(UL)
         self.play(Write(plane_title))
         self.next_slide()
-        axes = ThreeDAxes(x_range=(-5, 5, 1),
-                          y_range=(-5, 5, 1),
+        axes = ThreeDAxes(x_range=(-6, 6, 1),
+                          y_range=(-6, 6, 1),
                           z_range=(-5, 5, 1),
                           x_length=10,
                           y_length=10,
                           z_length=10,
-                          ).scale(0.5)
-        def plane_func(u, v):
-            return np.array([0,u, v])
+                          ).scale(0.5).shift(1.2*IN+3.5*LEFT-1.5*DOWN)
+        def plane_func(x,u, v):
+            return np.array([x,u, v])
 
-        plane = Surface(lambda u, v: axes.c2p(*plane_func(u, v)), 
+        plane = Surface(lambda u, v: axes.c2p(*plane_func(0,u, v)), 
                        u_range=[-3, 3],
                        v_range=[-3, 3],
-                       fill_opacity=0.6,resolution=100,
-                       checkerboard_colors = [GREEN, GREEN],).set_stroke(GREEN,opacity=0.6,width=2)
+                       fill_opacity=0.95,resolution=30,
+                       checkerboard_colors = [GREEN_D, BLUE_D],).set_stroke(GREEN,opacity=0.0,width=0)
         density = Tex("$\sigma$",font_size=35).move_to(plane.get_center()+1.4*OUT)
         pc = VGroup()
-        for i in range(-4,4):
-            for j in range(-4,5):
-                pc.add(Tex("$+$",font_size=35,color=BLACK).move_to(i*0.33*UP+j*0.33*IN).rotate(PI/2,UP))
-        dot = Dot(point=2*RIGHT,radius=0.05)
+        for i in range(-3,3):
+            for j in range(-3,3):
+                pc.add(Tex("$+$",font_size=35,color=BLACK).move_to(axes.c2p(0,i+0.5,j+0.5)).rotate(PI/2,UP))
+        dot = Dot(point=axes.c2p(6,0,0),radius=0.05)
         dot_lbl = Tex("P",font_size=25).next_to(dot,RIGHT,buff=0.1)
-        gsurf = Cylinder(1,4,X_AXIS,fill_opacity=0.6,resolution=100,
+        l = Line(start=plane.get_center(),end=dot.get_center(),color=YELLOW_B).set_stroke(opacity=0.7)
+        l_lbl=Tex("$r$",font_size=35).move_to(axes.c2p(2,0.25,-1))
+
+        def circ_func(x,v,u):
+            return np.array([x, v*np.cos(u), v*np.sin(u)])
+        
+        cir1 = Surface(lambda u, v: axes.c2p(*circ_func(-6, v,u)), 
+                       u_range=[0, 2*PI],
+                       v_range=[0, 2],
+                       fill_opacity=0.6,resolution=30,
+                       checkerboard_colors = [BLUE, BLUE]).set_stroke(BLUE,opacity=0.7,width=0)
+
+        cir2 = Surface(lambda u, v: axes.c2p(*circ_func(6,v, u)), 
+                       u_range=[0, 2*PI],
+                       v_range=[0, 2],
+                       fill_opacity=0.6,resolution=30,
+                       checkerboard_colors = [BLUE, BLUE]).set_stroke(BLUE,opacity=0.7,width=0)
+
+
+        def gsurf_func(u, v):
+            return np.array([v, 2*np.cos(u), 2*np.sin(u)])
+
+        gsurf = Surface(lambda u, v: axes.c2p(*gsurf_func(u, v)), 
+                       u_range=[0, 2*PI],
+                       v_range=[-6, 6],
+                       fill_opacity=0.6,resolution=30,
                        checkerboard_colors = [PINK, PINK]).set_stroke(PINK,opacity=0.7,width=0)
-        l = Line(start=plane.get_center(),end=2*RIGHT,color=GOLD)
-        l_lbl=Tex("$r$",font_size=35).next_to(l,0.15*DOWN)
-        def plane_func1(u, v):
-            return np.array([-4,u, v])
 
-        surf1 = Surface(lambda u, v: axes.c2p(*plane_func1(u, v)), 
+        surf1 = Surface(lambda u, v: axes.c2p(*plane_func(-6,u, v)), 
                        u_range=[0.5, 1.3],
                        v_range=[0.5, 1.3],
-                       fill_opacity=0.99,resolution=1,
-                       checkerboard_colors = [GOLD],)
+                       fill_opacity=0.99,resolution=5,
+                       checkerboard_colors = [GOLD,LIGHT_BROWN],)
         
-        def plane_func2(u, v):
-            return np.array([4,u, v])
-
-        surf2 = Surface(lambda u, v: axes.c2p(*plane_func2(u, v)), 
+        surf2 = Surface(lambda u, v: axes.c2p(*plane_func(6,u, v)), 
                        u_range=[0.5, 1.3],
                        v_range=[0.5, 1.3],
-                       fill_opacity=0.99,resolution=1,
-                       checkerboard_colors = [GOLD],)
+                       fill_opacity=0.99,resolution=5,
+                       checkerboard_colors = [GOLD,LIGHT_BROWN],)
         
-        def plane_func2(u, v):
-            return np.array([u, v,2])
 
-        surf3 = Surface(lambda u, v: axes.c2p(*plane_func2(u, v)), 
-                       u_range=[-2, -1.2],
-                       v_range=[-0.4, 0.4],
-                       fill_opacity=0.99,resolution=1,
-                       checkerboard_colors = [GOLD],)
+        surf3 = Surface(lambda u, v: axes.c2p(*gsurf_func(u, v)), 
+                       u_range=[1.25, 1.9],
+                       v_range=[2.5, 3.3],
+                       fill_opacity=0.99,resolution=5,
+                       checkerboard_colors = [GOLD,LIGHT_BROWN],)
         
 
         s1 = Arrow3D(surf1.get_center()+0.1*IN,surf1.get_center()+0.1*IN+0.7*LEFT,color=BLUE)
@@ -1026,24 +1043,309 @@ class PlaneSheet(ThreeDScene,Slide):
         e2_lbl = Tex(r"$\vec{E}$",font_size=35,color=RED).next_to(e2,RIGHT,buff=0.1)
 
         s3 = Arrow3D(surf3.get_center(),surf3.get_center()+0.7*OUT,color=BLUE)
-        e3 = Arrow3D(surf3.get_center(),surf3.get_center()+LEFT,color=RED)
+        e3 = Arrow3D(surf3.get_center(),surf3.get_center()+RIGHT,color=RED)
         s3_lbl = Tex(r"$\hat{n}$",font_size=35,color=BLUE).next_to(s3,OUT,buff=0.1)
-        e3_lbl = Tex(r"$\vec{E}$",font_size=35,color=GREEN).next_to(e3,LEFT,buff=0.1)
+        e3_lbl = Tex(r"$\vec{E}$",font_size=35,color=RED).next_to(e3,OUT,buff=0.2)
 
-        ds1 = Tex(r"$S_1$",font_size=35,color=YELLOW).next_to(s1,IN)
-        ds2 = Tex(r"$S_2$",font_size=35,color=YELLOW).next_to(s2,1.5*IN+0.2*LEFT,buff=0)
+        ds1 = Tex(r"$S_1$",font_size=35,color=YELLOW).move_to(axes.c2p(-6,-0.9,-0.9)).rotate(PI/2,UP).rotate(PI/2,RIGHT)
+        ds2 = Tex(r"$S_2$",font_size=35,color=YELLOW).move_to(axes.c2p(6,-0.9,-0.9)).rotate(PI/2,UP).rotate(PI/2,RIGHT)
         ds3 = Tex(r"$S_3$",font_size=35,color=YELLOW).next_to(s3,IN)
 
         ca = CurvedArrow(gsurf.get_right()+0.8*IN,gsurf.get_right()+1.5*IN+0.5*RIGHT)
         A_lbl = Tex(r"Area $(A)$",font_size=35,color=YELLOW).move_to(ca.get_tip())
         
-        img = VGroup(plane, density, dot,gsurf,l,pc,surf1,e1,s1,s1_lbl,e1_lbl,surf2,s2,e2,s2_lbl,e2_lbl,surf3,s3,e3,s3_lbl,e3_lbl,ds1,ds2,ds3,dot_lbl,l_lbl,ca,A_lbl)
-        self.set_camera_orientation(phi=80*DEGREES,theta=-70*DEGREES,frame_center=[-2.5,1.5,-1])
-        self.add_fixed_in_frame_mobjects(plane_title)
-        self.add_fixed_orientation_mobjects(s1_lbl,s2_lbl,e1_lbl,e2_lbl,s3_lbl,e3_lbl,ds1,ds2,ds3,density,dot_lbl,l_lbl,dot,A_lbl)
-        self.add(img)
-        self.wait(2)
+        #img = VGroup(plane, density, dot,gsurf,l,pc,surf1,e1,s1,s1_lbl,e1_lbl,surf2,s2,e2,s2_lbl,e2_lbl,surf3,s3,e3,s3_lbl,e3_lbl,ds1,ds2,ds3,dot_lbl,l_lbl,ca,A_lbl)
 
+        plane1 = ItemList(Item(r"Consider an infinite long thin plane sheet, with uniform charge density $\sigma$",pw="12 cm"),
+                          Item(r"We have to find electric field $(E)$ at point P using Gauss's Law.",pw="12 cm"),
+                          Item(r"From symmetry, the electric field is outward perpendicular to the plane (for $+\sigma$) and inwards (for $-\sigma$) ",pw="10 cm"),
+                          Item(r"From Gauss's Law, Total electric flux through the cylindrical Gaussian surface of cross-sectional area $(A)$ is: ",pw="7 cm"),
+                          Item(r"$\Phi=\oint \vec{E}\cdot d\vec{S}=\dfrac{q_{enc}}{\epsilon_0}$",pw="13 cm"),
+                          buff=0.4).next_to(plane_title,DOWN).to_corner(LEFT)
+        
+        plane2 = ItemList(Item(r"&\oint \vec{E}\cdot d\vec{S}",r" =\int_{S_1}\vec{E}\cdot d\vec{S}", r"+\int_{S_2}\vec{E}\cdot d\vec{S}", r"+\int_{S_3}\vec{E}\cdot d\vec{S}", r"=\dfrac{q_{enc}}{\epsilon_0}\\",r" & \int_{S_1} E ds\cos(0^\circ)+\int_{S_2} E ds\cos(0^\circ)+\int_{S_3} E ds\cos(90^\circ)=\dfrac{q_{enc}}{\epsilon_0}\\ ",r"&  E \int_{S_1} ds + E \int_{S_2} ds + 0 =\dfrac{q_{enc}}{\epsilon_0}\\",r"& EA + EA =\dfrac{\sigma A}{\epsilon_0}\ (\because q_{enc} = \sigma A )\\",r" & 2EA  = \dfrac{\sigma A}{\epsilon_0}\\",r" & E  = \dfrac{\sigma }{2\epsilon_0}\\",math=True,dot=False),
+                                Item(r"\textbf{Electric field} due to uniformly charged infinite plane sheet is \textbf{independent of r, the distance of the point from the plane.}",pw="8 cm"),
+                                buff=0.4).next_to(plane_title,DOWN).to_corner(LEFT)
+        self.add_fixed_in_frame_mobjects(plane1,plane2)
+        self.play(FadeOut(plane1,plane2),run_time=0)
+ 
+
+
+        self.set_camera_orientation(phi=80*DEGREES,theta=60*DEGREES,r=6)
+        self.add_fixed_in_frame_mobjects(plane_title)
+        self.add(plane, pc)
+        self.play(Write(plane1[0]))
+        self.add_fixed_orientation_mobjects(density)
+        self.wait(2)
+        self.next_slide()
+        self.add(l)
+        self.add_fixed_orientation_mobjects(dot,dot_lbl,l_lbl.shift(0.8*DOWN+0.2*RIGHT))
+        self.play(Write(plane1[1]))    
+        self.wait(2)
+        self.next_slide()
+        self.add(e2)
+        self.add_fixed_orientation_mobjects(e2_lbl)
+        self.play(Write(plane1[2]))
+        self.wait()
+        self.next_slide()
+        self.add(cir2,cir1,gsurf)
+        self.play(Write(plane1[3]))
+        self.wait(2)
+        self.play(Write(plane1[4]))
+        self.next_slide()
+        self.add(surf1,s1,e1,ds1)
+        self.add_fixed_orientation_mobjects(s1_lbl,e1_lbl)
+        self.wait(3)
+        self.next_slide()
+        self.add(surf2,s2,ds2)
+        self.add_fixed_orientation_mobjects(s2_lbl)
+        self.wait(3)
+        self.next_slide()
+        self.add(surf3,s3,e3)
+        self.add_fixed_orientation_mobjects(s3_lbl,e3_lbl,ds3)
+        self.wait(3)
+        self.next_slide()
+        self.play(FadeOut(plane1,plane_title))
+        plane2.to_corner(UL)
+        self.wait(2)
+        for item in plane2[0]:
+            self.play(Write(item))
+            self.next_slide()
+
+        sr=SurroundingRectangle(plane2[0][-1])
+        self.add_fixed_in_frame_mobjects(sr)
+        self.wait(2)
+        self.play(Write(plane2[1]))
+        self.wait()
+
+class SphericalShell(Slide):
+    def construct(self):
+        # Title
+        title = Tex(r"(3) Electric Filed Due to Uniformly Charged Spherical Shell:",font_size=35,color=GOLD).to_corner(UL,buff=0.05)
+        self.play(Write(title))
+        self.next_slide()
+
+        # Crating Spherical Shell
+        radius = 1.7
+        shell =  Circle(radius=radius, color=GOLD, fill_opacity=0)
+        
+        # Adding + charges on the shell
+        charges = VGroup()
+        for i in range(0, 360,15):
+            charges.add(Tex("$+$",font_size=30,color=RED).move_to((radius-0.15)*np.cos(i*DEGREES)*RIGHT+(radius-0.15)*np.sin(i*DEGREES)*UP))
+        charge_lbl = Tex(r"$(\sigma /\ Q)$",font_size=35,color=RED).next_to(shell,DOWN, buff=-0.65)
+
+        # Radius of shell
+        R_line = Line(start=ORIGIN, end=radius*UP, color=YELLOW)
+        R_line_lbl = Tex(r"$R$",font_size=35,color=YELLOW).next_to(R_line,LEFT,buff=0.1)
+        centre_dot = Dot(point=ORIGIN,radius=0.05).set_color(YELLOW)
+        centre_dot_lbl = Tex(r"$O$",font_size=35,color=YELLOW).next_to(centre_dot,DOWN,buff=0.1)
+
+
+        Charged_shell = VGroup(shell, charges, R_line, R_line_lbl,charge_lbl,centre_dot,centre_dot_lbl)
+
+        # Creating a point P outside the shell
+        P_dot = Dot(point=(radius+1.3)*np.cos(45*DEGREES)*RIGHT+(radius+1.3)*np.sin(45*DEGREES)*UP,radius=0.05).set_color(RED).set_z_index(2)
+        P_dot_lbl = Tex(r"$P$",font_size=35,color=RED).next_to(P_dot,RIGHT,buff=0.1)
+        P_line = Line(start=ORIGIN, end=P_dot.get_center(), color=BLUE)
+        P_line_lbl = Tex(r"$r$",font_size=35,color=BLUE).next_to(P_line.get_center(),DOWN,buff=0.1)
+        P_group = VGroup(P_dot,P_dot_lbl,P_line,P_line_lbl)
+
+        # Creating outer gaussian surface passing  through point P
+        outer_surf = Circle(radius=radius+1.3, color=BLUE, fill_opacity=0)
+        outer_surf_lbl_curv_arrow  = CurvedArrow(outer_surf.get_bottom(),outer_surf.get_bottom()+1*DOWN+0.5*RIGHT,tip_length = 0.15)
+        outer_surf_lbl = Tex(r"Gaussian surface",font_size=30,color=WHITE).next_to(outer_surf_lbl_curv_arrow.get_end(),DOWN,buff=0.1)
+        gauss_out = VGroup(outer_surf,outer_surf_lbl_curv_arrow,outer_surf_lbl)
+
+        # Creating Electric Field vector at point P
+        e_field = Arrow(P_dot.get_center(),P_dot.get_center()+P_line.get_unit_vector(),color=RED,buff=0)
+        e_field_lbl = Tex(r"$\vec{E}$",font_size=35,color=RED).next_to(e_field.get_end(),RIGHT,buff=0.1)
+        e_field_group = VGroup(e_field,e_field_lbl)
+
+        # crating area vector ds on the gaussian surface near point P 
+        ds = Arrow(P_dot.get_center(),P_dot.get_center()+0.5*P_line.get_unit_vector(),color=YELLOW, buff=0).shift(0.2*LEFT+0.15*UP)
+        ds_lbl = Tex(r"$d\vec{S}$",font_size=35,color=YELLOW).next_to(ds.get_end(),UP,buff=0.1)
+        ds_group = VGroup(ds,ds_lbl)
+
+        # Creating a point P inside the shell
+        P_dot_in = Dot(point=(radius-0.8)*np.cos(45*DEGREES)*RIGHT+(radius-0.8)*np.sin(45*DEGREES)*UP,radius=0.05).set_color(RED).set_z_index(2)
+        P_dot_in_lbl = Tex(r"$P$",font_size=35,color=RED).next_to(P_dot_in,RIGHT,buff=0.1)
+        P_line_in = Line(start=ORIGIN, end=P_dot_in.get_center(), color=BLUE)  
+        P_line_in_lbl = Tex(r"$r$",font_size=35,color=BLUE).next_to(P_line_in.get_center(),DOWN,buff=0.1)
+        P_group_in = VGroup(P_dot_in,P_dot_in_lbl,P_line_in,P_line_in_lbl)
+
+        # Creating inner gaussian surface passing  through point P
+        inner_surf = Circle(radius=radius-0.8, color=BLUE, fill_opacity=0)
+        inner_surf_lbl_curv_arrow  = CurvedArrow(inner_surf.get_right(),inner_surf.get_right()+1.75*DOWN+1*RIGHT,tip_length = 0.15)
+        inner_surf_lbl = Tex(r"Gaussian surface",font_size=30,color=WHITE).next_to(inner_surf_lbl_curv_arrow.get_end(),DOWN,buff=0.1)
+        gauss_in = VGroup(inner_surf,inner_surf_lbl_curv_arrow,inner_surf_lbl)
+        # Creating Electric Field vector at point P
+        e_field_in = Arrow(P_dot_in.get_center(),P_dot_in.get_center()+0.5*P_line_in.get_unit_vector(),color=RED,buff=0)
+        e_field_in_lbl = Tex(r"$\vec{E}$",font_size=35,color=RED).next_to(e_field_in.get_end(),RIGHT,buff=0.1)
+        e_field_group_in = VGroup(e_field_in,e_field_in_lbl)
+        # crating area vector ds on the gaussian surface near point P
+        ds_in = Arrow(P_dot_in.get_center(),P_dot_in.get_center()+0.25*P_line_in.get_unit_vector(),color=YELLOW, buff=0).shift(0.2*LEFT+0.15*UP) 
+        ds_in_lbl = Tex(r"$d\vec{S}$",font_size=35,color=YELLOW).next_to(ds_in.get_end(),UP,buff=0.1)
+        ds_group_in = VGroup(ds_in,ds_in_lbl)
+
+        # creating a point P at the surface of the shell
+        P_dot_on = Dot(point=(radius+0.04)*np.cos(45*DEGREES)*RIGHT+(radius+0.04)*np.sin(45*DEGREES)*UP).set_color(RED).set_z_index(2)
+        P_dot_on_lbl = Tex(r"$P$",font_size=35,color=RED).next_to(P_dot_on,RIGHT,buff=0.1)
+        P_line_on = Line(start=ORIGIN, end=P_dot_on.get_center(), color=BLUE)
+        P_line_on_lbl = Tex(r"$r=R$",font_size=35,color=BLUE).next_to(P_line_on.get_center(),DOWN,buff=0.1)
+        P_group_on = VGroup(P_dot_on,P_dot_on_lbl,P_line_on,P_line_on_lbl)
+
+        # Creating inner gaussian surface passing  through point P
+        inner_surf_on = Circle(radius=radius+0.04, color=BLUE, fill_opacity=0)
+        inner_surf_lbl_curv_arrow_on  = CurvedArrow(inner_surf_on.get_bottom(),inner_surf_on.get_bottom()+1*DOWN+0.5*RIGHT,tip_length = 0.15)  
+        inner_surf_lbl_on = Tex(r"Gaussian surface",font_size=30,color=WHITE).next_to(inner_surf_lbl_curv_arrow_on.get_end(),DOWN,buff=0.1)
+        gauss_in_on = VGroup(inner_surf_on,inner_surf_lbl_curv_arrow_on,inner_surf_lbl_on)
+
+        # Creating Electric Field vector at point P
+        e_field_on = Arrow(P_dot_on.get_center(),P_dot_on.get_center()+P_line_on.get_unit_vector(),color=RED,buff=0)
+        e_field_on_lbl = Tex(r"$\vec{E}$",font_size=35,color=RED).next_to(e_field_on.get_end(),RIGHT,buff=0.1)
+        e_field_group_on = VGroup(e_field_on,e_field_on_lbl)
+        # crating area vector ds on the gaussian surface near point P
+        ds_on = Arrow(P_dot_on.get_center(),P_dot_on.get_center()+0.5*P_line_on.get_unit_vector(),color=YELLOW, buff=0).shift(0.2*LEFT+0.15*UP)
+        ds_on_lbl = Tex(r"$d\vec{S}$",font_size=35,color=YELLOW).next_to(ds_on.get_end(),UP,buff=0.1)
+        ds_group_on = VGroup(ds_on,ds_on_lbl)
+
+        # Grouping all elements 
+        fig = VGroup(Charged_shell,P_group,gauss_out,e_field_group,ds_group,P_group_on,gauss_in_on,e_field_group_on,ds_group_on,P_group_in,gauss_in,e_field_group_in,ds_group_in).to_corner(UR,buff=0.1)
+
+        # Derivation
+        shell_gauss = ItemList(Item(r"Consider a uniformly charged spherical shell of radius $R$, charge $Q$ and surface charge density $(\sigma)$.",pw="7.5 cm"),
+                          Item(r"We have to find electric field $(E)$ at point P  $(OP=r)$ using Gauss's Law.",pw="6 cm"),
+                          buff=0.4).next_to(title,DOWN).to_corner(LEFT)  
+
+        Outside_title = Tex(r"(i) When the point lies Outside the shell $(r>R)$",font_size=35,color=PINK).next_to(shell_gauss,DOWN).to_corner(LEFT,buff=0.05)   
+        
+        Outside  = ItemList(Item(r"The electric field will be same at each point of Gaussian surface and directed radially because of its spherical symmetry.",pw="6.5 cm"),
+                            Item(r"From Gauss's Law, Total electric flux through the spherical Gaussian surface of radius $r$ is: ",pw="7 cm"),
+                            Item(r"$\Phi=\oint \vec{E}\cdot d\vec{S}=\dfrac{q_{enc}}{\epsilon_0}$",pw="13 cm"),
+                            buff=0.4).next_to(Outside_title,DOWN).to_corner(LEFT)
+        
+        Outside2 = ItemList(Item(r" & \int_{S} E ds\cos(0^\circ)=\dfrac{q_{enc}}{\epsilon_0}\\ ",r"&  E \int_{S} ds  =\dfrac{q_{enc}}{\epsilon_0}\\",r"& E\times 4\pi r^2  =\dfrac{Q}{\epsilon_0} \quad (\because q_{enc}=Q)\\",r" & E  = \dfrac{1}{4\pi\epsilon_0}\dfrac{Q}{r^2}\\",r" & E  = \dfrac{\sigma R^2}{\epsilon_0 r^2} \quad (\because Q = \sigma \times 4\pi R^2)",math=True,dot=False),
+                            Item(r"Thus for points outside the shell the electric field is as if the entire charge of the shell is concentrated at the centre O.",pw="7 cm"),
+                            buff=0.4).next_to(Outside_title,DOWN).to_corner(LEFT)
+
+        At_surface_title = Tex(r"(ii) When the point lies on the surface of the shell $(r=R)$",font_size=35,color=GREEN).to_corner(UL,buff=0.05)
+        Surface = ItemList(Item(r"$E = \dfrac{1}{4\pi\epsilon_0}\dfrac{Q}{R^2}$",r"$ = \dfrac{\sigma}{\epsilon_0}\quad $",r"$ \left(\sigma=\dfrac{Q}{4\pi R^2}\right)$", dot=False,pw="6.5 cm"),
+                            buff=0.4).next_to(At_surface_title,DOWN).to_corner(LEFT)
+        
+        Inside_title = Tex(r"(iii) When the point lies Inside the shell $(r<R)$",font_size=35,color=PINK).next_to(Surface,DOWN).to_edge(LEFT,buff=0.05)  
+        
+        Inside  = ItemList(Item(r"In this case the charge enclosed by the Gaussian surface, $q_{enc}=0$",pw="6.5 cm"),
+                           Item(r" & \int_{S} E ds\cos(0^\circ)=\dfrac{q_{enc}}{\epsilon_0}\\ ",r"&  E \int_{S} ds  =\dfrac{0}{\epsilon_0} \quad (\because q_{enc}=0)\\",r"& E\times 4\pi r^2  =\dfrac{0}{\epsilon_0} \\",r" & E  = 0 \quad (\text{for  } r<R )",math=True,dot=False),
+                            buff=0.4).next_to(Inside_title,DOWN).to_corner(LEFT)
+        
+        sr3 = SurroundingRectangle(Surface[0][0:2])
+        sr4 = SurroundingRectangle(Inside[1][-1])
+        
+        # Graph of E vs r
+        axes_2 = (Axes(
+        x_range=[0, 8, 2],
+        y_range=[0, 19, 2],
+        y_length=5,
+        x_length=8,
+        axis_config={'tip_shape': StealthTip,"tip_width":0.08,"tip_height":0.15},
+        y_axis_config={"include_ticks": False}
+      ).set_color(GREEN_C))
+        axes_labels = axes_2.get_axis_labels(x_label=Tex(r"$r$",font_size=30), y_label=Tex(r"$E(r)$",font_size=30))
+
+        func1 = axes_2.plot(lambda x: 0, x_range=[0, 2], color=BLUE)
+        func2 = axes_2.plot(lambda x: 70/(x*x), x_range=[2, 7], color=BLUE)
+        lines = VGroup(axes_2.get_lines_to_point(axes_2.c2p(2,70/4),color=RED),
+                       axes_2.get_lines_to_point(axes_2.c2p(4,70/16),color=RED),
+                       axes_2.get_lines_to_point(axes_2.c2p(6,70/36),color=RED),
+                       Dot(axes_2.c2p(2,70/4), color=PINK),
+                       Dot(axes_2.c2p(4,70/16), color=GOLD),
+                       Dot(axes_2.c2p(6,70/36), color=ORANGE),)
+        axes_2.get_x_axis().add_labels({0:"O",2:"R",4:"2R",6:"3R",8:"4R"},font_size=25)
+        axes_2.get_y_axis().add_labels({70/4:"$E_0$",70/16:"$E_0/4$",70/36:"$E_0/9$"},font_size=25)
+        c1 = CurvedArrow(start_point=func1.get_center(),end_point=func1.get_center()+0.8*UP+0.4*RIGHT,tip_length=0.1)
+        V1 = Tex(r"$E=0\ (r<R)$",font_size=25).next_to(c1.get_end(),UP,buff=0.05)
+        c2 = CurvedArrow(start_point=axes_2.c2p(3,70/9),end_point=axes_2.c2p(3,70/9)+0.8*UP+0.4*RIGHT,tip_length=0.1)
+        V2 = Tex(r"$E=\dfrac{1}{4\pi\epsilon_0}\dfrac{Q}{r^2}\ (r>R)$",font_size=25).next_to(c2.get_end(),UP,buff=0.05).shift(0.5*RIGHT)
+        c3 = CurvedArrow(start_point=axes_2.c2p(2,70/4),end_point=axes_2.c2p(2,70/4)+0.8*UP+0.4*RIGHT,tip_length=0.1)
+        V3 = Tex(r"$E_0=\dfrac{1}{4\pi\epsilon_0}\dfrac{Q}{R^2}\ (r=R)$",font_size=25).next_to(c3.get_end(),UP,buff=0.05)
+        label = Tex("Graph of Electric field $(E)$ versus $r$ for spherical shell. ",font_size=30,color=GOLD).next_to(axes_2,DOWN)
+
+
+        self.play(Create(Charged_shell), Write(shell_gauss[0]))
+        self.wait()
+        self.next_slide()
+        self.play(Create(P_group), Write(shell_gauss[1]))
+        self.wait()
+        self.next_slide()
+        self.play(Write(Outside_title))
+        self.wait()
+        self.next_slide()
+        self.play(Create(gauss_out), Create(e_field_group), Create(ds_group))
+        self.wait(2)
+        self.play(Write(Outside[0]))
+        self.next_slide()
+        self.play(Write(Outside[1]))
+        self.wait()
+        self.next_slide()
+        self.play(Write(Outside[2]))
+        self.wait()
+        self.next_slide()
+        self.play(FadeOut(title,shell_gauss, Outside))
+        self.wait()
+        self.play(Outside_title.animate().to_corner(UL, buff=0.05))
+        Outside2.next_to(Outside_title,DOWN).to_corner(LEFT,buff=1)
+        sr1 = SurroundingRectangle(Outside2[0][-2])
+        sr2 = SurroundingRectangle(Outside2[0][-1])
+        self.wait(2)
+        for item in Outside2:
+            for subitem in item:
+                self.play(Write(subitem))
+                self.next_slide()
+        self.play(Write(sr1),Write(sr2))
+        self.wait()
+        self.next_slide()
+        self.play(ReplacementTransform(Outside_title, At_surface_title))
+        self.wait(2)
+        self.play(ReplacementTransform(VGroup(P_group,gauss_out,e_field_group,ds_group),VGroup(P_group_on,gauss_in_on,e_field_group_on,ds_group_on)))
+        self.wait(2)
+        self.next_slide()
+        self.play(FadeOut(Outside2,sr1,sr2))
+        self.wait()
+        for item in Surface:
+            self.play(Write(item))
+            self.next_slide()
+        self.play(Write(sr3))
+        self.wait(2)
+        self.next_slide()
+        R_line_lbl.shift(0.2*UP)
+        self.next_slide()
+        self.play(Write(Inside_title))
+        self.wait(2)    
+        self.play(ReplacementTransform(VGroup(P_group_on,gauss_in_on,e_field_group_on,ds_group_on),VGroup(P_group_in,gauss_in,e_field_group_in,ds_group_in)))
+        self.wait(2)
+        self.next_slide()
+        for item in Inside:
+            for subitem in item:
+                self.play(Write(subitem))
+                self.next_slide()
+        
+        self.play(Write(sr4))
+        self.wait(2)
+        self.next_slide()
+        self.play(FadeOut(Inside,sr4,Surface,P_group_in,gauss_in,e_field_group_in,ds_group_in,Charged_shell,sr4,Inside_title,At_surface_title,Surface,sr3))
+        self.wait(2)
+        self.play(Create(axes_2),Create(axes_labels))
+        self.wait()
+        self.next_slide()
+        self.play(Create(VGroup(func1,c1,V1)))
+        self.wait()
+        self.next_slide()
+        self.play(Create(VGroup(func2,c2,V2,c3,V3)))
+        self.wait()
+        self.next_slide()
+        self.play(Create(lines),Create(label))
+        self.wait(2)
 
 class Ex63(Slide):
     def construct(self):
@@ -1179,7 +1481,6 @@ class Ex68(Slide):
 
 class Ex69(Slide):
     def construct(self):
-
         ex_title = Tex(r"Example 57 :", r" Two isolate metallic spheres of radii 2 cm and 4 cm are given equal charge, then the ratio of charge density on the surface of the spheres will be ",tex_environment="{minipage}{13 cm}",font_size=35, color=BLUE_C).to_corner(UP,buff=0.2).to_corner(LEFT,buff=0.2)
         ex_title[0].set_color(GREEN)
         self.play(Write(ex_title))
@@ -1193,3 +1494,5 @@ class Ex69(Slide):
         self.play(Write(sol_label)) 
         self.next_slide(loop=True)
         self.play(Circumscribe(op[0]))
+
+
