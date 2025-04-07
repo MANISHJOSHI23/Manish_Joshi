@@ -19,7 +19,7 @@ concurrency:
 env:
   FILE: 'slides.py'  # Source file where scenes are defined
   MANIM: 'manim'  # manim or manimgl - which Manim renderer to use
-  SCENES: 'Ex63 Ex64 Ex65 Ex66 Ex67 Ex68 Ex69 '  # Space-separated list of scenes to render
+  SCENES: 'Continuous LineCharge PlaneSheet SphericalShell Ex63 Ex64 Ex65 Ex66 Ex67 Ex68 Ex69 '  # Space-separated list of scenes to render
   USES_TEX: true  # true or false - disabling this will make the action run faster
   DISPLAY: :99  # Do not touch this
 
