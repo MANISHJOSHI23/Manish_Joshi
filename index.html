@@ -3,91 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Physics Slide Decks</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <title>Manish Joshi | Physics Presentations</title>
   <style>
     body {
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: #f4f9ff;
-      color: #222;
       padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+      background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+      color: #003366;
     }
-
     h1 {
-      font-size: 2.5rem;
-      color: #005b96;
       text-align: center;
+      font-size: 2.5rem;
       margin-bottom: 2rem;
     }
-
-    h2 {
-      color: #0077b6;
-      border-bottom: 2px solid #90e0ef;
-      padding-bottom: 0.2rem;
-      margin-top: 2rem;
+    .chapter {
+      background: #f9f9f9;
+      border-left: 6px solid #2196f3;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
     }
-
+    .chapter h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+    }
+    .section-title {
+      font-weight: bold;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: #0d47a1;
+    }
     ul {
-      list-style: none;
-      padding: 0;
+      list-style-type: none;
+      padding-left: 0;
     }
-
     li {
-      background: #ffffff;
-      margin: 0.5rem 0;
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease;
+      margin-bottom: 0.5rem;
     }
-
-    li:hover {
-      transform: translateY(-3px);
-    }
-
     a {
       text-decoration: none;
-      color: #023e8a;
+      color: #1565c0;
       font-weight: 500;
-      font-size: 1.1rem;
     }
-
-    footer {
-      margin-top: 4rem;
-      text-align: center;
-      color: #555;
-      font-size: 0.9rem;
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <h1>Physics Interactive Slide Decks</h1>
+  <h1>📘 Physics Presentations by Manish Joshi</h1>
 
-  <h2>Chapter 1: Electric Charges and Fields</h2>
-  <ul>
-    <li><a href="part1.html">Part 1: ELECTRIC CHARGES, COLOUMB'S LAW</a></li>
-    <li><a href="part2.html">Part 2: ELECTRIC FIELD AND FIELD LINE, DIPOLE</a></li>
-    <li><a href="part3.html">Part 3: ELECTRIC FLUX AND GAUSS'S LAW</a></li>
-  </ul>
+  <!-- Chapter 1 -->
+  <div class="chapter">
+    <h2>Chapter 1: Electric Charges and Fields</h2>
 
-  <h2>Chapter 2: Electrostatic Potential and Capacitance</h2>
-  <ul>
-    <li><a href="chapter2-part1/index.html">Part 1: Potential Energy</a></li>
-    <li><a href="chapter2-part2/index.html">Part 2: Capacitance and Dielectrics</a></li>
-  </ul>
+    <div class="section-title">▶️ Parts</div>
+    <ul>
+      <li><a href="part1.html" target="_blank">Part 1: Introduction</a></li>
+      <li><a href="part2.html" target="_blank">Part 2: Coulomb’s Law</a></li>
+      <li><a href="part3.html" target="_blank">Part 3: Electric Field</a></li>
+    </ul>
 
-  <h2>Chapter 3: Current Electricity</h2>
-  <ul>
-    <li><a href="chapter3-part1/index.html">Part 1: Ohm's Law and Circuits</a></li>
-    <li><a href="chapter3-part2/index.html">Part 2: Kirchhoff’s Rules</a></li>
-  </ul>
+    <div class="section-title">📄 Summary PDFs</div>
+    <ul>
+      <li><a href="chapter1-pdfs/notes.pdf" download>Chapter 1 Notes</a></li>
+      <li><a href="chapter1-pdfs/ncert.pdf" download>NCERT Questions PDF</a></li>
+    </ul>
+  </div>
 
-  <footer>
-    © 2025 • Created with 🧠 + ❤️ using Manim Slides
-  </footer>
+  <!-- Add more chapters below as needed -->
+
 </body>
 </html>
