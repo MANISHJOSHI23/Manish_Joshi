@@ -19,7 +19,7 @@ concurrency:
 env:
   FILE: 'slides.py'  # Source file where scenes are defined
   MANIM: 'manim'  # manim or manimgl - which Manim renderer to use
-  SCENES: 'Continuous LineCharge PlaneSheet SphericalShell Ex63 Ex64 Ex65 Ex66 Ex67 Ex68 Ex69 '  # Space-separated list of scenes to render
+  SCENES: 'Ex63 Ex64 Ex65 Ex66 Ex67 Ex68 Ex69 '  # Space-separated list of scenes to render
   USES_TEX: true  # true or false - disabling this will make the action run faster
   DISPLAY: :99  # Do not touch this
 
@@ -92,13 +92,13 @@ jobs:
     - name: Build HTML
       run: |
         ${{ env.MANIM }} ${{ env.FILE }} ${{ env.SCENES }}
-        manim-slides convert --use-template='newrevealjs.html' -ctitle='Electric Charges and Fields Part 3 PPT - Manish Joshi' -ccontrols=true -cprogress=true ${{ env.SCENES }} _site/index.html
+        manim-slides convert --use-template='newrevealjs.html' -ctitle='Electric Charges and Fields Part 4 PPT - Manish Joshi' -ccontrols=true -cprogress=true ${{ env.SCENES }} _site/part4.html
 
-    - name: Push to forth-part branch
+    - name: Push to gh-pages branch
       if: github.event_name != 'pull_request'
       uses: s0/git-publish-subdir-action@develop
       env:
         REPO: self
-        BRANCH: forth-part
+        BRANCH: gh-pages
         FOLDER: _site
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
