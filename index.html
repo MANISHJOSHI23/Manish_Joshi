@@ -18,10 +18,10 @@
       background: rgba(15, 23, 42, 0.85);
       color: white;
       text-align: center;
-      padding: 4rem 1rem;
+      padding: 2rem 1rem;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
     }
     nav {
@@ -34,23 +34,24 @@
     }
     nav a {
       color: #38bdf8;
-      margin: 0 1rem;
+      margin: 0 0.5rem;
       text-decoration: none;
       font-weight: bold;
+      display: inline-block;
     }
     .container {
-      width: 90%;
+      width: 95%;
       max-width: 1000px;
-      margin: 2rem auto;
+      margin: 1.5rem auto;
       background: rgba(30, 41, 59, 0.9);
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     }
     .card {
       background: rgba(15, 23, 42, 0.9);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
+      padding: 1rem;
+      margin-bottom: 1.2rem;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
@@ -58,9 +59,11 @@
       color: #38bdf8;
       margin-top: 0;
       cursor: pointer;
+      font-size: 1.2rem;
     }
     a {
       color: #38bdf8;
+      word-break: break-word;
     }
     ul {
       list-style: none;
@@ -71,10 +74,21 @@
     }
     .content {
       display: none;
-      margin-top: 1rem;
+      margin-top: 0.8rem;
     }
     .card.active .content {
       display: block;
+    }
+    @media (min-width: 600px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      nav a {
+        margin: 0 1rem;
+      }
+      .card h2 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -90,7 +104,7 @@
 
 <div class="container">
 
-  <div id="chapter1" class="card">
+ <div id="chapter1" class="card">
     <h2 onclick="toggleContent(this)">Chapter 1: Electric Charges and Fields</h2>
     <div class="content">
        <p><strong>PPT:</strong></p>
@@ -121,7 +135,6 @@
     </ul>
     </div>
   </div>
-
 </div>
 
 <script>
@@ -133,5 +146,4 @@
 
 </body>
 </html>
-
 
