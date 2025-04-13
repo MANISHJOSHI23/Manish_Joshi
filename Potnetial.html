@@ -96,6 +96,17 @@
           display: none;
       }
     </style>
+    <script>
+        Reveal.on('slidechanged', function(event) {
+          // Get all iframes inside slides
+          const iframes = event.currentSlide.querySelectorAll("iframe");
+          iframes.forEach(iframe => {
+            const src = iframe.src;
+            iframe.src = src;  // Force reload
+          });
+        });
+      </script>
+      
   </head>
 
   <body>
@@ -783,7 +794,8 @@ data-background-video-loop          >        </section><section
                 <iframe src="https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_all.html"
                 width="1800"
                 height="900"
-                allowfullscreen>
+                allowfullscreen
+                loading="lazy">
         </iframe>
             </div>
           </section>
