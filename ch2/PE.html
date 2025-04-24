@@ -1,0 +1,1214 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Potential Energy PPT - Manish Joshi</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.0/theme/black.min.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/zenburn.min.css">
+
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <style>
+      #controls-container {
+          position: fixed;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          opacity: 0.3;
+          transition: opacity 0.3s;
+      }
+
+      #controls-container:hover,
+      #controls-container.active {
+          opacity: 1;
+      }
+
+      .control-btn {
+          padding: 12px;
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background 0.3s;
+          font-size: 20px;
+      }
+
+      .control-btn:hover {
+          background: rgba(0, 0, 0, 0.8);
+      }
+
+      #stopwatch-display {
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          padding: 12px 20px;
+          border-radius: 5px;
+          font-family: monospace;
+          font-size: 24px;
+          display: none;
+      }
+
+      #clock-container {
+          position: fixed;
+          bottom: 20px;
+          left: 20px;
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          opacity: 0.3;
+          transition: opacity 0.3s;
+      }
+
+      #clock-container:hover,
+      #clock-container.active {
+          opacity: 1;
+      }
+
+      #clock-btn {
+          padding: 12px;
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background 0.3s;
+          font-size: 20px;
+      }
+
+      #clock-display {
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          padding: 12px 20px;
+          border-radius: 5px;
+          font-family: monospace;
+          font-size: 24px;
+          display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+<section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_6e72f1e790033d4f833a628392b3c22b9c850921ba9968f21d24a3b6e16dcb62.mp4"
+data-background-video-muteddata-background-video-loop          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_83317025f96e722f55686f63501b54969b991668449e27ac10db055898723b0f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_0504d878b33c430b1708e6d511f80f1e91fd975ca93cf7b7c5283a02ac7aa1c3.mp4"
+data-background-video-loop          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_a542bdd56274c7b6e1b40e8ef16d45715b0de30619c37d09a719296c02581ae7.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_c8f3ba6a9f9e7fd4372cdfafec22b3a5f9ad39ac8b3e058599af38c0bb2a620f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_34cba48268214706096420570527f8e213ed50d5379637fc9f13fc876b9f0d6e.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_74eb63e750803c10bf2d9236fe15e779e79ada56556db139ee74944a5454fb42.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_3d50106ece77d36bcab14f0b8e807cc385c29ffa3d71b19c8cc0f088b4df55ba.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_67a15c16cd09a21da05dbb3fbfbbf319432514583b84504bde37cf804c0bec34.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_c86669e1680dc7836420d010cfee5f91d10d4754449093e4c70dfd32eafbe208.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_350722c757eba29f7e8caf0020f846af06d2b6c5e3e63d020936f332812fa7f4.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_fa2732b7b92d8f6660afc043247201c16252132c37611503a83a63aa22773f5b.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_55ecce0dd09f758f30790247f5b8b010a12cabe40c9ded7433b46c9229b8b480.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_29026e722d2e9e8d2b07a4d1fe1a0a53b5163ec9fce17ce9ef3d851ccee5b495.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_d23319f755e2e8a2e22d64c87a9f28acd046d2bd919214e68bda2bd888950088.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_dd8d4dfb4e9aa3161225ac7b93cbe72d17d59bf1a018f7a8b176e6c0b1999d19.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_30d1eb17909f2355f8368234901d05d13f184fa8810e922f6527f5402759e404.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_86c267507deca12c9f386b95cc6edc977734d7c395efa4fee2971cb0cc7673f9.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_d51c0a08a16cb8fa2b3bb86c1f5de7a8357cd80757f5f3eda9345926ae4c1066.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_1ad0530a0a8a77d9b1496da14a287c1d669ab2dd36562734cdd946c4e08363d9.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s00_2f5a7f775f11ad53d4b52dd58a06bff5ae50802f5c64febca25acfc55a94adf9.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s01_3c05499e2bf11d85bdfe7a6768e308f5e14e1f5ec15a97a217e7e01671e66beb.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s01_7ab98ac4c93033b3013c810037fc1d716f44775da507e0ef3f5495e8b41aec5b.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s01_98e11b75627318da1cf6337b83795ba70df941a47185dffe594c81e0adabaeac.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s02_9de3fddf01aebba842c425ca98f7fd7392fffdd57cdfc322fbd60c9f22383aba.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s02_4be2654fc7eddd3828f804dae4bcede0fbc8ab361152e304ba46fd0b21f23cb8.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s02_94523e36561ca8f96d4039c7b2c9f1c22c68daa6f6baa74fc4533e52d583ba22.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s02_2c7102d62f2a5d99b7241b75753bb232255432763e8854b715cae217eeb3b22a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s02_2353e0fcd1545435e876226101d4ce80d7d0cdfc2e3bec85b75f357d1802e7a7.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s03_3970625d18b99a6aff310eb528b92815585acdc17a7ca483a7c6b397df7ea361.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s03_b71b5358ad4467ee0c0b57b53b598cb461d869db05daec4416079a4b37b27d79.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s03_3a9d63295b50acae8b3965706fa0029b5d7c5264b9351a96cf1d6567f8117e78.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s04_351c8db69351a3b9740d2754c858d968d43555f88e551c401b67bc79ea936f5e.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s04_480aaa5352b78b2818f363619269792a140677d3927cdf989fdabfc5c81ef318.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s04_ed2d7663414ee172d45849359239841fb1d812c3a1d2f8bbaefec72efc224325.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_b9a7441df83c27de3e49b8f5515e747c990945fb471b5085d811756b0f1e02f2.mp4"
+data-background-video-loop          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_0fd189c70a59625421b85f7c8eedbc35450bd9f9f560f9897185819432a0e3a2.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_a01505a33849dabc49a0c13c473548c3152cbca79c22ba6ce031bf92303b44d6.mp4"
+data-background-video-loop          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_f373e93975251b6affbafa4efecdcb9d0934e9c48008592b61ea9deeb1ddc323.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_ebd8ccd91efdcf33feb4c07b4cf2c258be125fa1ecf81517d5d9e6dfeb43d638.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_74aef4cefda4029b4fa653ff92ad8e136b839c415cf812522166626483f080da.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_25c2bdfed2896523b463844bf25ed2205506f5021c850ed7e78f4a337324097f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_d7c6a3400a98bb8a367c649dcf79ff35292e9b4ab4647b96271351f0e2336937.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_0c37a5e50ede8509733a9d125fb46ce7f007b5073ac95b5d2a36be65ee2fb0bb.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_0143069f148ac4f0dc26ca78f6ddb96ba279dc2d4e55ae70631f6f81638b76b4.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_0390dab8495afedcdc7a77f4d0ee3212ad079bc7680f388455e980530d26079f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_4187289a59787dc5e5c6cad6c89a329715ed8dfac2737364eb25fc151726957b.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_e2bf311b0280f209929148f370550560bd079def41003d74a26b54f032cd94b3.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_05be09887ad937acc0e105eff172c3fd6938221115769b006ddd180f48703252.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_2a0c00d9a628bc68370e08aecbe7255704e4d6a61419d188cb760a358a2b2404.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_94ed96ee89dc2a40bbe8b6bdaa445227dd9a008cc292d7d2d1c6c055dc9280c2.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_e9cf6d14c78d4e543d99bbe29cd6ed55bd9c160e89dfb40bd63c83dde71c700a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_f26f62944e198de5754cc7762f8cf50476ebcfe315b0c1f9a88ec9c8051c480e.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_e2ca38b32629d521cec1e06e6d5c99df2eddc77393ec336815f36128b9307fac.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_98c2e475fa28f9032093cc1a0e9441b97012418379259df6b5fc67428ddf8996.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s05_6fa093c6b279070d418fc63d8cd40993cbe56249e61a5bc615eb907c5230642d.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s06_d55d019f78cea7b01bca90892e3a9bba0313b663b7b8b81242af7c459c66181c.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s06_473cef4c1be0cfde167f833ac60cbadfc37406940d5494649662dcc35a259c9c.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s06_de080b7c0854bffa737e1dff77ce64d0d4e6a3281d39db64095281cc6d19bf59.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s06_8d13c548789b71c435ed0237cde56f2a5b926669ba450e28ad743abd271d2b15.mp4"
+data-background-video-loop          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s07_d9eb9a03d026efc594b308820594b005a1a62f154f8407dfb5c62db14ff64ff8.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s07_6d057a69bf36159adefb950a4bb5d3f9144d4012d24c0b8328ec87511da15002.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s07_79f22099cef9c3391f6f59e12972d526ca41332f3ba4fde11a1e11ece58b5a0e.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s08_560b74a702e29bf7fb314ca8f950325a87fcd0697a0985b57c570df3bd7f40ab.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s08_f58256bc53bb3cfb5b9d11fb5954a30cb36c01e1aedba88cf2d7f13ef729b280.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s08_1e05ceb538826f4220f8d3199b796a457b1de7a78c8129c2584a6ec4a5373fcc.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_a585b1ecfa5f6a2b21b9d734023f6ce9faa1672bb7a5579b4302faacd9c20c41.mp4"
+data-background-video-loop          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_85c5598e4d53ccb2bac6c33f52865e60df2f6dc22f0e84e3b118c11def4d06cb.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_d377c7c6a0dee94a98116178a2fc6857d95a29245fc1b57b8eda4e666c32e6c6.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_6a48f9718fb07d601030d122a327b0a2b7d9c9b19c951d78219658aa97d48c4f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_31ed85e4c428025e5af09d5730fe61e9a58668ae1000a0ce3be55d1317070b5f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_26f9714f07f26e9b220e710045565528cef74a61e6e1725ca01c77eef5022deb.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_b313a789e5674104799629b6361ac624dc8eb722c569019beb1f4805b6d3f759.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_f90a803b36a9cded681282292bcd66582299a10df4f42b86227291cb2b3b39e6.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_a7e218c7f85021301439a36e2ea72ab13fe0117857ecdcb984c8692417bd4188.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_8881039a47b15165d0aed4b8af977f095d5cad94315796d640b7af90c2f783ac.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_bba71af75fdc18e5f32c62862f85563b902be990d6b96761ea6676c88d690813.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_96361a3adff734492c292feff15d185b844490ade05f902c558e32e756c2f284.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_e347a84c98d94ab79cc2b90c00170dabad05f52e8f074ec4ea7c1b2407df9624.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_8ee235b3c68958c385c88142682a8358c1053884417bdc5b1f5816f0a27b2f34.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_a123db72dd40fffeb4313072515fefc24c8943c92e6a54bb9a2d85de8ad8184e.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_5051d80d3a328e0de20d5c29224d17aa2af9f8261e87a4ebd0a0780af1fcc369.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_279a75ae84819082cf96d9d6f37f6a25f030677059f060e40122467da1269190.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_81cdd09adb5d36b9c7f7add3ab955ede55842ed8232cb99a876b2fe8a059711b.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_b339a793ce8cb361ebc4a326026d2cf74327513e96d4fedc91b720cdc7dcba9f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_03e369431124163e62c8c1b6922282db4973b4274531497c5a94b637413cc364.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_e4bf60dc9743323a217a1f1b3edfa11336fc756dd941ea71d1c32d575949a265.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_40fae85b3c17748e201a30f1712e0cead75df572889f4852cd9f794f428e3ca0.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_dce89fdd50bf83641bf4dbb7ac2c14128e29f893d34986fe2b5d380449aac976.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_6bc8a4159ffbe973e875df0d1240ef72e656f543da9e173ff952559654cfb2ad.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_1e8e9d132d8ea18d7a85da6bdf12c38707696df5bfee1733da7627148f75716e.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_392566703d2fb19b40d33a6135c67ef812d7ccafd962a44ea07f35d8b068f242.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_238647428fc73d8a0dcfcac3ab010e33df9f47c170bcbebf13aa7f9f3b764c8f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_ca91bc42bd9845e6d5062ae524ad74dfd7b76c0ad816f3b2e9b2de10d43f21f3.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_c365b4f7f495f9843f692ae854f873feb5189962ba38b46610900eced444a4ab.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_164b3428a026ef68cf1f637681a04ae0ae125b78757c6b869fea407a1581a9ee.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_874e53597df575a39875a0cdbb28a67cef058f0e82444f4ec517a73cd6427d31.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_99c0ffd58126f479bf37af615fe74689d15378344636f9b892cdac1f9c1b40e5.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_a1670aeb1b09324f47e1ba63cb80f9981cfc52f56f052b688bb9b0f233ad9755.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_a3bb1e56c226e88952d6bb453bc21aa73ca0cdbc9708d7eda47b9f03dce736d2.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s09_b04b12ab12681c703e21141e6489bbe9302ddd825f57cfdcad428a0786363bd2.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_3d4e1e0c0523c17bfd79058750f0c180628456b1d18a4264d13b653d5185d460.mp4"
+data-background-video-loop          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_a46ec8da8ec6d6461a07158d0aa55122dbd4d80eb8bfd464caa07f21692647b1.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_1a046ce701125f7f723d85d983b1e514844ed056947dc67c8bc51dbee4c47bbc.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_90ddb98785f2957e65b8576c1fc87abfa7d0ef0dce6ed10fa02c25ba2db399a9.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_0d41e9fbb915eae5bc7f098c845d9e371f6c7b3ff5459ad81298fdc8c3295592.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_85d84cfdfc2afda8645fdc6ebbb777787904b12de21ee2ac611cd40a6d387db4.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_958ac69bed601071a73292922f5bd1304e186324dfaab3e094006f0754ffad01.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_4a289cbddd849f56b7108d8ec2cac9e56d7bccaf2fabaf086354134a11f4450a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_b43af7dd933c7c21a32b22a66bbcf0059620237c743948ffa6e82329ba2aa88b.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_68b4ded353369a2693319d37865711197f11795042c65f1eb76beafd9aea5dd9.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_b8e718fb7399f275758615641e6c7d605428f65d84a4b0535bead8574cc8600c.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_a4c5c0338d02d3fdb22708152b54c8ba5e395fc44676a9aafe8dd74d0507a90e.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_e86e5eadd52ec2b590e8523dc9e31b8db9c2311637cd50b0ffcc40f77995099a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_9fdff4db71d390d9ea180c3f2f5c11aff4de6476407e87414835d2fcba5dd7b1.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_c6ea8507019471f29e2719ae6d2bebc15eaa5326403a95e52e9fdf156859d106.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_8a8508e27a33c44ee1bbeb971fec036d332e5140ae596120af84fee803008b0f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_ccce4a5f598cfbec2b863f68fb901100db6448a0aea033ad32c2ae3b29ec9ce2.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_2ac823a868f797c658f3760a51505ee9cb768215120602ef28762fd10c30082f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_79fb43be763b46bf9fb96d052976172480f85dd62835a7c2d3c075d9ce4424f8.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_efe61f4c896f704086cd59ac3611fabf857abf4c436d18fa8620e2be2d8de503.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_c24c1c69cde0dc5e69593a59bbd81455b91b4c20f76b3afaf960dd4f01f3e8b7.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_451803c1ffd29bec484c5ae18fe5c233904c57fbd9c8357776c59077830ce785.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_62704de077318310f6e53f073a77f5c264343a360288847891d05b4a1aa9d991.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_da57160bd5526b5f5da1e1eb7baf077002f1e2d592a2eb8d066ae2c8cc991e6a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_3e77e6ea0161cdb5085a10d5660ace9291317bf33642932ab24eb061610acea1.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_8f8b93834bb9e15bf6a763e970b959ff606d01feffd9eb9e6ccf8530f13f94cc.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_14bdd698aed7d09a61e6a35482ca261b6dc340de23e26dfa4e2b76ebdf5c25aa.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_69676627de7eeebff6b5be1f3e16a904c073230e648149542268f9a5829696e1.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_976165aaf85a9b3efb203db3454e4231fcb7db7a7fbc0d91187c8ffb76b2a972.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_316ed6142cf7e87253f6122eb822bc16afdd910f20de8fc3f7fe007afa71bb8b.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_aa750c28f18c5559102a0748c3edb7e6e2016e10d18d08e293e8d5a3cca0dc5f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_4a6b547d95e14bd77276c0947b6133e05790ca216b86bf04111a896e628bb872.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_6dcf79dbf0efd96f61cb7e66b4c5f81c14a8c6ceba71a6f12c85ad59c192c973.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_9351c7f77b41bdd8291fe94b6e0bc95bb837214c3b3565d7e6791fb8cc213faa.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_875ed242791dd1474b9e5b1f012d8c4cc6bfe328f551733ff1ba629a4b84ce82.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_9a9321051e5d4a63f7124f636780b7afceaec7106c9f1b76ff7817db71ca73aa.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_0a1c91d22d5e2091fd72e28bbe7132a82369070fb251ef189d1a27bd3bf0dc5c.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_9abbb89bce30cfb022be10ace00ab05ab41b5cadeffd47d7e84e9ffb6064be1d.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_1ff1c6247b991f512a520cbd32b69f78a1d4838ddabc517afaa4aef373325d5a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_ec10921a4701f36e437a740a3c4edd46e098eec324081af404cb11549db7c80c.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_da317098d64509c8a2e9d737ee22aad96be04c99329f1fec4330e96e7563ab55.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_c8efac979734647c0a76d3d3cbb74632f1d6bf4c7018d52fb1495405a5f83765.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s10_9116572cbd8dcc2a4d18622b64ab9c33fc542b384ff8f8ede6622e6db2cb2325.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_a6c511071d08ffbf2ff770ce37ca51a49354edba216578a93430787e562ea589.mp4"
+data-background-video-loop          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_6cae746f9af8834da38ac7f42a349c7054329e98d07c7f9623c1618384932c7f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_2eb68ec988b08dcde8b075b2975a043ff81e95550f97dc0ebd65ae289edf7b1a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_7ed8c0259325ffade58b54947e33ef1d4f348ab30d929682eb257be95fa9fc9d.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_a96468c1de6f3c14d5165ccb316890f68a23366171d564b455764ed12f068f38.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_d4743f330a1cacdf312aa44790a59601649d78693f8629fcb50cb6028b90f714.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_c0821faaff6cdf0f6c377521d1425d59b8ee12e73e6b1eefbaf84f6edaf5b218.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_e7e781605283802d960b41f48ddd516b304ccb31d3137f2d74e536bad9423c20.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_3fc821c57e702c12ed99367c5c150f80b29ba21d528f760d19ff63a3c8c864af.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_9d429d65234b40566ce091f4c8e361319cd289b6e29689fb2869389490ce1c58.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_2dfe15d2e8e5d594b64498f94a83f55436324071a75c5af24ba52c381f64fc8f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_22352029664ca0686ac56d4f0d4b74a5bac66564bb9fdca7810c4a99009e0be8.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_39ea14cebd1b6f62d0cf28f5339858f14728d958232011ae25c6e983dce99158.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_76d38db50f5de70911dd59bd36e6e7080039cbcbfe781f913b926d66026f48d6.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_236a9299afcc8d93395db0af90ba4e367d19efcef4eaca62d416b021274ca50d.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_2b188f7148eabbbed853cfed47e4d133f2d87e75a0f0cd95823c79dcad096e30.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_c55d311acc0552c8490d09f8aa1fdf66d897b0a5bf30aff453dd6d2dd2c302a7.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_d4d4c735da9bb941f4032ee582bb40db5e0d29ec08a6969856206039b56a2296.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_c0bf647ec88ed8a7a3b586e47972f0078f14030b3e95ac9ba8524c671e3b8415.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_4933a5ba9b10f3a21fbd33d42bfdc2648f47ac7aa626e4455b71212561ed9533.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_bab56526171dbc493184cd4c363d06487d02db3642f472de9e76f88e2d42641a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s11_773162b661893941a017f4710d2a626431896a01ac34d908fb7401a46be3d6bf.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_71a1eb74144b58df8a2ca79ca7d78114f2e2910b2d9d412c531979fd1f6bc12e.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_e7c8102550c7b0edb7dcdf61384b49f2631a321507fe60cd1c0c9c0ee473c376.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_8df0a43aafca2176add658797baefc24c66dd2083cd71ac053ecc78841e57a09.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_07b247434fd0afd8f96ed27fd1dfd65f6a98958ba19d5e325c94246210cf233a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_5dce7c92efd1dc5ee4dd36fac1ba4ca7fadcef83d35f47922fc3ebd2333cd1fa.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_8673a453eb37e3358e30fee03ef88a5ca583929fc4c533279552ab72a5b7663e.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_e294e620912d1df78eb644627c3979b9100e9bc22e0f3dd51c5aaab40477d85f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_461d316425a7442ea01a779a470a888004675a7a0489545a1108cc1350313ee6.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_1f10a1319aba44ca9d42d18146926b4c2060f463ef26ed17ccd5f63a746f93c9.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_f06059f2f2b1c63325ee13a672f5af7855469868e984c25dc85b08dd264468a5.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s12_bf72108a3633ab126fb91caad0b5df54d2997d1514c28998524beae1d2e5eb11.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s13_4816c7c0b43ca5f507442c89d5edd0f18f293b9a3b25cf056fdb2f0d01a481a0.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s14_781ab1e743ee596d735a8bfd90421a859f2f632172be318acf42a81728715c30.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s15_65c4fd60c7282f6a0bccf9452ef830ef7cde65b5adbc5c43e942de6ce39a5ad8.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s16_7e942c0feb7d65de2420858f9887409c30e4827c00a4011a59f688467f93efb0.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s17_0b28ffc846ba5e7961d89901f68f67aed3295f165ce288b91e260f14bf7d60ed.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s18_befc933309dabaada0f06ba04ccd6751cbd39b9dd0bdee238493b83f0c95f20d.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s19_380ef19b359d969360646ebfefcca04a2ef9d17c18fa45d24c0fdc6cf77e8d92.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s20_34b5ab7548396c5ff3cb214241ca1044fbe0e5bf29cd1ca074291927042d6bf1.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="PE_assets/s21_5260d53da9402a3582c19c6605c47f760beeb9ef2fcae6ddb3edf064e838ee7b.mp4"
+          >        </section></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.0/reveal.min.js"></script>
+
+    <!-- To include plugins, see: https://revealjs.com/plugins/ -->
+
+<!-- <script src="index.js"></script> -->
+    <div id="controls-container">
+      <div id="stopwatch-display">00:00:00</div>
+      <button class="control-btn" id="playPauseBtn">▶</button>
+      <button class="control-btn" id="resetBtn">⟳</button>
+      <button class="control-btn" id="fullscreenBtn">⛶</button>
+  </div>
+
+  <div id="clock-container">
+      <div id="clock-display"></div>
+      <button id="clock-btn">🕒</button>
+  </div>
+    <script>
+      const controls = document.getElementById('controls-container');
+      const display = document.getElementById('stopwatch-display');
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+      let stopwatch;
+      let isRunning = false;
+      let time = 0;
+
+      function formatTime(ms) {
+          const hours = Math.floor(ms / 3600000);
+          const minutes = Math.floor((ms % 3600000) / 60000);
+          const seconds = Math.floor((ms % 60000) / 1000);
+          return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }
+
+      playPauseBtn.addEventListener('click', () => {
+          if (!isRunning) {
+              display.style.display = 'block';
+              controls.classList.add('active');
+              isRunning = true;
+              playPauseBtn.textContent = '⏸';
+              const startTime = Date.now() - time;
+              stopwatch = setInterval(() => {
+                  time = Date.now() - startTime;
+                  display.textContent = formatTime(time);
+              }, 1000);
+          } else {
+              clearInterval(stopwatch);
+              isRunning = false;
+              playPauseBtn.textContent = '▶';
+          }
+      });
+
+      resetBtn.addEventListener('click', () => {
+          clearInterval(stopwatch);
+          isRunning = false;
+          time = 0;
+          display.style.display = 'none';
+          controls.classList.remove('active');
+          playPauseBtn.textContent = '▶';
+      });
+
+      fullscreenBtn.addEventListener('click', () => {
+          if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen();
+              fullscreenBtn.textContent = "↙";
+          } else {
+              document.exitFullscreen();
+              fullscreenBtn.textContent = "⛶";
+          }
+      });
+
+      const clockContainer = document.getElementById('clock-container');
+      const clockBtn = document.getElementById('clock-btn');
+      const clockDisplay = document.getElementById('clock-display');
+      let isClockVisible = false;
+
+      function updateTime() {
+          const now = new Date();
+          const time = now.toLocaleTimeString('en-US', {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false
+          });
+          clockDisplay.textContent = time;
+      }
+
+      clockBtn.addEventListener('click', () => {
+          isClockVisible = !isClockVisible;
+          clockDisplay.style.display = isClockVisible ? 'block' : 'none';
+          clockContainer.classList.toggle('active', isClockVisible);
+          if (isClockVisible) {
+              updateTime();
+          }
+      });
+
+      // Update time every minute
+      setInterval(() => {
+          if (isClockVisible) {
+              updateTime();
+          }
+      }, 60000);
+    </script>
+    <script>
+      Reveal.initialize({
+        // The "normal" size of the presentation, aspect ratio will
+        // be preserved when the presentation is scaled to fit different
+        // resolutions. Can be specified using percentage units.
+        width: '100%',
+        height: '100%',
+
+        // Factor of the display size that should remain empty around
+        // the content
+        margin: 0.04,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+        maxScale: 2.0,
+
+        // Display presentation control arrows
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        // - true:    Show slide number
+        // - false:   Hide slide number
+        //
+        // Can optionally be set as a string that specifies the number formatting:
+        // - "h.v":   Horizontal . vertical slide number (default)
+        // - "h/v":   Horizontal / vertical slide number
+        // - "c":   Flattened slide number
+        // - "c/t":   Flattened slide number / total slides
+        //
+        // Alternatively, you can provide a function that returns the slide
+        // number for the current slide. The function should take in a slide
+        // object and return an array with one string [slideNumber] or
+        // three strings [n1,delimiter,n2]. See #formatSlideNumber().
+        slideNumber: false,
+
+        // Can be used to limit the contexts in which the slide number appears
+        // - "all":      Always show the slide number
+        // - "print":    Only when printing to PDF
+        // - "speaker":  Only in the speaker view
+        showSlideNumber: 'all',
+
+        // Use 1 based indexing for # links to match slide number (default is zero
+        // based)
+        hashOneBasedIndex: false,
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: false,
+
+        // Enable support for jump-to-slide navigation shortcuts
+        jumpToSlide: true,
+
+        // Push each slide change to the browser history.  Implies `hash: true`
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Optional function that blocks keyboard events when retuning false
+        //
+        // If you set this to 'focused', we will only capture keyboard events
+        // for embedded decks when they are in focus
+        keyboardCondition: null,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // Changes the behavior of our navigation directions.
+        //
+        // "default"
+        // Left/right arrow keys step between horizontal slides, up/down
+        // arrow keys step between vertical slides. Space key steps through
+        // all slides (both horizontal and vertical).
+        //
+        // "linear"
+        // Removes the up/down arrows. Left/right arrows step through all
+        // slides (both horizontal and vertical).
+        //
+        // "grid"
+        // When this is enabled, stepping left/right from a vertical stack
+        // to an adjacent vertical stack will land you at the same vertical
+        // index.
+        //
+        // Consider a deck with six slides ordered in two vertical stacks:
+        // 1.1    2.1
+        // 1.2    2.2
+        // 1.3    2.3
+        //
+        // If you're on slide 1.3 and navigate right, you will normally move
+        // from 1.3 -> 2.1. If "grid" is used, the same navigation takes you
+        // from 1.3 -> 2.3.
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the question-mark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autolaying embedded media (video/audio/iframe)
+        // - null:   Media will only autoplay if data-autoplay is present
+        // - true:   All media will autoplay, regardless of individual setting
+        // - false:  No media will autoplay, regardless of individual setting
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes
+        // - null:   Iframes with data-src AND data-preload will be loaded when within
+        //           the viewDistance, iframes with only data-src will be loaded when visible
+        // - true:   All iframes with data-src will be loaded when within the viewDistance
+        // - false:  All iframes with data-src will be loaded only when visible
+        preloadIframes: null,
+
+        // Can be used to globally disable auto-animation
+        autoAnimate: true,
+
+        // Optionally provide a custom element matcher that will be
+        // used to dictate which elements we can animate between.
+        autoAnimateMatcher: null,
+
+        // Default settings for our auto-animate transitions, can be
+        // overridden per-slide or per-element via data arguments
+        autoAnimateEasing: 'ease',
+        autoAnimateDuration: 1.0,
+        autoAnimateUnmatched: true,
+
+        // CSS properties that can be auto-animated. Position & scale
+        // is matched separately so there's no need to include styles
+        // like top/right/bottom/left, width/height or margin.
+        autoAnimateStyles: ['opacity', 'color', 'background-color', 'padding', 'font-size', 'line-height', 'letter-spacing', 'border-width', 'border-color', 'border-radius', 'outline', 'outline-offset'],
+
+        // Controls automatic progression to the next slide
+        // - 0:      Auto-sliding only happens if the data-autoslide HTML attribute
+        //           is present on the current slide or fragment
+        // - 1+:     All slides will progress automatically at the given interval
+        // - false:  No auto-sliding, even if data-autoslide is present
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding (defaults to navigateNext)
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // Opens links in an iframe preview overlay
+        // Add `data-preview-link` and `data-preview-link="false"` to customize each link
+        // individually
+        previewLinks: false,
+
+        // Exposes the reveal.js API through window.postMessage
+        postMessage: true,
+
+        // Dispatches all reveal.js events to the parent window through postMessage
+        postMessageEvents: false,
+
+        // Focuses body when page changes visibility to ensure keyboard shortcuts work
+        focusBodyOnPageVisibilityChange: true,
+
+        // Transition style
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // The maximum number of pages a single slide can expand onto when printing
+        // to PDF, unlimited by default
+        pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+
+        // Prints each fragment on a separate slide
+        pdfSeparateFragments: true,
+
+        // Offset used to reduce the height of content within exported PDF pages.
+        // This exists to account for environment differences based on how you
+        // print to PDF. CLI printing options, like phantomjs and wkpdf, can end
+        // on precisely the total height of the document whereas in-browser
+        // printing has to end one pixel before.
+        pdfPageHeightOffset: -1,
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000
+      });
+
+    </script>
+
+    
+  </body>
+</html>
