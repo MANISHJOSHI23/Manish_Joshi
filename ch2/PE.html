@@ -842,20 +842,40 @@ data-background-video-loop          >        </section><section
               </p>
             </div>
           </section>
-          <section data-background-color="black">
-            <div style="text-align:center;">
-              <iframe src="https://phet.colorado.edu/sims/html/capacitor-lab-basics/latest/capacitor-lab-basics_all.html"
-                      width="1800"
-                      height="900"
-                      frameborder="0"
-                      allowfullscreen
-                      loading="lazy">
-              </iframe>
-              <p style="font-size: 13px; color: #ccc; margin-top: 5px;">
-                From - <a href="https://phet.colorado.edu/en/simulations/capacitor-lab" target="_blank" style="color: #1CAAD9;">PHET</a>
-              </p>
-            </div>
-          </section>
+
+          <section>
+  <div style="
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  ">
+    <div style="
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    ">
+      <iframe src="https://phet.colorado.edu/sims/html/capacitor-lab-basics/latest/capacitor-lab-basics_en.html"
+              style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+              "
+              allowfullscreen
+              loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
           <section
           data-background-size='contain'
           data-background-color="black"
