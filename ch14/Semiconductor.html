@@ -1,0 +1,622 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Semiconductor PPT - Manish Joshi</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.0/theme/black.min.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/zenburn.min.css">
+
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <style>
+      #controls-container {
+          position: fixed;
+          top: 20px;
+          right: 1%;
+          transform: translateX(-50%);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          opacity: 0.3;
+          transition: opacity 0.3s;
+      }
+
+      #controls-container:hover,
+      #controls-container.active {
+          opacity: 1;
+      }
+
+      .control-btn {
+          padding: 12px;
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background 0.3s;
+          font-size: 20px;
+      }
+
+      .control-btn:hover {
+          background: rgba(0, 0, 0, 0.8);
+      }
+
+      #stopwatch-display {
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          padding: 12px 20px;
+          border-radius: 5px;
+          font-family: monospace;
+          font-size: 24px;
+          display: none;
+      }
+
+      #clock-container {
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          opacity: 0.3;
+          transition: opacity 0.3s;
+      }
+
+      #clock-container:hover,
+      #clock-container.active {
+          opacity: 1;
+      }
+
+      #clock-btn {
+          padding: 12px;
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background 0.3s;
+          font-size: 20px;
+      }
+
+      #clock-display {
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          padding: 12px 20px;
+          border-radius: 5px;
+          font-family: monospace;
+          font-size: 24px;
+          display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+<section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s0_5e01c647f4f526916fab044b74f093cdaf61a75dfba7a00b6094661cd5f8c593.mp4"
+data-background-video-muted          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s0_6876fc952f0ed2a71cbd0f283eb6a4b971fcb1d66f52ce7445b7d0f9ed337550.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s0_6d511b18c44e1b3ce5c96f471b63e4f38560c686516901b40209ca1a3c6bbdec.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s0_b9baf6ed63e56455cdd22850575af748b8f65be9d046251fbd33a70d2a564532.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s0_220e9bc88ba58f813c253997498e6be4c96c52e69f0ef862b628c4f1e54ffa40.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s0_7e428dfdd07e1f4ff624160ab647fded94969595dd7ec8d00117b8eee6524be5.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s0_865ab6a344b0dafc29ca4cca4a4730253445f843b266048aadf7c363e5b2ffb9.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s0_4ea9eb9d5ab11c87abced79d034e9f8a4d59790a9fc685982104e7eea5ab9f36.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s0_a51587d4c8f83158a5c42d399957e2c3884fcb50969549268f2b451a9a56d9b7.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s1_3a0ba72d61028a788bbe6658c8f0760c8ac35185699194aaba642c80fe44c6ef.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s1_46e124366ea21f3c4c5e0c1fe943acd2905196dd56b744ea0c938f742726b130.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s1_657f63870d1860a9b5e3eeb0aa7712b3d886a017689e5e5560ca0a469f6da9aa.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s1_cd6053cb673e488a2051208e2a6b594d0a956988945f3c44ff7210045074587a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s1_31dee641b4699870c633f4dffbd59c050ef849214efee456a7bd9b1ae1e2a058.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s1_52a4053ef07eb7ed0d669a1519655cfeeef0f411efd6e7fa6316e7e5bae7488c.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s2_097d7ea75667368a5227b6007cff61ad5776b29ff948d3813abae8ed715c54e5.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s2_25b965ba3b90518831c7d00fce2f48cb7a2d3df511cb7419ab83a17dc7a6056a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s2_67e8488e655817094b752e7fd7aaa92681e427ac6d02f310516a4d9d78112b85.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s2_7aadd08e963a49de916fed88e29548d3db852c977ae3e41ada6a8e2f0c31ed1c.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s2_f0fcc83663c88638b7ccbb536969b9874483b82c4e94471e66ffe338f0241850.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s2_93bcd2d81bdad37226f3eed6c09bbca26e84235b402edcdde94bb07715306b3a.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s3_91843cd1b68275510611a031635cd017d144cee1b1a5713ef4e00b660c3995a6.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s3_e8f80d69dd9df2813311ae088ff98c1e6efd2ddf3860e9eba6f6f87532bba86b.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s3_e26132741741927b612c3cc70e95c535d339a0a249994e4b685e5e6c65239aa5.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s3_50c8ada8c284206ea31cc9a0241d18d8d347838cf6b79657589431c0d1bf1994.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s3_4ac1c396547da41e337eaf8c96c6b52877ac9d4bd17c17ce907e035d20773abb.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s3_0060f18c989b674e3862dd029da4f53b6346c4650835e8ffe141503129be82a5.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s3_c6a861b8a4a7bcb3bc6d9646c53e6204d50ad93f156b76d7e66acc7fe7c66332.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s3_998f7b5e08e50940cdc2e0df169b60356504bfc30559c7a5c7cebe50d70f0be0.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s4_b3c02222fe3c575623c161619f132441b8bcb272be04ad462ebe3ee3bdfeb616.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s4_20b321d1f68564350e9c2b40c7c67cc5b0c2e213e380249d5fa75e9cc744330f.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s4_e3378efd8e740d8e48affbf18376242d9ea21f448f21d40fd5ed5c5aafc9fe00.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s4_816af2c29d1bed9efb64cd21c88c235a4cf50a043965e232f743312c33d5444d.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s4_1fc0242c22b73ef0c6edadb1e984716570c4128f3ef7ed1c549798911bce18fa.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s5_fea4a8c6c228d5f5472edcd5faadcbeca069f260cd27d5208ef9407fdae1faed.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s5_c84ca2d4d4b8787b62be3a7adb7d6525944d5a0abd161f38aa5a5fbec4ce0242.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s5_e35c3d8875102bc6f112ee81ddd1048865ae1f23d1fff21bfb6ecae8b758d029.mp4"
+          >        </section><section
+          data-background-size='contain'
+          data-background-color="black"
+          data-background-video="Semiconductor_assets/s5_9cf60d02f837befa2c574f0b579320d5f4b4517fe55960a4c8a69020abd66c5d.mp4"
+          >        </section></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.2.0/reveal.min.js"></script>
+
+    <!-- To include plugins, see: https://revealjs.com/plugins/ -->
+
+<!-- <script src="index.js"></script> -->
+    <div id="controls-container">
+      <div id="stopwatch-display">00:00:00</div>
+      <button class="control-btn" id="playPauseBtn">▶</button>
+      <button class="control-btn" id="resetBtn">⟳</button>
+      <button class="control-btn" id="fullscreenBtn">⛶</button>
+  </div>
+
+  <div id="clock-container">
+      <div id="clock-display"></div>
+      <button id="clock-btn">🕒</button>
+  </div>
+    <script>
+      const controls = document.getElementById('controls-container');
+      const display = document.getElementById('stopwatch-display');
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+      let stopwatch;
+      let isRunning = false;
+      let time = 0;
+
+      function formatTime(ms) {
+          const hours = Math.floor(ms / 3600000);
+          const minutes = Math.floor((ms % 3600000) / 60000);
+          const seconds = Math.floor((ms % 60000) / 1000);
+          return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }
+
+      playPauseBtn.addEventListener('click', () => {
+          if (!isRunning) {
+              display.style.display = 'block';
+              controls.classList.add('active');
+              isRunning = true;
+              playPauseBtn.textContent = '⏸';
+              const startTime = Date.now() - time;
+              stopwatch = setInterval(() => {
+                  time = Date.now() - startTime;
+                  display.textContent = formatTime(time);
+              }, 1000);
+          } else {
+              clearInterval(stopwatch);
+              isRunning = false;
+              playPauseBtn.textContent = '▶';
+          }
+      });
+
+      resetBtn.addEventListener('click', () => {
+          clearInterval(stopwatch);
+          isRunning = false;
+          time = 0;
+          display.style.display = 'none';
+          controls.classList.remove('active');
+          playPauseBtn.textContent = '▶';
+      });
+
+      fullscreenBtn.addEventListener('click', () => {
+          if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen();
+              fullscreenBtn.textContent = "↙";
+          } else {
+              document.exitFullscreen();
+              fullscreenBtn.textContent = "⛶";
+          }
+      });
+
+      const clockContainer = document.getElementById('clock-container');
+      const clockBtn = document.getElementById('clock-btn');
+      const clockDisplay = document.getElementById('clock-display');
+      let isClockVisible = false;
+
+      function updateTime() {
+          const now = new Date();
+          const time = now.toLocaleTimeString('en-US', {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false
+          });
+          clockDisplay.textContent = time;
+      }
+
+      clockBtn.addEventListener('click', () => {
+          isClockVisible = !isClockVisible;
+          clockDisplay.style.display = isClockVisible ? 'block' : 'none';
+          clockContainer.classList.toggle('active', isClockVisible);
+          if (isClockVisible) {
+              updateTime();
+          }
+      });
+
+      // Update time every minute
+      setInterval(() => {
+          if (isClockVisible) {
+              updateTime();
+          }
+      }, 60000);
+    </script>
+    <script>
+      Reveal.initialize({
+        // The "normal" size of the presentation, aspect ratio will
+        // be preserved when the presentation is scaled to fit different
+        // resolutions. Can be specified using percentage units.
+        width: '100%',
+        height: '100%',
+
+        // Factor of the display size that should remain empty around
+        // the content
+        margin: 0.04,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+        maxScale: 2.0,
+
+        // Display presentation control arrows
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        // - true:    Show slide number
+        // - false:   Hide slide number
+        //
+        // Can optionally be set as a string that specifies the number formatting:
+        // - "h.v":   Horizontal . vertical slide number (default)
+        // - "h/v":   Horizontal / vertical slide number
+        // - "c":   Flattened slide number
+        // - "c/t":   Flattened slide number / total slides
+        //
+        // Alternatively, you can provide a function that returns the slide
+        // number for the current slide. The function should take in a slide
+        // object and return an array with one string [slideNumber] or
+        // three strings [n1,delimiter,n2]. See #formatSlideNumber().
+        slideNumber: false,
+
+        // Can be used to limit the contexts in which the slide number appears
+        // - "all":      Always show the slide number
+        // - "print":    Only when printing to PDF
+        // - "speaker":  Only in the speaker view
+        showSlideNumber: 'all',
+
+        // Use 1 based indexing for # links to match slide number (default is zero
+        // based)
+        hashOneBasedIndex: false,
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: false,
+
+        // Enable support for jump-to-slide navigation shortcuts
+        jumpToSlide: true,
+
+        // Push each slide change to the browser history.  Implies `hash: true`
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Optional function that blocks keyboard events when retuning false
+        //
+        // If you set this to 'focused', we will only capture keyboard events
+        // for embedded decks when they are in focus
+        keyboardCondition: null,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // Changes the behavior of our navigation directions.
+        //
+        // "default"
+        // Left/right arrow keys step between horizontal slides, up/down
+        // arrow keys step between vertical slides. Space key steps through
+        // all slides (both horizontal and vertical).
+        //
+        // "linear"
+        // Removes the up/down arrows. Left/right arrows step through all
+        // slides (both horizontal and vertical).
+        //
+        // "grid"
+        // When this is enabled, stepping left/right from a vertical stack
+        // to an adjacent vertical stack will land you at the same vertical
+        // index.
+        //
+        // Consider a deck with six slides ordered in two vertical stacks:
+        // 1.1    2.1
+        // 1.2    2.2
+        // 1.3    2.3
+        //
+        // If you're on slide 1.3 and navigate right, you will normally move
+        // from 1.3 -> 2.1. If "grid" is used, the same navigation takes you
+        // from 1.3 -> 2.3.
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the question-mark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autolaying embedded media (video/audio/iframe)
+        // - null:   Media will only autoplay if data-autoplay is present
+        // - true:   All media will autoplay, regardless of individual setting
+        // - false:  No media will autoplay, regardless of individual setting
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes
+        // - null:   Iframes with data-src AND data-preload will be loaded when within
+        //           the viewDistance, iframes with only data-src will be loaded when visible
+        // - true:   All iframes with data-src will be loaded when within the viewDistance
+        // - false:  All iframes with data-src will be loaded only when visible
+        preloadIframes: null,
+
+        // Can be used to globally disable auto-animation
+        autoAnimate: true,
+
+        // Optionally provide a custom element matcher that will be
+        // used to dictate which elements we can animate between.
+        autoAnimateMatcher: null,
+
+        // Default settings for our auto-animate transitions, can be
+        // overridden per-slide or per-element via data arguments
+        autoAnimateEasing: 'ease',
+        autoAnimateDuration: 1.0,
+        autoAnimateUnmatched: true,
+
+        // CSS properties that can be auto-animated. Position & scale
+        // is matched separately so there's no need to include styles
+        // like top/right/bottom/left, width/height or margin.
+        autoAnimateStyles: ['opacity', 'color', 'background-color', 'padding', 'font-size', 'line-height', 'letter-spacing', 'border-width', 'border-color', 'border-radius', 'outline', 'outline-offset'],
+
+        // Controls automatic progression to the next slide
+        // - 0:      Auto-sliding only happens if the data-autoslide HTML attribute
+        //           is present on the current slide or fragment
+        // - 1+:     All slides will progress automatically at the given interval
+        // - false:  No auto-sliding, even if data-autoslide is present
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding (defaults to navigateNext)
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // Opens links in an iframe preview overlay
+        // Add `data-preview-link` and `data-preview-link="false"` to customize each link
+        // individually
+        previewLinks: false,
+
+        // Exposes the reveal.js API through window.postMessage
+        postMessage: true,
+
+        // Dispatches all reveal.js events to the parent window through postMessage
+        postMessageEvents: false,
+
+        // Focuses body when page changes visibility to ensure keyboard shortcuts work
+        focusBodyOnPageVisibilityChange: true,
+
+        // Transition style
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // The maximum number of pages a single slide can expand onto when printing
+        // to PDF, unlimited by default
+        pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+
+        // Prints each fragment on a separate slide
+        pdfSeparateFragments: true,
+
+        // Offset used to reduce the height of content within exported PDF pages.
+        // This exists to account for environment differences based on how you
+        // print to PDF. CLI printing options, like phantomjs and wkpdf, can end
+        // on precisely the total height of the document whereas in-browser
+        // printing has to end one pixel before.
+        pdfPageHeightOffset: -1,
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000
+      });
+
+    </script>
+
+    
+  </body>
+</html>
