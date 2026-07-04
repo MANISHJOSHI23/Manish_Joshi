@@ -3,585 +3,824 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Physics Presentations by Manish Joshi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>Physics Presentations | D.A.V. Lohaghat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-main: #0f172a;       /* Deep slate for main background */
+      --bg-sidebar: #1e293b;    /* Slightly lighter slate for sidebar/cards */
+      --border: #334155;        /* Subtle border color */
+      --primary: #38bdf8;       /* Sky blue accent */
+      --primary-hover: #7dd3fc;
+      --text-main: #f8fafc;     /* Crisp white text */
+      --text-muted: #94a3b8;    /* Muted text for secondary info */
+      --highlight: #f59e0b;     /* Orange for "New" updates */
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-      background: url('https://i.namu.wiki/i/STOA22tZceBH7MYlpIeYL022Fo9F9SC3Bc6xS1Xwpp7FG4QohJM4f004aX-8YJ2FIGaT3UEDYbcYYWNoc-p6kw.gif') no-repeat center center fixed;
-      background-size: cover;
-      color: #e2e8f0;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      display: flex; /* Establishes the two-column layout */
+      min-height: 100vh;
     }
-    header {
-      background: rgba(15, 23, 42, 0.85);
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    header h1 {
-      font-size: 2rem;
-      text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
-    }
-    nav {
-      background-color: rgba(30, 41, 59, 0.9);
-      padding: 1rem;
-      text-align: center;
+
+    /* --- Sidebar Navigation --- */
+    .sidebar {
+      width: 280px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 10;
+      height: 100vh;
+      overflow-y: auto;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
     }
+
+    .sidebar-header {
+      padding: 2rem 1.5rem 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-header h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .sidebar-header p {
+      color: var(--primary);
+      margin: 0.3rem 0 0 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    nav {
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
     nav a {
-      color: #38bdf8;
-      margin: 0 0.5rem;
+      color: var(--text-muted);
       text-decoration: none;
-      font-weight: bold;
-      display: inline-block;
-    }
-    .container {
-      width: 95%;
-      max-width: 1000px;
-      margin: 1.5rem auto;
-      background: rgba(30, 41, 59, 0.9);
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    }
-    .card {
-      background: rgba(15, 23, 42, 0.9);
-      padding: 1rem;
-      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.6rem 1rem;
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .card h2 {
-      color: #38bdf8;
-      margin-top: 0;
-      cursor: pointer;
-      font-size: 1.2rem;
-    }
-    a {
-      color: #38bdf8;
-      word-break: break-word;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    ul li {
-      margin-bottom: 0.5rem;
-    }
-    .content {
-      display: none;
-      margin-top: 0.8rem;
-    }
-    .card.active .content {
+      transition: all 0.2s ease;
       display: block;
     }
-    .visitor-counter {
-      text-align: center;
-      font-size: 0.9rem;
-      margin-top: 2rem;
-      color: #94a3b8;
+
+    nav a:hover {
+      background-color: rgba(56, 189, 248, 0.1);
+      color: var(--primary);
     }
-    @media (min-width: 600px) {
-      header h1 {
-        font-size: 2.5rem;
+
+    /* --- Main Content Area --- */
+    .main-content {
+      flex-grow: 1;
+      padding: 3rem 5%;
+      min-width: 0; /* Prevents flexbox overflowing */
+    }
+
+    .content-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* --- Cards / Accordions --- */
+    .card {
+      background-color: var(--bg-sidebar);
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
+    .card:hover { border-color: var(--primary); }
+
+    summary {
+      padding: 1.25rem 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "▼";
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+    }
+    details[open] summary::after { transform: rotate(180deg); color: var(--primary); }
+    details[open] summary {
+      border-bottom: 1px solid var(--border);
+      background-color: rgba(0,0,0,0.15);
+    }
+
+    .content { padding: 1.5rem; animation: fadeIn 0.3s ease-in-out; }
+
+    .section-title {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 1.5rem 0 0.8rem 0;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    .section-title:first-child { margin-top: 0; }
+
+    /* --- Links List --- */
+    .link-list { list-style: none; padding: 0; margin: 0; }
+    .link-list li { margin-bottom: 0.8rem; display: flex; flex-direction: column; align-items: flex-start; word-break: break-word; }
+    .link-row { display: flex; align-items: center; }
+    .link-icon { margin-right: 0.6rem; font-size: 1.1rem; opacity: 0.9; }
+
+    .link-list a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .link-list a:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+
+    /* --- Updates Specific Styling --- */
+    .updates-card {
+      border: 1px solid var(--highlight);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+      background: linear-gradient(to right, rgba(30, 41, 59, 1), rgba(30, 41, 59, 0.8));
+    }
+    .updates-card summary { color: var(--highlight); }
+    .badge-new {
+      background-color: var(--highlight); color: #000; font-size: 0.7rem; font-weight: 700;
+      padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: 0.8rem; vertical-align: middle;
+      letter-spacing: 0.05em;
+    }
+    .update-date {
+      font-size: 0.8rem; color: var(--text-muted); display: block; margin-left: 1.7rem; margin-top: 0.2rem;
+    }
+
+    .footer-section { text-align: center; margin-top: 4rem; padding-bottom: 2rem; border-top: 1px solid var(--border); padding-top: 2rem;}
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- Mobile Responsiveness --- */
+    @media (max-width: 900px) {
+      body { flex-direction: column; }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative; /* Removes sticky on mobile for better scrolling */
+        border-right: none;
+        border-bottom: 1px solid var(--border);
       }
-      nav a {
-        margin: 0 1rem;
+
+      .sidebar-header { padding: 1.5rem; text-align: center; }
+
+      nav {
+        flex-direction: row;
+        overflow-x: auto; /* Horizontal scroll for chapters on mobile */
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+        gap: 0.5rem;
       }
-      .card h2 {
-        font-size: 1.5rem;
-      }
+
+      nav a { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
+
+      .main-content { padding: 2rem 1rem; }
     }
   </style>
-  <script src="https://counterapi.com/c.js?ns=mysite.com" async ></script>
+  <script src="https://counterapi.com/c.js?ns=mysite.com" async></script>
 </head>
 <body>
 
-<header>
-  <h1>Physics Presentations by Manish Joshi</h1>
-</header>
+<!-- Left Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>Physics Hub</h1>
+    <p>By Manish Joshi</p>
+  </div>
+  <nav id="nav-container"></nav>
+</aside>
 
-<nav>
-  <a href="#chapter1">Chapter 1</a>
-  <a href="#chapter2">Chapter 2</a>
-  <a href="#chapter3">Chapter 3</a>
-  <a href="#chapter4">Chapter 4</a>
-  <a href="#chapter5">Chapter 5</a>
-  <a href="#chapter6">Chapter 6</a>
-  <a href="#chapter7">Chapter 7</a>
-  <a href="#chapter8">Chapter 8</a>
-  <a href="#chapter9">Chapter 9</a>
-  <a href="#chapter10">Chapter 10</a>
-  <a href="#chapter10">Chapter 11</a>
-  <a href="#chapter12">Chapter 12</a>
-  <a href="#chapter13">Chapter 13</a>
-  <a href="#chapter14">Chapter 14</a>
-  <a href="#Books">Refrennce Books</a>
-  <a href="#SamplePapers">Sample Papers</a>
-</nav>
-
-<div class="container">
-
- <div id="chapter1" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 1: Electric Charges and Fields</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch1/part1.html" target="_blank">Part 1: Charge, Coulmb's Law</a></li>
-      <li><a href="ch1/part2.html" target="_blank">Part 2: Electric Field and Field Lines, Dipole</a></li>
-      <li><a href="ch1/part3.html" target="_blank">Part 3: Electric Flux, Gauss's Law and Its Applications </a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <ul>
-      <li><a href="ch1/Electric Charges and Fields Part 1 slides.pdf" download>Chapter 1 Notes Part 1</a></li>
-       <li><a href="ch1/Electric Charges and Fields Part 2 slides.pdf" download>Chapter 1 Notes Part 2</a></li>
-        <li><a href="ch1/Electric Charges and Fields Part 3 slides.pdf" download>Chapter 1 Notes Part 3</a></li>
-      <li><a href="ch1/Class test_1 XII_2025-26.pdf" download>Class Test 1 2025-26</a></li>
-      <li><a href="ch1/class_test_II_XII.pdf" download>Class Test 2 2025-26</a></li>
-    </ul>
-     <p><strong>CBSE PYQ TOPIC WIES:</strong></p>
-    <ul>
-      <li><a href="ch1/charges.pdf" download>PYQ - Basic properties of charges</a></li>
-       <li><a href="ch1/Coloumbs law pyq.pdf" download>PYQ - Coloumbs Law, Superposition Principle</a></li>
-        <li><a href="ch1/PYQ_Electric_Field.pdf" download>PYQ - Electric field due to Point charge </a></li>
-        <li><a href="ch1/PYQ_Dipole.pdf" download>PYQ - Electric Dipole </a></li>
-        <li><a href="ch1/PYQ_Flux_Gauss_Law.pdf" download>PYQ - Flux, Gauss's Law and Its Applications </a></li>
-        <li><a href="ch1/PreviousYearQuestions_Ch_1_With_Solution.pdf" download>PYQ chapter 1 (All topics) </a></li>
-    </ul>
-    <p><strong>Question Bank and Revision Notes (Pdf):</strong></p>
-    <ul>
-      <li><a href="ch1/Formula.pdf" download>Revision Notes Ch-1</a></li>
-       <li><a href="ch1/Objective.pdf" download>Objective Type Questions ch-1</a></li>
-        <li><a href="ch1/QuestionBank.pdf" download>Question Bank KV Ch-1 </a></li>
-    </ul>
-    </div>
+<!-- Right Main Content -->
+<main class="main-content">
+  <div class="content-wrapper" id="main-container">
+    <!-- Cards will be injected here -->
   </div>
 
-   <div id="chapter2" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 2: Electric Potential and Capacitance</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch2/Potential.html" target="_blank">Part 1: Electric Potential and Potential Difference</a></li>
-      <li><a href="ch2/PE.html" target="_blank">Part 2: Electric Potential Energy and Capacitance</a></li>
-      <li><a href="ch2/Capacitor.pdf" download>Capacitors Slides</a></li>
-      <li><a href="ch2/Capacitor_Problems.pdf" download>Capacitors Problems Slides</a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <ul>
-        <li><a href="ch2/Potential_Notes.pdf" download>Chapter 2 Notes Part 1</a></li>
-       <li><a href="ch2/PE_Notes.pdf" download>Chapter 2 Notes Part 2</a></li>
-       <li><a href="ch2/Capacitor_Complete.pdf" download>Capacitors Notes and Problems</a></li>
-        <li><a href="ch2/Formula_Sheet_Ch2.pdf" download>Revision Notes Ch-2</a></li>
-       <li><a href="ch2/Objective_Ch2.pdf" download>Objective Type Questions ch-2</a></li>
-        <li><a href="ch2/Question_Bank_Ch2.pdf" download>Question Bank KV Ch-2 </a></li>
-        <li><a href="ch2/Class_Test_3.pdf" download>Class Test 3</a></li>
-    </ul>
-    </ul>
-     <p><strong>CBSE PYQ TOPIC WIES:</strong></p>
-    <ul>
-      <li><a href="ch2/potential_pyq.pdf" download>PYQ - Electrostatic Potential, Potetntial due to - Point charge, Dipole, Shell.</a></li>
-      <li><a href="ch2/Potential_enrgy_PYQ.pdf" download>PYQ - Potential energy of system of charges, PE of dipole in external field</a></li>
-        <li><a href="ch2/Capacitor_pyq.pdf" download>PYQ - Conductor, Dielectric and Capacitor </a></li>
-      <li><a href="ch2/CBSE_PYQ_Ch_2.pdf" download>CBSE Board PYQ with solutions Complete</a></li>
-    </ul>
-    </div>
+  <div class="footer-section">
+    <div class="counterapi" style="min-height:60px" unique="true"></div>
   </div>
-
-  <div id="chapter3" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 3: Current Electricity</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch3/Current_Electricity_Part_1.pdf" download>Current Electricity Part 1 </a></li>
-      <li><a href="ch3/Current_Electricity_Part_2.pdf" download>Current Electricity Part 2 </a></li>
-      <li><a href="ch3/Electric_Energy_And_Power_PPT.pdf" download>Current Electricity Part 3 </a></li>
-      <li><a href="ch3/cells_emf_internal_resistance.pdf" download>Current Electricity Part 4 </a></li>
-      <li><a href="ch3/Cells_series_parallel.pdf" download>Current Electricity Part 5 </a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <ul>
-    <li><a href="ch3/Current_Electricity_Notes_Part_1.pdf" download>Notes Part 1- Current, Ohm's Law, Current Density, Drift velocity and its relation with current, Mobility</a></li>
-    <li><a href="ch3/Current_Electricity_Notes_Part_2.pdf" download>Notes Part 2- Temperature Dependence of Resistance</a></li>
-    <li><a href="ch3/Electric_Energy_And_Power_Notes_and_PYQ.pdf" download>Notes Part 3 - Electric Energy and Power Notes with PYQ </a></li>
-    <li><a href="ch3/cells_emf_internal_resistance.pdf" download>Notes Part 4 - EMF, Internal resistance and Teriminal Voltage </a></li>
-    <li><a href="ch3/Formula_Sheet_3.pdf" download>Revision Notes Ch-3</a></li>
-       <li><a href="ch3/Objective_3.pdf" download>Objective Type Questions ch-3</a></li>
-        <li><a href="ch3/Question_Bank_3.pdf" download>Question Bank KV Ch-3 </a></li>
-
-    </ul>
-    <p><strong>CBSE PYQ TOPIC WIES:</strong></p>
-    <ul>
-      <li><a href="ch3/PYQ_Current.pdf" download>PYQ - Average and Instantaneous Current</a></li>
-      <li><a href="ch3/PYQ_Ohm's_Law.pdf" download>PYQ - Ohm's Law, Current Density</a></li>
-        <li><a href="ch3/PYQ_Drift_velocity.pdf" download>PYQ - Drift Velocity, Relation between Current and Drift velocity, Mobility</a></li>
-        <li><a href="ch3/PYQ_Temperature_Dependece_of_Resistance.pdf" download>PYQ - Temperature Dependence of Resistance</a></li>
-        <li><a href="ch3/PYQ_Emf_Internal_resistance.pdf" download>PYQ - EMF, Internal Resistance and Teriminal Voltage</a></li>
-         <li><a href="ch3/PYQ_Cell_Combinations.pdf" download>PYQ - Combinaton of cells in Series and Parallel</a></li>
-         <li><a href="ch3/PYQ_Kirchhoff_Wheatstone_Combination.pdf" download>PYQ - Kirchhoff's Rules, Wheatstonne Bridge and Combination of Resistors'</a></li>
-      <li><a href="ch3/ch3_cbse_PYQ_With_Solutions.pdf" download>CBSE Board PYQ with solutions Complete</a></li>
-    </ul>
-    </div>
-    </div>
-
-    <div id="chapter4" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 4: Moving Charges and Magnetism</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch4/Biot_Savart_Law_PPT.pdf" download>Part 1 - Biot Savart Law PPT</a></li>
-      <li><a href="ch4/AMPERES CIRCUITAL LAW_PPT.pdf" download>Part 2 - Ampere's Circuital Law PPT</a></li>
-       <li><a href="ch4/Lorentz force.pdf" download>Part 3 - Lorentz force PPT</a></li>
-       <li><a href="ch4/Force on a current carrying conductor placed in magnetic field.pdf" download>Part 4 -Force on a current carrying conductor placed in magnetic field PPT</a></li>
-       <li><a href="ch4/Magnetic moment and Torque.pdf" download>Part 5 - Magnetic moment and Torque</a></li>
-       <li><a href="ch4/Galvanometer.pdf" download>Part 6 - Galvanometer</a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <ul>
-    <li><a href="ch4/Biot_Savart_Law.pdf" download>Chapter 4 Notes Part 1 - Biot Savart Law</a></li>
-    <li><a href="ch4/Formula_Sheet_4.pdf" download>Revision Notes Ch-4</a></li>
-       <li><a href="ch4/Objective_4.pdf" download>Objective Type Questions ch-4</a></li>
-        <li><a href="ch4/Question_Bank_4.pdf" download>Question Bank KV Ch-4 </a></li>
-        <li><a href="ch4/PYQ_Ch_4_With_Solutions.pdf" download>CBSE Board Previous Year Questions With Solutions</a></li>
-
-    </ul>
-    </div>
-    </div>
-
-    <div id="chapter5" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 5: Magnetism and Matter</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch5/Magnetism_PPT_Part_1.pdf" download>Part 1 - Magnetism</a></li>
-      <li><a href="ch5/Magnetism and Matter PPT Part 2.pdf" download>Part 2 - Magnetism</a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <ul>
-        <li><a href="ch5/PYQ_With_Solutions_Ch_5.pdf" download>CBSE PYQ With Solutions Complete Ch-5</a></li>
-        <li><a href="ch5/Formula_Sheet_5.pdf" download>Revision Notes Ch-5</a></li>
-       <li><a href="ch5/Objective_ch5.pdf" download>Objective Type Questions ch-5</a></li>
-        <li><a href="ch5/QuestionBank_ch5.pdf" download>Question Bank KV Ch-5 </a></li>
-    </ul>
-    </div>
-    </div>
-
-    <div id="chapter6" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 6: Electromagnetic Induciton</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch6/EMI_Part_1.pdf" download>PPT Part 1 - Faraday's Law, Lenz's Law and Motional EMF</a></li>
-      <li><a href="ch6/EMI_Part_2.pdf" download>PPT Part 2 - Self-Inductance, Mutual-Inductance and AC Generator</a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <ul>
-        <li><a href="ch6/PYQ_ch6_Faraday_Lenz_motional_emf.pdf" download>CBSE PYQ Faraday's law, Lenz's Law, and Motional EMF</a></li>
-        <li><a href="ch6/PYQ_ch6_Self_and_Mutual_Inductance_AC_Generator.pdf" download>CBSE PYQ Self-Inductance, Mutual-Inductance and AC Generator</a></li>
-        <li><a href="ch6/PYQ_With_Solutions_Ch_6.pdf" download>CBSE PYQ With Solutions Complete Ch-6</a></li>
-        <li><a href="ch6/EMI.pdf" download>Class Notes Ch-6</a></li>
-        <li><a href="ch6/Formula_Sheet_6.pdf" download>Revision Notes Ch-6</a></li>
-       <li><a href="ch6/Objective_ch6.pdf" download>Objective Type Questions ch-6</a></li>
-        <li><a href="ch6/QuestionBank_ch6.pdf" download>Question Bank KV Ch-6 </a></li>
-    </ul>
-    </div>
-    </div>
-
-    <div id="chapter7" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 7: Alternating Current</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch7/Alternating Current.pdf" download>PPT - Alternating Current</a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <ul>
-        <li><a href="ch7/PYQ_With_Solutions_Ch_7.pdf" download>CBSE PYQ With Solutions Complete Ch-7</a></li>
-        <li><a href="ch7/Formula_Sheet_7.pdf" download>Revision Notes Ch-7</a></li>
-       <li><a href="ch7/Objective_ch7.pdf" download>Objective Type Questions ch-7</a></li>
-        <li><a href="ch7/QuestionBank_ch7.pdf" download>Question Bank KV Ch-7 </a></li>
-    </ul>
-    </div>
-    </div>
-
-    <div id="chapter8" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 8: Electromagnetic Waves</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch8/ELECTROMAGNETIC WAVES PPT.pdf" download>PPT - Electromagnetic Waves</a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <ul>
-        <li><a href="ch8/PYQ_With_Solutions_Ch_8.pdf" download>CBSE PYQ With Solutions Complete Ch-8</a></li>
-        <li><a href="ch8/ELECTROMAGNETIC WAVES.pdf" download>Class Notes Ch-8</a></li>
-        <li><a href="ch8/Formula_Sheet_8.pdf" download>Revision Notes Ch-8</a></li>
-       <li><a href="ch8/Objective_ch8.pdf" download>Objective Type Questions ch-8</a></li>
-        <li><a href="ch8/QuestionBank_ch8.pdf" download>Question Bank KV Ch-8 </a></li>
-    </ul>
-    </div>
-    </div>
-
-    <div id="chapter9" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 9: Ray Optics</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch9/RayOptics.pdf" download>PPT Part1 - Reflection and Mirror Formula </a></li>
-      <li><a href="ch9/RayOptics_Refraction_Glass_Slab_TIR_Prism.pdf" download>PPT Part2 - Refraction, Glass Slab, TIR and Prism</a></li>
-      <li><a href="ch9/RayOptics_SphericalSurfaces_Lens_Power.pdf" download>PPT Part3 - Spherical Surfaces, Lens maker's formula, Lens formula and Power of lens</a></li>
-      <li><a href="ch9/RayOptics_Microscope_and_Telescope.pdf" download>PPT Part4 - Microscope and Telescope</a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <li><a href="ch9/Reflection_Mirror_formula_Notes.pdf" download>Class Notes Part1 - Reflection and Mirror Formula</a></li>
-    <li><a href="ch9/RayOptics_Refraction_Glass_Slab_TIR_Prism_Notes.pdf" download>Class Notes Part2 - Refraction, Glass Slab, TIR and Prism</a></li>
-    <li><a href="ch9/RayOptics_SphericalSurfaces_Lens_Power_Notes.pdf" download>Class Notes Part3 - Spherical Surfaces, Lens maker's formula, Lens formula and Power of lens</a></li>
-    <li><a href="ch9/RayOptics_Microscope_and_Telescope_Notes.pdf" download>Class Notes Part4 - Microscope and Telescope</a></li>
-    <li><a href="ch9/PYQ_Reflection_Mirror_formula.pdf" download>CBSE PYQ Part1: Relfection, and Mirror Formula </a></li>
-    <li><a href="ch9/PYQ_Refraction_Glass_Slab_TIR_Prism.pdf" download>CBSE PYQ Part2: Refraction, Glass Slab, TIR and Prism </a></li>
-    <li><a href="ch9/PYQ_SphericalSurfaces_LensMaker_PowerOfLens.pdf" download>CBSE PYQ Part3: Spherical Surfaces, Lens maker's formula, Lens formula and Power of lens </a></li>
-    <li><a href="ch9/PYQ_Microscope_Telescope.pdf" download>CBSE PYQ Part4: Microscope and Telescope </a></li>
-    <li><a href="ch9/PYQ_With_Solutions_Ch_9.pdf" download>CBSE PYQ With Solutions Complete Ch-9</a></li>
-        <li><a href="ch9/Formula_Sheet_9.pdf" download>Revision Notes Ch-9</a></li>
-       <li><a href="ch9/Objective_ch9.pdf" download>Objective Type Questions ch-9</a></li>
-        <li><a href="ch9/QuestionBank_ch9.pdf" download>Question Bank KV Ch-9 </a></li>
-    <ul>
-    </ul>
-    </div>
-    </div>
-
-    <div id="chapter10" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 10: Wave Optics</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch10/WaveOptics_PPT_Part1.pdf" download>PPT Part1 - Huygen's Principle</a></li>
-      <li><a href="ch10/WaveOptics_PPT_Part2.pdf" download>PPT Part2 - Iterference, YDSE and Diffraction</a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <ul>
-    <li><a href="ch10/PYQ_With_Solutions_Ch_10.pdf" download>CBSE PYQ With Solutions Complete Ch-10</a></li>
-    </ul>
-    </div>
-    </div>
-
-    <div id="chapter11" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 11: Dual Nature of Radiation and Matter</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch11/DualNature.pdf" download>PPT - Dual Nature</a></li>
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <ul>
-    <li><a href="ch11/PYQ_With_Solutions_Ch_11.pdf" download>CBSE PYQ With Solutions Complete Ch-11</a></li>
-    </ul>
-    </div>
-    </div>
-
-
-    <div id="chapter12" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 12: Atoms</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch12/Atoms_PPT.pdf" download>PPT - Atoms</a></li>
-
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <li><a href="ch12/Atoms.pdf" download>Class Notes - Atoms (pdf)</a></li>
-    <li><a href="ch12/PYQ_With_Solutions_Ch_12.pdf" download>CBSE PYQ With Solutions Complete Ch-12</a></li>
-        <li><a href="ch12/Formula_Sheet_12.pdf" download>Revision Notes Ch-12</a></li>
-       <li><a href="ch12/Objective_ch12.pdf" download>Objective Type Questions ch-12</a></li>
-        <li><a href="ch12/QuestionBank_ch12.pdf" download>Question Bank KV Ch-12 </a></li>
-    <ul>
-    </ul>
-    </div>
-    </div>
-
-    <div id="chapter13" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 13: Nuclei</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch13/Nuclei_PPT.pdf" download>PPT - Nuclei</a></li>
-
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <li><a href="ch13/Nuclei.pdf" download>Class Notes - Nuclei (pdf)</a></li>
-    <li><a href="ch13/PYQ_With_Solutions_Ch_13.pdf" download>CBSE PYQ With Solutions Complete Ch-13</a></li>
-        <li><a href="ch13/Formula_Sheet_13.pdf" download>Revision Notes Ch-13</a></li>
-       <li><a href="ch13/Objective_ch13.pdf" download>Objective Type Questions ch-13</a></li>
-        <li><a href="ch13/QuestionBank_ch13.pdf" download>Question Bank KV Ch-13 </a></li>
-    <ul>
-    </ul>
-    </div>
-    </div>
-
-    <div id="chapter14" class="card">
-    <h2 onclick="toggleContent(this)">Chapter 14: Semiconductors</h2>
-    <div class="content">
-       <p><strong>PPT:</strong></p>
-    <ul>
-      <li><a href="ch14/Semiconductor.pdf" download>PPT - Semiconductors</a></li>
-
-    </ul>
-    <p><strong>Summary Notes  and Class Test (Pdf):</strong></p>
-    <li><a href="ch14/Semiconductor_classnotes.pdf" download>Semiconductors Class Notes</a></li>
-    <li><a href="ch14/solids_and_semiconductor_devices_1.pdf" download>KV PDF - Semiconductors Part 1</a></li>
-    <li><a href="ch14/solids_and_semiconductor_devices_1.ppt" download>KV PPT - Semiconductors Part 1</a></li>
-    <li><a href="ch14/Nuclei.pdf" download>Class Notes - Semiconductor (pdf)</a></li>
-    <li><a href="ch14/PYQ_With_Solutions_Ch_14.pdf" download>CBSE PYQ With Solutions Complete Ch-14</a></li>
-        <li><a href="ch14/Formula_Sheet_14.pdf" download>Revision Notes Ch-14</a></li>
-       <li><a href="ch14/Objective_ch14.pdf" download>Objective Type Questions ch-14</a></li>
-        <li><a href="ch14/QuestionBank_ch14.pdf" download>Question Bank KV Ch-14 </a></li>
-    <ul>
-    </ul>
-    </div>
-    </div>
-
-    <div id="Books" class="card">
-    <h2 onclick="toggleContent(this)">Refrennce Books</h2>
-    <div class="content">
-    <p><strong>S.L. Arora:</strong></p>
-    <ul>
-    <li><a href="https://drive.google.com/file/d/1Z0vVqNJTgT328kPUa98lASsxBebmd2eC/view?usp=sharing" download>S.L. Arora Part 1</a></li>
-    <li><a href="https://drive.google.com/file/d/1eWDNzfj6yoHxHLDsZQDiyEEhotSFPnuh/view?usp=sharing" download>S.L. Arora Part 2</a></li>
-    <li><a href="https://drive.google.com/file/d/1wU1hdePmX3i8EZuewpWB02al3YCPeKq9/view?usp=sharing" download>S.L. Arora Lab Manual</a></li>
-    </ul>
-    </div>
-    </div>
-
-    <!--
-
-    <div id="Class 11" class="card">
-    <h2 onclick="toggleContent(this)">Refrennce Books</h2>
-    <div class="content">
-    <p><strong>WorkSheets</strong></p>
-    <ul>
-    <li><a href="Class 11/CBSE Class 11 Physics Worksheet - Units And Measurement.pdf" download>ch1 1 </a></li>
-    <li><a href="Class 11/MotioninAStraightLine paper 01_annotated.pdf" download>ch2 1 </a></li>
-    <li><a href="Class 11/MotioninAPlane paper 01_annotated.pdf" download>ch3 1 </a></li>
-    <li><a href="Class 11/LawsofMotion paper 01_annotated.pdf" download>ch4 1 </a></li>
-    <li><a href="Class 11/WorkEnergy&Power paper 01_annotated.pdf" download>ch5 1 </a></li>
-    <li><a href="Class 11/MechanicalPropertiesofSolids paper 01_annotated.pdf" download>ch6 1 </a></li>
-    <li><a href="Class 11/MechanicalPropertiesofFluids paper 01_annotated.pdf" download>ch7 1 </a></li>
-    <li><a href="Class 11/ThermalPropertiesofMatter paper 01_annotated.pdf" download>ch8 1 </a></li>
-    <li><a href="Class 11/Thermodynamics paper 01_annotated.pdf" download>ch9 1 </a></li>
-
-    <li><a href="Class 11/CBSE Class 11 Physics Worksheet - Units And Measurement.pdf" download>ch1 2 </a></li>
-    <li><a href="Class 11/MotioninAStraightLine paper 02_annotated.pdf" download>ch2 2 </a></li>
-    <li><a href="Class 11/MotioninAPlane paper 02_annotated.pdf" download>ch3 2 </a></li>
-    <li><a href="Class 11/LawsofMotion paper 02_annotated.pdf" download>ch4 2 </a></li>
-    <li><a href="Class 11/WorkEnergy&Power paper 02_annotated.pdf" download>ch5 2 </a></li>
-    <li><a href="Class 11/MechanicalPropertiesofSolids paper 02_annotated.pdf" download>ch6 2 </a></li>
-    <li><a href="Class 11/MechanicalPropertiesofFluids paper 02_annotated.pdf" download>ch7 2 </a></li>
-    <li><a href="Class 11/ThermalPropertiesofMatter paper 02_annotated.pdf" download>ch8 2 </a></li>
-    <li><a href="Class 11/Thermodynamics paper 02_annotated.pdf" download>ch9 2 </a></li>
-
-    <li><a href="Class 11/CBSE Class 11 Physics Worksheet - Units And Measurement.pdf" download>ch1 3 </a></li>
-    <li><a href="Class 11/MotioninAStraightLine paper 03_annotated.pdf" download>ch2 3 </a></li>
-    <li><a href="Class 11/MotioninAPlane paper 03_annotated.pdf" download>ch3 3 </a></li>
-    <li><a href="Class 11/LawsofMotion paper 03_annotated.pdf" download>ch4 3 </a></li>
-    <li><a href="Class 11/WorkEnergy&Power paper 03_annotated.pdf" download>ch5 3 </a></li>
-    <li><a href="Class 11/MechanicalPropertiesofSolids paper 03_annotated.pdf" download>ch6 3 </a></li>
-    <li><a href="Class 11/MechanicalPropertiesofFluids paper 03_annotated.pdf" download>ch7 3 </a></li>
-    <li><a href="Class 11/ThermalPropertiesofMatter paper 03_annotated.pdf" download>ch8 3 </a></li>
-    <li><a href="Class 11/Thermodynamics paper 03_annotated.pdf" download>ch9 3 </a></li>
-
-    <li><a href="Class 11/CBSE Class 11 Physics Worksheet - Units And Measurement.pdf" download>ch1 4 </a></li>
-    <li><a href="Class 11/MotioninAStraightLine paper 04_annotated.pdf" download>ch2 4 </a></li>
-    <li><a href="Class 11/MotioninAPlane paper 04_annotated.pdf" download>ch3 4 </a></li>
-    <li><a href="Class 11/LawsofMotion paper 04_annotated.pdf" download>ch4 4 </a></li>
-    <li><a href="Class 11/WorkEnergy&Power paper 04_annotated.pdf" download>ch5 4 </a></li>
-    <li><a href="Class 11/MechanicalPropertiesofSolids paper 04_annotated.pdf" download>ch6 4 </a></li>
-    <li><a href="Class 11/MechanicalPropertiesofFluids paper 04_annotated.pdf" download>ch7 4 </a></li>
-    <li><a href="Class 11/ThermalPropertiesofMatter paper 04_annotated.pdf" download>ch8 4 </a></li>
-    <li><a href="Class 11/Thermodynamics paper 04_annotated.pdf" download>ch9 4 </a></li>
-
-    <li><a href="Class 11/CBSE Class 11 Physics Worksheet - Units And Measurement.pdf" download>ch1 5 </a></li>
-    <li><a href="Class 11/MotioninAStraightLine paper 05_annotated.pdf" download>ch2 5 </a></li>
-    <li><a href="Class 11/MotioninAPlane paper 05_annotated.pdf" download>ch3 5 </a></li>
-    <li><a href="Class 11/LawsofMotion paper 05_annotated.pdf" download>ch4 5 </a></li>
-    <li><a href="Class 11/WorkEnergy&Power paper 05_annotated.pdf" download>ch5 5 </a></li>
-    <li><a href="Class 11/MechanicalPropertiesofSolids paper 05_annotated.pdf" download>ch6 5 </a></li>
-    <li><a href="Class 11/MechanicalPropertiesofFluids paper 05_annotated.pdf" download>ch7 5 </a></li>
-    <li><a href="Class 11/ThermalPropertiesofMatter paper 05_annotated.pdf" download>ch8 5 </a></li>
-    <li><a href="Class 11/Thermodynamics paper 05_annotated.pdf" download>ch9 5 </a></li>
-    </ul>
-    </div>
-    </div> -->
-
-    <div id="SamplePapers" class="card">
-    <h2 onclick="toggleContent(this)">Sample Papers</h2>
-    <div class="content">
-    <ul>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 1.pdf" download>Sample Paper With MS - 1</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 2.pdf" download>Sample Paper With MS - 2</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 3.pdf" download>Sample Paper With MS - 3</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 4.pdf" download>Sample Paper With MS - 4</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 5.pdf" download>Sample Paper With MS - 5</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 6.pdf" download>Sample Paper - 6</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 6.pdf" download>Marking Scheme of Sample Paper - 6</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 7.pdf" download>Sample Paper - 7</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 7.pdf" download>Marking Scheme of Sample Paper - 7</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 8.pdf" download>Sample Paper - 8</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 8.pdf" download>Marking Scheme of Sample Paper - 8</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 9.pdf" download>Sample Paper - 9</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 9.pdf" download>Marking Scheme of Sample Paper - 9</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 10.pdf" download>Sample Paper - 10</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 10.pdf" download>Marking Scheme of Sample Paper - 10</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 11.pdf" download>Sample Paper - 11</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 11.pdf" download>Marking Scheme of Sample Paper - 11</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 12.pdf" download>Sample Paper - 12</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 12.pdf" download>Marking Scheme of Sample Paper - 12</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 13.pdf" download>Sample Paper - 13</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 13.pdf" download>Marking Scheme of Sample Paper - 13</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 14.pdf" download>Sample Paper - 14</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 14.pdf" download>Marking Scheme of Sample Paper - 14</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 15.pdf" download>Sample Paper - 15</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 15.pdf" download>Marking Scheme of Sample Paper - 15</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 16.pdf" download>Sample Paper - 16</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 16.pdf" download>Marking Scheme of Sample Paper - 16</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 17.pdf" download>Sample Paper - 17</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 17.pdf" download>Marking Scheme of Sample Paper - 17</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 18.pdf" download>Sample Paper - 18</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 19.pdf" download>Sample Paper - 19</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 20.pdf" download>Sample Paper - 20</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 21.pdf" download>Sample Paper - 21</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 22.pdf" download>Sample Paper - 22</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 23.pdf" download>Sample Paper - 23</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 24.pdf" download>Sample Paper - 24</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 25.pdf" download>Sample Paper - 25</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 26.pdf" download>Sample Paper - 26</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 27.pdf" download>Sample Paper - 27</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 28.pdf" download>Sample Paper - 28</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 29.pdf" download>Sample Paper - 29</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 30.pdf" download>Sample Paper - 30</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 31.pdf" download>Sample Paper - 31</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 32.pdf" download>Sample Paper - 32</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 33.pdf" download>Sample Paper - 33</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 34.pdf" download>Sample Paper - 34</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 35.pdf" download>Sample Paper - 35</a></li>
-    <li><a href="Sample Papers/PHYSICS PRACTICE QUESTION PAPER 36.pdf" download>Sample Paper - 36</a></li>
-    </ul>
-    </div>
-    </div>
-
-
-  <div class="counterapi" style="min-height:60px" unique="true" ></div>
-
-</div>
+</main>
 
 <script>
-  function toggleContent(element) {
-    const card = element.parentElement;
-    card.classList.toggle('active');
+  /**
+   * =====================================================================
+   * SITE CONTENT CONFIGURATION
+   * =====================================================================
+   */
+  const siteData = [
+    {
+      id: "chapter1",
+      title: "Chapter 1: Electric Charges and Fields",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "Part 1: Charge, Coulomb's Law", url: "ch1/part1.html", type: "ppt" },
+            { name: "Part 2: Electric Field and Field Lines, Dipole", url: "ch1/part2.html", type: "ppt" },
+            { name: "Part 3: Electric Flux, Gauss's Law and Its Applications", url: "ch1/part3.html", type: "ppt" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test (Pdf)",
+          links: [
+            { name: "Chapter 1 Notes Part 1", url: "ch1/Electric Charges and Fields Part 1 slides.pdf", type: "pdf" },
+            { name: "Chapter 1 Notes Part 2", url: "ch1/Electric Charges and Fields Part 2 slides.pdf", type: "pdf" },
+            { name: "Chapter 1 Notes Part 3", url: "ch1/Electric Charges and Fields Part 3 slides.pdf", type: "pdf" },
+            { name: "Class Test 1 2025-26", url: "ch1/Class test_1 XII_2025-26.pdf", type: "pdf" },
+            { name: "Class Test 2 2025-26", url: "ch1/class_test_II_XII.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "CBSE PYQ Topic Wise",
+          links: [
+            { name: "PYQ - Basic properties of charges", url: "ch1/charges.pdf", type: "pdf" },
+            { name: "PYQ - Coulomb's Law, Superposition Principle", url: "ch1/Coloumbs law pyq.pdf", type: "pdf" },
+            { name: "PYQ - Electric field due to Point charge", url: "ch1/PYQ_Electric_Field.pdf", type: "pdf" },
+            { name: "PYQ - Electric Dipole", url: "ch1/PYQ_Dipole.pdf", type: "pdf" },
+            { name: "PYQ - Flux, Gauss's Law and Its Applications", url: "ch1/PYQ_Flux_Gauss_Law.pdf", type: "pdf" },
+            { name: "PYQ chapter 1 (All topics)", url: "ch1/PreviousYearQuestions_Ch_1_With_Solution.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Question Bank and Revision Notes",
+          links: [
+            { name: "Revision Notes Ch-1", url: "ch1/Formula.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-1", url: "ch1/Objective.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-1", url: "ch1/QuestionBank.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter2",
+      title: "Chapter 2: Electric Potential and Capacitance",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "Part 1: Electric Potential and Potential Difference", url: "ch2/Potential.html", type: "ppt" },
+            { name: "Part 2: Electric Potential Energy and Capacitance", url: "ch2/PE.html", type: "ppt" },
+            { name: "Capacitors Slides", url: "ch2/Capacitor.pdf", type: "pdf" },
+            { name: "Capacitors Problems Slides", url: "ch2/Capacitor_Problems.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "Chapter 2 Notes Part 1", url: "ch2/Potential_Notes.pdf", type: "pdf" },
+            { name: "Chapter 2 Notes Part 2", url: "ch2/PE_Notes.pdf", type: "pdf" },
+            { name: "Capacitors Notes and Problems", url: "ch2/Capacitor_Complete.pdf", type: "pdf" },
+            { name: "Revision Notes Ch-2", url: "ch2/Formula_Sheet_Ch2.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-2", url: "ch2/Objective_Ch2.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-2", url: "ch2/Question_Bank_Ch2.pdf", type: "pdf" },
+            { name: "Class Test 3", url: "ch2/Class_Test_3.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "CBSE PYQ Topic Wise",
+          links: [
+            { name: "PYQ - Electrostatic Potential, Potential due to Point charge, Dipole, Shell", url: "ch2/potential_pyq.pdf", type: "pdf" },
+            { name: "PYQ - Potential energy of system of charges, PE of dipole", url: "ch2/Potential_enrgy_PYQ.pdf", type: "pdf" },
+            { name: "PYQ - Conductor, Dielectric and Capacitor", url: "ch2/Capacitor_pyq.pdf", type: "pdf" },
+            { name: "CBSE Board PYQ with solutions Complete", url: "ch2/CBSE_PYQ_Ch_2.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter3",
+      title: "Chapter 3: Current Electricity",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "Current Electricity Part 1", url: "ch3/Current_Electricity_Part_1.pdf", type: "pdf" },
+            { name: "Current Electricity Part 2", url: "ch3/Current_Electricity_Part_2.pdf", type: "pdf" },
+            { name: "Current Electricity Part 3", url: "ch3/Electric_Energy_And_Power_PPT.pdf", type: "pdf" },
+            { name: "Current Electricity Part 4", url: "ch3/cells_emf_internal_resistance.pdf", type: "pdf" },
+            { name: "Current Electricity Part 5", url: "ch3/Cells_series_parallel.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "Notes Part 1 - Current, Ohm's Law, Drift velocity, Mobility", url: "ch3/Current_Electricity_Notes_Part_1.pdf", type: "pdf" },
+            { name: "Notes Part 2 - Temperature Dependence of Resistance", url: "ch3/Current_Electricity_Notes_Part_2.pdf", type: "pdf" },
+            { name: "Notes Part 3 - Electric Energy and Power Notes with PYQ", url: "ch3/Electric_Energy_And_Power_Notes_and_PYQ.pdf", type: "pdf" },
+            { name: "Notes Part 4 - EMF, Internal resistance and Terminal Voltage, Combination of Cells", url: "ch3/cells_emf_internal_resistance.pdf", type: "pdf" },
+            { name: "Notes Part 5 - Kirchhoff Rules, Wheatstone Bridge", url: "ch3/Kirchhoffs_Law.pdf", type: "pdf", date: "2026-07-04" },
+            { name: "Revision Notes Ch-3", url: "ch3/Formula_Sheet_3.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-3", url: "ch3/Objective_3.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-3", url: "ch3/Question_Bank_3.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "CBSE PYQ Topic Wise",
+          links: [
+            { name: "PYQ - Average and Instantaneous Current", url: "ch3/PYQ_Current.pdf", type: "pdf" },
+            { name: "PYQ - Ohm's Law, Current Density", url: "ch3/PYQ_Ohm's_Law.pdf", type: "pdf" },
+            { name: "PYQ - Drift Velocity, Mobility", url: "ch3/PYQ_Drift_velocity.pdf", type: "pdf" },
+            { name: "PYQ - Temperature Dependence of Resistance", url: "ch3/PYQ_Temperature_Dependece_of_Resistance.pdf", type: "pdf" },
+            { name: "PYQ - EMF, Internal Resistance and Terminal Voltage", url: "ch3/PYQ_Emf_Internal_resistance.pdf", type: "pdf" },
+            { name: "PYQ - Combination of cells in Series and Parallel", url: "ch3/PYQ_Cell_Combinations.pdf", type: "pdf" },
+            // ---> ACTIVE UPDATE <---
+            { name: "PYQ - Kirchhoff's Rules, Wheatstone Bridge and Combination of Resistors", url: "ch3/PYQ_Kirchhoff_Wheatstone_Combination.pdf", type: "pdf", date: "2026-07-04" },
+            { name: "CBSE Board PYQ with solutions Complete", url: "ch3/ch3_cbse_PYQ_With_Solutions.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter4",
+      title: "Chapter 4: Moving Charges and Magnetism",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "Part 1 - Biot Savart Law PPT", url: "ch4/Biot_Savart_Law_PPT.pdf", type: "pdf" },
+            { name: "Part 2 - Ampere's Circuital Law PPT", url: "ch4/AMPERES CIRCUITAL LAW_PPT.pdf", type: "pdf" },
+            { name: "Part 3 - Lorentz force PPT", url: "ch4/Lorentz force.pdf", type: "pdf" },
+            { name: "Part 4 - Force on a current carrying conductor", url: "ch4/Force on a current carrying conductor placed in magnetic field.pdf", type: "pdf" },
+            { name: "Part 5 - Magnetic moment and Torque", url: "ch4/Magnetic moment and Torque.pdf", type: "pdf" },
+            { name: "Part 6 - Galvanometer", url: "ch4/Galvanometer.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "Chapter 4 Notes Part 1 - Biot Savart Law", url: "ch4/Biot_Savart_Law.pdf", type: "pdf" },
+            { name: "Revision Notes Ch-4", url: "ch4/Formula_Sheet_4.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-4", url: "ch4/Objective_4.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-4", url: "ch4/Question_Bank_4.pdf", type: "pdf" },
+            { name: "CBSE Board Previous Year Questions With Solutions", url: "ch4/PYQ_Ch_4_With_Solutions.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter5",
+      title: "Chapter 5: Magnetism and Matter",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "Part 1 - Magnetism", url: "ch5/Magnetism_PPT_Part_1.pdf", type: "pdf" },
+            { name: "Part 2 - Magnetism", url: "ch5/Magnetism and Matter PPT Part 2.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "CBSE PYQ With Solutions Complete Ch-5", url: "ch5/PYQ_With_Solutions_Ch_5.pdf", type: "pdf" },
+            { name: "Revision Notes Ch-5", url: "ch5/Formula_Sheet_5.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-5", url: "ch5/Objective_ch5.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-5", url: "ch5/QuestionBank_ch5.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter6",
+      title: "Chapter 6: Electromagnetic Induction",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "PPT Part 1 - Faraday's Law, Lenz's Law and Motional EMF", url: "ch6/EMI_Part_1.pdf", type: "pdf" },
+            { name: "PPT Part 2 - Self-Inductance, Mutual-Inductance and AC Generator", url: "ch6/EMI_Part_2.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "CBSE PYQ Faraday's law, Lenz's Law, and Motional EMF", url: "ch6/PYQ_ch6_Faraday_Lenz_motional_emf.pdf", type: "pdf" },
+            { name: "CBSE PYQ Self-Inductance, Mutual-Inductance and AC Generator", url: "ch6/PYQ_ch6_Self_and_Mutual_Inductance_AC_Generator.pdf", type: "pdf" },
+            { name: "CBSE PYQ With Solutions Complete Ch-6", url: "ch6/PYQ_With_Solutions_Ch_6.pdf", type: "pdf" },
+            { name: "Class Notes Ch-6", url: "ch6/EMI.pdf", type: "pdf" },
+            { name: "Revision Notes Ch-6", url: "ch6/Formula_Sheet_6.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-6", url: "ch6/Objective_ch6.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-6", url: "ch6/QuestionBank_ch6.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter7",
+      title: "Chapter 7: Alternating Current",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "PPT - Alternating Current", url: "ch7/Alternating Current.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "CBSE PYQ With Solutions Complete Ch-7", url: "ch7/PYQ_With_Solutions_Ch_7.pdf", type: "pdf" },
+            { name: "Revision Notes Ch-7", url: "ch7/Formula_Sheet_7.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-7", url: "ch7/Objective_ch7.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-7", url: "ch7/QuestionBank_ch7.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter8",
+      title: "Chapter 8: Electromagnetic Waves",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "PPT - Electromagnetic Waves", url: "ch8/ELECTROMAGNETIC WAVES PPT.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "CBSE PYQ With Solutions Complete Ch-8", url: "ch8/PYQ_With_Solutions_Ch_8.pdf", type: "pdf" },
+            { name: "Class Notes Ch-8", url: "ch8/ELECTROMAGNETIC WAVES.pdf", type: "pdf" },
+            { name: "Revision Notes Ch-8", url: "ch8/Formula_Sheet_8.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-8", url: "ch8/Objective_ch8.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-8", url: "ch8/QuestionBank_ch8.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter9",
+      title: "Chapter 9: Ray Optics",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "PPT Part 1 - Reflection and Mirror Formula", url: "ch9/RayOptics.pdf", type: "pdf" },
+            { name: "PPT Part 2 - Refraction, Glass Slab, TIR and Prism", url: "ch9/RayOptics_Refraction_Glass_Slab_TIR_Prism.pdf", type: "pdf" },
+            { name: "PPT Part 3 - Spherical Surfaces, Lens maker's formula, Lens formula", url: "ch9/RayOptics_SphericalSurfaces_Lens_Power.pdf", type: "pdf" },
+            { name: "PPT Part 4 - Microscope and Telescope", url: "ch9/RayOptics_Microscope_and_Telescope.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "Class Notes Part 1 - Reflection and Mirror Formula", url: "ch9/Reflection_Mirror_formula_Notes.pdf", type: "pdf" },
+            { name: "Class Notes Part 2 - Refraction, Glass Slab, TIR and Prism", url: "ch9/RayOptics_Refraction_Glass_Slab_TIR_Prism_Notes.pdf", type: "pdf" },
+            { name: "Class Notes Part 3 - Spherical Surfaces, Lens maker's formula, Lens formula", url: "ch9/RayOptics_SphericalSurfaces_Lens_Power_Notes.pdf", type: "pdf" },
+            { name: "Class Notes Part 4 - Microscope and Telescope", url: "ch9/RayOptics_Microscope_and_Telescope_Notes.pdf", type: "pdf" },
+            { name: "CBSE PYQ Part 1: Reflection, and Mirror Formula", url: "ch9/PYQ_Reflection_Mirror_formula.pdf", type: "pdf" },
+            { name: "CBSE PYQ Part 2: Refraction, Glass Slab, TIR and Prism", url: "ch9/PYQ_Refraction_Glass_Slab_TIR_Prism.pdf", type: "pdf" },
+            { name: "CBSE PYQ Part 3: Spherical Surfaces, Lens maker's formula, Lens formula", url: "ch9/PYQ_SphericalSurfaces_LensMaker_PowerOfLens.pdf", type: "pdf" },
+            { name: "CBSE PYQ Part 4: Microscope and Telescope", url: "ch9/PYQ_Microscope_Telescope.pdf", type: "pdf" },
+            { name: "CBSE PYQ With Solutions Complete Ch-9", url: "ch9/PYQ_With_Solutions_Ch_9.pdf", type: "pdf" },
+            { name: "Revision Notes Ch-9", url: "ch9/Formula_Sheet_9.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-9", url: "ch9/Objective_ch9.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-9", url: "ch9/QuestionBank_ch9.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter10",
+      title: "Chapter 10: Wave Optics",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "PPT Part 1 - Huygen's Principle", url: "ch10/WaveOptics_PPT_Part1.pdf", type: "pdf" },
+            { name: "PPT Part 2 - Interference, YDSE and Diffraction", url: "ch10/WaveOptics_PPT_Part2.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "CBSE PYQ With Solutions Complete Ch-10", url: "ch10/PYQ_With_Solutions_Ch_10.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter11",
+      title: "Chapter 11: Dual Nature",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "PPT - Dual Nature", url: "ch11/DualNature.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "CBSE PYQ With Solutions Complete Ch-11", url: "ch11/PYQ_With_Solutions_Ch_11.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter12",
+      title: "Chapter 12: Atoms",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "PPT - Atoms", url: "ch12/Atoms_PPT.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "Class Notes - Atoms (pdf)", url: "ch12/Atoms.pdf", type: "pdf" },
+            { name: "CBSE PYQ With Solutions Complete Ch-12", url: "ch12/PYQ_With_Solutions_Ch_12.pdf", type: "pdf" },
+            { name: "Revision Notes Ch-12", url: "ch12/Formula_Sheet_12.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-12", url: "ch12/Objective_ch12.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-12", url: "ch12/QuestionBank_ch12.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter13",
+      title: "Chapter 13: Nuclei",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "PPT - Nuclei", url: "ch13/Nuclei_PPT.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "Class Notes - Nuclei (pdf)", url: "ch13/Nuclei.pdf", type: "pdf" },
+            { name: "CBSE PYQ With Solutions Complete Ch-13", url: "ch13/PYQ_With_Solutions_Ch_13.pdf", type: "pdf" },
+            { name: "Revision Notes Ch-13", url: "ch13/Formula_Sheet_13.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-13", url: "ch13/Objective_ch13.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-13", url: "ch13/QuestionBank_ch13.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "chapter14",
+      title: "Chapter 14: Semiconductors",
+      sections: [
+        {
+          heading: "PPT",
+          links: [
+            { name: "PPT - Semiconductors", url: "ch14/Semiconductor.pdf", type: "pdf" }
+          ]
+        },
+        {
+          heading: "Summary Notes and Class Test",
+          links: [
+            { name: "Semiconductors Class Notes", url: "ch14/Semiconductor_classnotes.pdf", type: "pdf" },
+            { name: "KV PDF - Semiconductors Part 1", url: "ch14/solids_and_semiconductor_devices_1.pdf", type: "pdf" },
+            { name: "KV PPT - Semiconductors Part 1", url: "ch14/solids_and_semiconductor_devices_1.ppt", type: "pdf" },
+            { name: "Class Notes - Semiconductor (pdf)", url: "ch14/Nuclei.pdf", type: "pdf" },
+            { name: "CBSE PYQ With Solutions Complete Ch-14", url: "ch14/PYQ_With_Solutions_Ch_14.pdf", type: "pdf" },
+            { name: "Revision Notes Ch-14", url: "ch14/Formula_Sheet_14.pdf", type: "pdf" },
+            { name: "Objective Type Questions ch-14", url: "ch14/Objective_ch14.pdf", type: "pdf" },
+            { name: "Question Bank KV Ch-14", url: "ch14/QuestionBank_ch14.pdf", type: "pdf" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "books",
+      title: "Reference Books",
+      sections: [
+        {
+          heading: "S.L. Arora",
+          links: [
+            { name: "S.L. Arora Part 1", url: "https://drive.google.com/file/d/1Z0vVqNJTgT328kPUa98lASsxBebmd2eC/view?usp=sharing", type: "book" },
+            { name: "S.L. Arora Part 2", url: "https://drive.google.com/file/d/1eWDNzfj6yoHxHLDsZQDiyEEhotSFPnuh/view?usp=sharing", type: "book" },
+            { name: "S.L. Arora Lab Manual", url: "https://drive.google.com/file/d/1wU1hdePmX3i8EZuewpWB02al3YCPeKq9/view?usp=sharing", type: "book" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "samplepapers",
+      title: "Sample Papers",
+      sections: [
+        {
+          heading: "Practice Question Papers",
+          links: [
+            { name: "Sample Paper With MS - 1", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 1.pdf", type: "exam" },
+            { name: "Sample Paper With MS - 2", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 2.pdf", type: "exam" },
+            { name: "Sample Paper With MS - 3", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 3.pdf", type: "exam" },
+            { name: "Sample Paper With MS - 4", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 4.pdf", type: "exam" },
+            { name: "Sample Paper With MS - 5", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 5.pdf", type: "exam" },
+            { name: "Sample Paper - 6", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 6.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 6", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 6.pdf", type: "exam" },
+            { name: "Sample Paper - 7", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 7.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 7", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 7.pdf", type: "exam" },
+            { name: "Sample Paper - 8", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 8.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 8", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 8.pdf", type: "exam" },
+            { name: "Sample Paper - 9", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 9.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 9", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 9.pdf", type: "exam" },
+            { name: "Sample Paper - 10", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 10.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 10", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 10.pdf", type: "exam" },
+            { name: "Sample Paper - 11", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 11.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 11", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 11.pdf", type: "exam" },
+            { name: "Sample Paper - 12", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 12.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 12", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 12.pdf", type: "exam" },
+            { name: "Sample Paper - 13", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 13.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 13", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 13.pdf", type: "exam" },
+            { name: "Sample Paper - 14", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 14.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 14", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 14.pdf", type: "exam" },
+            { name: "Sample Paper - 15", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 15.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 15", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 15.pdf", type: "exam" },
+            { name: "Sample Paper - 16", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 16.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 16", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 16.pdf", type: "exam" },
+            { name: "Sample Paper - 17", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 17.pdf", type: "exam" },
+            { name: "Marking Scheme of Sample Paper - 17", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER MS 17.pdf", type: "exam" },
+            { name: "Sample Paper - 18", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 18.pdf", type: "exam" },
+            { name: "Sample Paper - 19", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 19.pdf", type: "exam" },
+            { name: "Sample Paper - 20", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 20.pdf", type: "exam" },
+            { name: "Sample Paper - 21", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 21.pdf", type: "exam" },
+            { name: "Sample Paper - 22", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 22.pdf", type: "exam" },
+            { name: "Sample Paper - 23", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 23.pdf", type: "exam" },
+            { name: "Sample Paper - 24", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 24.pdf", type: "exam" },
+            { name: "Sample Paper - 25", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 25.pdf", type: "exam" },
+            { name: "Sample Paper - 26", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 26.pdf", type: "exam" },
+            { name: "Sample Paper - 27", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 27.pdf", type: "exam" },
+            { name: "Sample Paper - 28", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 28.pdf", type: "exam" },
+            { name: "Sample Paper - 29", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 29.pdf", type: "exam" },
+            { name: "Sample Paper - 30", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 30.pdf", type: "exam" },
+            { name: "Sample Paper - 31", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 31.pdf", type: "exam" },
+            { name: "Sample Paper - 32", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 32.pdf", type: "exam" },
+            { name: "Sample Paper - 33", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 33.pdf", type: "exam" },
+            { name: "Sample Paper - 34", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 34.pdf", type: "exam" },
+            { name: "Sample Paper - 35", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 35.pdf", type: "exam" },
+            { name: "Sample Paper - 36", url: "Sample Papers/PHYSICS PRACTICE QUESTION PAPER 36.pdf", type: "exam" }
+          ]
+        }
+      ]
+    }
+  ];
+
+  /*
+   * =====================================================================
+   * SITE RENDERER ENGINE
+   * =====================================================================
+   */
+  const navContainer = document.getElementById('nav-container');
+  const mainContainer = document.getElementById('main-container');
+
+  const getIcon = (type) => {
+    switch(type) {
+      case 'ppt': return '🌐';
+      case 'pdf': return '📄';
+      case 'book': return '📚';
+      case 'exam': return '📝';
+      default: return '🔗';
+    }
+  };
+
+  let recentUpdates = [];
+  siteData.forEach(chapter => {
+    chapter.sections.forEach(section => {
+      section.links.forEach(link => {
+        if (link.date) {
+          recentUpdates.push({ ...link, chapterName: chapter.title.split(':')[0] });
+        }
+      });
+    });
+  });
+
+  recentUpdates.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  // Render Updates
+  if (recentUpdates.length > 0) {
+    const updatesLink = document.createElement('a');
+    updatesLink.href = `#updates`;
+    updatesLink.textContent = "🔥 Updates";
+    navContainer.appendChild(updatesLink);
+
+    const updatesTag = document.createElement('details');
+    updatesTag.className = 'card updates-card';
+    updatesTag.id = 'updates';
+    updatesTag.open = true;
+
+    const summaryTag = document.createElement('summary');
+    summaryTag.textContent = "🔔 Recent Updates";
+    updatesTag.appendChild(summaryTag);
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'content';
+    const ul = document.createElement('ul');
+    ul.className = 'link-list';
+
+    recentUpdates.slice(0, 5).forEach(link => {
+      const li = document.createElement('li');
+      const target = (link.type === 'ppt' || link.url.startsWith('http')) ? '_blank' : '';
+      const download = (link.type === 'pdf' || link.type === 'exam' || link.type === 'book') ? 'download' : '';
+      const dateFormatted = new Date(link.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+      li.innerHTML = `
+        <div class="link-row">
+          <span class="link-icon">${getIcon(link.type)}</span>
+          <a href="${link.url}" ${target ? `target="${target}"` : ''} ${download}>${link.name}</a>
+          <span class="badge-new">NEW</span>
+        </div>
+        <span class="update-date">Added on ${dateFormatted} in ${link.chapterName}</span>
+      `;
+      ul.appendChild(li);
+    });
+
+    contentDiv.appendChild(ul);
+    updatesTag.appendChild(contentDiv);
+    mainContainer.appendChild(updatesTag);
   }
+
+  // Render Chapters
+  siteData.forEach(chapter => {
+    const navLink = document.createElement('a');
+    navLink.href = `#${chapter.id}`;
+    navLink.textContent = chapter.title.includes(':') ? chapter.title.split(':')[0] : chapter.title;
+    navContainer.appendChild(navLink);
+
+    const detailsTag = document.createElement('details');
+    detailsTag.className = 'card';
+    detailsTag.id = chapter.id;
+
+    const summaryTag = document.createElement('summary');
+    summaryTag.textContent = chapter.title;
+    detailsTag.appendChild(summaryTag);
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'content';
+
+    chapter.sections.forEach(section => {
+      const heading = document.createElement('h3');
+      heading.className = 'section-title';
+      heading.textContent = section.heading;
+      contentDiv.appendChild(heading);
+
+      const ul = document.createElement('ul');
+      ul.className = 'link-list';
+
+      section.links.forEach(link => {
+        const li = document.createElement('li');
+        const target = (link.type === 'ppt' || link.url.startsWith('http')) ? '_blank' : '';
+        const download = (link.type === 'pdf' || link.type === 'exam' || link.type === 'book') ? 'download' : '';
+        const badge = link.date ? `<span class="badge-new">NEW</span>` : '';
+
+        li.innerHTML = `
+          <div class="link-row">
+            <span class="link-icon">${getIcon(link.type)}</span>
+            <a href="${link.url}" ${target ? `target="${target}"` : ''} ${download}>${link.name}</a>
+            ${badge}
+          </div>
+        `;
+        ul.appendChild(li);
+      });
+      contentDiv.appendChild(ul);
+    });
+    detailsTag.appendChild(contentDiv);
+    mainContainer.appendChild(detailsTag);
+  });
 </script>
 
 </body>
