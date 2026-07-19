@@ -3,44 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- WhatsApp / Social Media Link Previews -->
-  <meta property="og:title" content="Physics Hub | D.A.V. Lohaghat">
-  <meta property="og:description" content="Download Class XII Physics PPTs, Class Notes, Topic-wise PYQs, and Sample Papers.">
-  <meta property="og:image" content="favicon.png">
-  <meta property="og:type" content="website">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
-
   <title>Physics Presentations | D.A.V. Lohaghat</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <style>
-    /* Default Dark Theme Variables */
     :root {
-      --bg-main: #0f172a;
-      --bg-sidebar: #1e293b;
-      --border: #334155;
-      --primary: #38bdf8;
+      --bg-main: #0f172a;       /* Deep slate for main background */
+      --bg-sidebar: #1e293b;    /* Slightly lighter slate for sidebar/cards */
+      --border: #334155;        /* Subtle border color */
+      --primary: #38bdf8;       /* Sky blue accent */
       --primary-hover: #7dd3fc;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --highlight: #f59e0b;
+      --text-main: #f8fafc;     /* Crisp white text */
+      --text-muted: #94a3b8;    /* Muted text for secondary info */
+      --highlight: #f59e0b;     /* Orange for "New" updates */
       --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Light Theme Variables */
-    body.light-mode {
-      --bg-main: #f1f5f9;
-      --bg-sidebar: #ffffff;
-      --border: #cbd5e1;
-      --primary: #0284c7;
-      --primary-hover: #0369a1;
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --highlight: #ea580c;
-      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
     }
 
     html { scroll-behavior: smooth; }
@@ -52,14 +28,13 @@
       background-color: var(--bg-main);
       color: var(--text-main);
       line-height: 1.6;
-      display: flex;
+      display: flex; /* Establishes the two-column layout */
       min-height: 100vh;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     /* --- Sidebar Navigation --- */
     .sidebar {
-      width: 300px;
+      width: 280px;
       background-color: var(--bg-sidebar);
       border-right: 1px solid var(--border);
       position: sticky;
@@ -69,123 +44,178 @@
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
     }
 
     .sidebar-header {
       padding: 2rem 1.5rem 1rem 1.5rem;
       border-bottom: 1px solid var(--border);
-      position: relative;
     }
 
     .sidebar-header h1 {
-      font-size: 1.5rem; margin: 0; font-weight: 700; color: var(--text-main); letter-spacing: -0.02em;
+      font-size: 1.5rem;
+      margin: 0;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
     }
+
     .sidebar-header p {
-      color: var(--primary); margin: 0.3rem 0 0 0; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--primary);
+      margin: 0.3rem 0 0 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    /* Theme Toggle Button */
-    .theme-toggle {
-      background: none; border: none; font-size: 1.2rem; cursor: pointer;
-      position: absolute; top: 2rem; right: 1.2rem; padding: 0;
-      transition: transform 0.2s ease;
+    nav {
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
     }
-    .theme-toggle:hover { transform: scale(1.1); }
 
-    /* Search Bar */
-    .search-container {
-      padding: 1rem 1.5rem 0.5rem 1.5rem;
-    }
-    .search-container input {
-      width: 100%; box-sizing: border-box; padding: 0.7rem 1rem;
-      border-radius: 8px; border: 1px solid var(--border);
-      background-color: rgba(0,0,0,0.1); color: var(--text-main);
-      font-family: inherit; font-size: 0.9rem; outline: none;
-      transition: border-color 0.2s ease, background-color 0.3s ease;
-    }
-    .search-container input:focus { border-color: var(--primary); }
-    body.light-mode .search-container input { background-color: #f8fafc; }
-
-    nav { padding: 1rem 1.5rem; display: flex; flex-direction: column; gap: 0.3rem; }
     nav a {
-      color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500;
-      padding: 0.6rem 1rem; border-radius: 8px; transition: all 0.2s ease; display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      display: block;
     }
-    nav a:hover { background-color: rgba(56, 189, 248, 0.1); color: var(--primary); }
+
+    nav a:hover {
+      background-color: rgba(56, 189, 248, 0.1);
+      color: var(--primary);
+    }
 
     /* --- Main Content Area --- */
-    .main-content { flex-grow: 1; padding: 3rem 5%; min-width: 0; }
-    .content-wrapper { max-width: 900px; margin: 0 auto; }
-
-    .card {
-      background-color: var(--bg-sidebar); border: 1px solid var(--border); margin-bottom: 1.5rem;
-      border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; transition: border-color 0.2s ease, background-color 0.3s ease;
+    .main-content {
+      flex-grow: 1;
+      padding: 3rem 5%;
+      min-width: 0; /* Prevents flexbox overflowing */
     }
+
+    .content-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* --- Cards / Accordions --- */
+    .card {
+      background-color: var(--bg-sidebar);
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
     .card:hover { border-color: var(--primary); }
 
     summary {
-      padding: 1.25rem 1.5rem; font-size: 1.2rem; font-weight: 600; color: var(--text-main);
-      cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none;
+      padding: 1.25rem 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
     }
+
     summary::-webkit-details-marker { display: none; }
-    summary::after { content: "▼"; font-size: 0.8rem; color: var(--text-muted); transition: transform 0.3s ease; }
+    summary::after {
+      content: "▼";
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+    }
     details[open] summary::after { transform: rotate(180deg); color: var(--primary); }
-    details[open] summary { border-bottom: 1px solid var(--border); background-color: rgba(0,0,0,0.15); }
-    body.light-mode details[open] summary { background-color: rgba(0,0,0,0.02); }
+    details[open] summary {
+      border-bottom: 1px solid var(--border);
+      background-color: rgba(0,0,0,0.15);
+    }
 
     .content { padding: 1.5rem; animation: fadeIn 0.3s ease-in-out; }
+
     .section-title {
-      font-size: 0.9rem; color: var(--text-muted); margin: 1.5rem 0 0.8rem 0;
-      text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 1.5rem 0 0.8rem 0;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
     }
     .section-title:first-child { margin-top: 0; }
 
+    /* --- Links List --- */
     .link-list { list-style: none; padding: 0; margin: 0; }
     .link-list li { margin-bottom: 0.8rem; display: flex; flex-direction: column; align-items: flex-start; word-break: break-word; }
     .link-row { display: flex; align-items: center; }
     .link-icon { margin-right: 0.6rem; font-size: 1.1rem; opacity: 0.9; }
-    .link-list a { color: var(--primary); text-decoration: none; font-weight: 500; transition: color 0.2s ease, transform 0.2s ease; }
-    .link-list a:hover { color: var(--primary-hover); text-decoration: underline; }
 
-    /* Updates specific styling */
+    .link-list a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .link-list a:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+
+    /* --- Updates Specific Styling --- */
     .updates-card {
       border: 1px solid var(--highlight);
       box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+      background: linear-gradient(to right, rgba(30, 41, 59, 1), rgba(30, 41, 59, 0.8));
     }
-    body:not(.light-mode) .updates-card { background: linear-gradient(to right, rgba(30, 41, 59, 1), rgba(30, 41, 59, 0.8)); }
     .updates-card summary { color: var(--highlight); }
     .badge-new {
-      background-color: var(--highlight); color: #fff; font-size: 0.7rem; font-weight: 700;
-      padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: 0.8rem; vertical-align: middle; letter-spacing: 0.05em;
+      background-color: var(--highlight); color: #000; font-size: 0.7rem; font-weight: 700;
+      padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: 0.8rem; vertical-align: middle;
+      letter-spacing: 0.05em;
     }
-    body:not(.light-mode) .badge-new { color: #000; }
-    .update-date { font-size: 0.8rem; color: var(--text-muted); display: block; margin-left: 1.7rem; margin-top: 0.2rem; }
-
-    /* Back to Top Button */
-    .back-to-top {
-      position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px;
-      border-radius: 50%; background-color: var(--primary); color: #fff; border: none;
-      font-size: 1.5rem; font-weight: bold; cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3); opacity: 0; visibility: hidden;
-      transform: translateY(20px); transition: all 0.3s ease; z-index: 100;
-      display: flex; justify-content: center; align-items: center;
+    .update-date {
+      font-size: 0.8rem; color: var(--text-muted); display: block; margin-left: 1.7rem; margin-top: 0.2rem;
     }
-    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-    .back-to-top:hover { background-color: var(--primary-hover); transform: translateY(-3px); }
 
     .footer-section { text-align: center; margin-top: 4rem; padding-bottom: 2rem; border-top: 1px solid var(--border); padding-top: 2rem;}
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
+    /* --- Mobile Responsiveness --- */
     @media (max-width: 900px) {
       body { flex-direction: column; }
-      .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border); }
-      .sidebar-header { padding: 1.5rem; text-align: left; }
-      .theme-toggle { top: 1.5rem; right: 1.5rem; }
-      nav { flex-direction: row; overflow-x: auto; padding: 0.5rem 1rem; white-space: nowrap; gap: 0.5rem; }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative; /* Removes sticky on mobile for better scrolling */
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sidebar-header { padding: 1.5rem; text-align: center; }
+
+      nav {
+        flex-direction: row;
+        overflow-x: auto; /* Horizontal scroll for chapters on mobile */
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+        gap: 0.5rem;
+      }
+
+      nav a { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
+
       .main-content { padding: 2rem 1rem; }
-      .back-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 1.2rem; }
     }
   </style>
   <script src="https://counterapi.com/c.js?ns=mysite.com" async></script>
@@ -195,15 +225,9 @@
 <!-- Left Sidebar -->
 <aside class="sidebar">
   <div class="sidebar-header">
-    <h1>Class XII Physics</h1>
+    <h1>Physics Hub</h1>
     <p>By Manish Joshi</p>
-    <button id="themeToggle" class="theme-toggle" title="Toggle Light/Dark Mode">☀️</button>
   </div>
-
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search chapters, topics, PDFs...">
-  </div>
-
   <nav id="nav-container"></nav>
 </aside>
 
@@ -218,11 +242,8 @@
   </div>
 </main>
 
-<!-- Back to Top Button -->
-<button id="backToTop" class="back-to-top" title="Go to top">↑</button>
-
 <script>
-   /**
+  /**
    * =====================================================================
    * SITE CONTENT CONFIGURATION
    * =====================================================================
@@ -689,7 +710,6 @@
     }
   ];
 
-
   /*
    * =====================================================================
    * SITE RENDERER ENGINE
@@ -697,7 +717,6 @@
    */
   const navContainer = document.getElementById('nav-container');
   const mainContainer = document.getElementById('main-container');
-  const searchInput = document.getElementById('searchInput');
 
   const getIcon = (type) => {
     switch(type) {
@@ -709,191 +728,108 @@
     }
   };
 
-  // Find recent updates
   let recentUpdates = [];
   siteData.forEach(chapter => {
     chapter.sections.forEach(section => {
       section.links.forEach(link => {
-        if (link.date) recentUpdates.push({ ...link, chapterName: chapter.title.split(':')[0] });
+        if (link.date) {
+          recentUpdates.push({ ...link, chapterName: chapter.title.split(':')[0] });
+        }
       });
     });
   });
+
   recentUpdates.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Core Render Function
-  function renderSite(filterQuery = '') {
-    const q = filterQuery.toLowerCase();
-    navContainer.innerHTML = '';
-    mainContainer.innerHTML = '';
+  // Render Updates
+  if (recentUpdates.length > 0) {
+    const updatesLink = document.createElement('a');
+    updatesLink.href = `#updates`;
+    updatesLink.textContent = "🔥 Updates";
+    navContainer.appendChild(updatesLink);
 
-    // Render Updates Section (Hide it when searching to avoid clutter)
-    if (recentUpdates.length > 0 && q === '') {
-      const updatesLink = document.createElement('a');
-      updatesLink.href = `#updates`;
-      updatesLink.textContent = "🔥 Updates";
-      navContainer.appendChild(updatesLink);
+    const updatesTag = document.createElement('details');
+    updatesTag.className = 'card updates-card';
+    updatesTag.id = 'updates';
+    updatesTag.open = true;
 
-      const updatesTag = document.createElement('details');
-      updatesTag.className = 'card updates-card';
-      updatesTag.id = 'updates';
-      updatesTag.open = true;
+    const summaryTag = document.createElement('summary');
+    summaryTag.textContent = "🔔 Recent Updates";
+    updatesTag.appendChild(summaryTag);
 
-      const summaryTag = document.createElement('summary');
-      summaryTag.textContent = "🔔 Recent Updates";
-      updatesTag.appendChild(summaryTag);
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'content';
+    const ul = document.createElement('ul');
+    ul.className = 'link-list';
 
-      const contentDiv = document.createElement('div');
-      contentDiv.className = 'content';
+    recentUpdates.slice(0, 5).forEach(link => {
+      const li = document.createElement('li');
+      const target = (link.type === 'ppt' || link.url.startsWith('http')) ? '_blank' : '';
+      const download = (link.type === 'pdf' || link.type === 'exam' || link.type === 'book') ? 'download' : '';
+      const dateFormatted = new Date(link.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+      li.innerHTML = `
+        <div class="link-row">
+          <span class="link-icon">${getIcon(link.type)}</span>
+          <a href="${link.url}" ${target ? `target="${target}"` : ''} ${download}>${link.name}</a>
+          <span class="badge-new">NEW</span>
+        </div>
+        <span class="update-date">Added on ${dateFormatted} in ${link.chapterName}</span>
+      `;
+      ul.appendChild(li);
+    });
+
+    contentDiv.appendChild(ul);
+    updatesTag.appendChild(contentDiv);
+    mainContainer.appendChild(updatesTag);
+  }
+
+  // Render Chapters
+  siteData.forEach(chapter => {
+    const navLink = document.createElement('a');
+    navLink.href = `#${chapter.id}`;
+    navLink.textContent = chapter.title.includes(':') ? chapter.title.split(':')[0] : chapter.title;
+    navContainer.appendChild(navLink);
+
+    const detailsTag = document.createElement('details');
+    detailsTag.className = 'card';
+    detailsTag.id = chapter.id;
+
+    const summaryTag = document.createElement('summary');
+    summaryTag.textContent = chapter.title;
+    detailsTag.appendChild(summaryTag);
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'content';
+
+    chapter.sections.forEach(section => {
+      const heading = document.createElement('h3');
+      heading.className = 'section-title';
+      heading.textContent = section.heading;
+      contentDiv.appendChild(heading);
+
       const ul = document.createElement('ul');
       ul.className = 'link-list';
 
-      recentUpdates.slice(0, 5).forEach(link => {
+      section.links.forEach(link => {
         const li = document.createElement('li');
         const target = (link.type === 'ppt' || link.url.startsWith('http')) ? '_blank' : '';
         const download = (link.type === 'pdf' || link.type === 'exam' || link.type === 'book') ? 'download' : '';
-        const dateFormatted = new Date(link.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const badge = link.date ? `<span class="badge-new">NEW</span>` : '';
 
         li.innerHTML = `
           <div class="link-row">
             <span class="link-icon">${getIcon(link.type)}</span>
             <a href="${link.url}" ${target ? `target="${target}"` : ''} ${download}>${link.name}</a>
-            <span class="badge-new">NEW</span>
+            ${badge}
           </div>
-          <span class="update-date">Added on ${dateFormatted} in ${link.chapterName}</span>
         `;
         ul.appendChild(li);
       });
-
       contentDiv.appendChild(ul);
-      updatesTag.appendChild(contentDiv);
-      mainContainer.appendChild(updatesTag);
-    }
-
-    let foundResults = false;
-
-    // Render Chapters
-    siteData.forEach(chapter => {
-      // Create filtered sections based on search
-      let matchingSections = [];
-      chapter.sections.forEach(section => {
-        let matchingLinks = section.links.filter(link =>
-          link.name.toLowerCase().includes(q) ||
-          section.heading.toLowerCase().includes(q) ||
-          chapter.title.toLowerCase().includes(q)
-        );
-        if (matchingLinks.length > 0) {
-          matchingSections.push({ heading: section.heading, links: matchingLinks });
-        }
-      });
-
-      // If chapter has matches (or we aren't searching), render it
-      if (matchingSections.length > 0) {
-        foundResults = true;
-
-        // Add to Nav
-        const navLink = document.createElement('a');
-        navLink.href = `#${chapter.id}`;
-        navLink.textContent = chapter.title.includes(':') ? chapter.title.split(':')[0] : chapter.title;
-        navContainer.appendChild(navLink);
-
-        // Build Card
-        const detailsTag = document.createElement('details');
-        detailsTag.className = 'card';
-        detailsTag.id = chapter.id;
-
-        // Automatically open the folder if the user is searching for something
-        if (q !== '') detailsTag.open = true;
-
-        const summaryTag = document.createElement('summary');
-        summaryTag.textContent = chapter.title;
-        detailsTag.appendChild(summaryTag);
-
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'content';
-
-        matchingSections.forEach(section => {
-          const heading = document.createElement('h3');
-          heading.className = 'section-title';
-          heading.textContent = section.heading;
-          contentDiv.appendChild(heading);
-
-          const ul = document.createElement('ul');
-          ul.className = 'link-list';
-
-          section.links.forEach(link => {
-            const li = document.createElement('li');
-            const target = (link.type === 'ppt' || link.url.startsWith('http')) ? '_blank' : '';
-            const download = (link.type === 'pdf' || link.type === 'exam' || link.type === 'book') ? 'download' : '';
-            const badge = link.date ? `<span class="badge-new">NEW</span>` : '';
-
-            li.innerHTML = `
-              <div class="link-row">
-                <span class="link-icon">${getIcon(link.type)}</span>
-                <a href="${link.url}" ${target ? `target="${target}"` : ''} ${download}>${link.name}</a>
-                ${badge}
-              </div>
-            `;
-            ul.appendChild(li);
-          });
-          contentDiv.appendChild(ul);
-        });
-        detailsTag.appendChild(contentDiv);
-        mainContainer.appendChild(detailsTag);
-      }
     });
-
-    if (!foundResults) {
-      mainContainer.innerHTML = `<p style="text-align:center; margin-top:3rem; color:var(--text-muted);">No results found for "${filterQuery}".</p>`;
-    }
-  }
-
-  // Initialize Site Render
-  renderSite();
-
-  // Search Input Listener
-  searchInput.addEventListener('input', (e) => {
-    renderSite(e.target.value);
-  });
-
-  /*
-   * =====================================================================
-   * QOL FEATURES (Theme Toggle & Back to Top)
-   * =====================================================================
-   */
-
-  // Theme Toggle Logic
-  const themeToggle = document.getElementById('themeToggle');
-  const currentTheme = localStorage.getItem('theme');
-
-  if (currentTheme === 'light') {
-    document.body.classList.add('light-mode');
-    themeToggle.textContent = '🌙';
-  }
-
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
-    if (document.body.classList.contains('light-mode')) {
-      localStorage.setItem('theme', 'light');
-      themeToggle.textContent = '🌙';
-    } else {
-      localStorage.setItem('theme', 'dark');
-      themeToggle.textContent = '☀️';
-    }
-  });
-
-  // Back to Top Logic
-  const backToTopBtn = document.getElementById('backToTop');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      backToTopBtn.classList.add('visible');
-    } else {
-      backToTopBtn.classList.remove('visible');
-    }
-  });
-
-  backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    detailsTag.appendChild(contentDiv);
+    mainContainer.appendChild(detailsTag);
   });
 </script>
 
